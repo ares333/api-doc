@@ -15,7 +15,7 @@ class LoginModel extends AbstractModel {
 		}
 		if (! empty ( $username )) {
 			$usernameValid = 'admin';
-			$passwordValid = 'ald2000';
+			$passwordValid = 'admin';
 			if ($username == $usernameValid && $password == $passwordValid) {
 				$this->getSession ()->set ( 'isLogin', 'yes' );
 				return true;

@@ -1,5 +1,5 @@
 GetWechatSMS
-	title	登录页面---获取验证码(wechat)
+	title	获取验证码
 	params
 		httpPost
 			Cellphone		1	电话（Base64编码）
@@ -23,7 +23,7 @@ GetWechatSMS
 						sms		string	短信
 						info	string	中文信息提示
 WechatSMSLogin
-	title	登录页面---点击登录(wechat)
+	title	登录
 	params
 		httpPost
 			Cellphone		1	电话（Base64编码）
@@ -46,7 +46,7 @@ WechatSMSLogin
 					data
 						loginInfo		string	登录提示信息
 WechatUserDetail
-	title	个人申请页面保存个人信息(wechat)
+	title	提交个人信息
 	params
 		httpPost
 			Cellphone		1	电话
@@ -79,7 +79,7 @@ WechatUserDetail
 					data
 						info	string	中文信息提示
 WechatBindCardStep1
-	title	绑定银行卡第一步（wechat)
+	title	绑定银行
 	params
 		httpPost
 			Cellphone	1	手机号
@@ -110,7 +110,7 @@ WechatBindCardStep1
 						error_code		string	绑卡错误代码
 						error_msg		string	绑卡错误信息
 WechatBindCardStep2
-	title	确认绑定银行卡(绑卡-wechat)
+	title	确认绑定银行卡
 	params
 		httpPost
 			Cellphone	1	手机号
@@ -143,7 +143,7 @@ WechatBindCardStep2
 						error_code		string	绑卡错误代码
 						error_msg		string	绑卡错误信息
 WechatApply
-	title	主页--立即申请（wechat）
+	title	申请
 	params
 		httpPost
 			Cellphone		1	电话
@@ -176,7 +176,7 @@ WechatApply
 					data
 						info	string	详细信息
 WechatAutoPay
-	title	自动代扣（wechat）
+	title	自动代扣
 	params
 		httpPost
 			Cellphone			1	电话
@@ -201,7 +201,7 @@ WechatAutoPay
 					data
 						info	string	详细信息
 GetWechatDetail
-	title	进入个人申请页面--展示个人信息（wechat）
+	title	个人信息
 	params
 		httpPost
 			Cellphone		1	电话号码
@@ -233,7 +233,7 @@ GetWechatDetail
 						socialSecurity	String	是否有社保
 						creditCard		String	是否有信用卡
 WechatBankCardList
-	title	管理银行卡页面--展示银行卡列表（wechat）
+	title	银行卡列表
 	params
 		httpPost
 			Cellphone		1	电话号码

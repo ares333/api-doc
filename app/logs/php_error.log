@@ -7301,3 +7301,6 @@ Stack trace:
 #10 /mnt/hgfs/work/php/ald/doc.ald.phpdr.net/public/index.php(4): Yaf_Application->run()
 #11 {main}</pre>
 
+[09-Nov-2015 11:22:50 Asia/Shanghai] PHP Fatal error:  Call to a member function toArray() on a non-object in /mnt/hgfs/work/git/yaf-library/Utility/ModelAbstract.php on line 11
+[09-Nov-2015 11:26:12 Asia/Shanghai] PHP Fatal error:  Call to a member function init() on a non-object in /mnt/hgfs/work/git/yaf-library/Utility/ModelAbstract.php on line 15
+[09-Nov-2015 11:26:32 Asia/Shanghai] PHP Fatal error:  Call to a member function getDefaultDb() on a non-object in /mnt/hgfs/work/git/api-doc/app/models/Abstract.php on line 4
