@@ -3,12 +3,12 @@
 关于
 -----
 
-API文档编写是非常重要的一项工作，但是编写维护非常麻烦，本项目的解决的问题是以最轻松的方式维护n个接口，每个接口n个版本。原理是解析固定格式的txt文件自动生成。
+API文档编写是非常重要的一项工作，但是编写维护非常麻烦，本项目的解决的问题是以最轻松的方式维护n个接口，每个接口n个版本。原理是解析固定格式的txt文件实时全自动生成稳定。
 
 需求
 ----
-PHP 5.4 +
-PHP Yaf 2.3.3+
+PHP 5.4 +<br>
+PHP Yaf 2.3.3+<br>
 [https://github.com/ares333/yaf-library](https://github.com/ares333/yaf-library "yaf-library")
 
 联系我们
@@ -25,10 +25,10 @@ QQ群:424844502
 
 Demo
 ----
-[https://doc.phpdr.net]("api-doc")
+[http://doc.phpdr.net](http://doc.phpdr.net "api-doc")
 
 用法
 ----
-语法说明文件查看[doc/Api.txt]<br>
-Demo使用的数据文件在[app/data/doc/api]<br>
+语法说明文件查看[doc/Api.txt](doc/Api.txt)<br>
+Demo使用的数据文件在[app/data/doc/api](doc/Api.txt)<br>
 看Demo和文档基本就会用，更深入问题讨论见<b>联系我们</b>
