@@ -9,7 +9,7 @@ API文档编写是非常重要的一项工作，但是编写维护非常麻烦�
 ----
 PHP 5.4 +<br>
 PHP Yaf<br>
-[https://github.com/ares333/yaf-library](https://github.com/ares333/yaf-library "yaf-library")
+[yaf-library](https://github.com/ares333/yaf-library "yaf-library")
 
 联系我们
 --------
