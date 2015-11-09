@@ -25,10 +25,12 @@ QQ群:424844502
 
 Demo
 ----
-[http://doc.phpdr.net](http://doc.phpdr.net "api-doc")
+[http://doc.phpdr.net](http://doc.phpdr.net "api-doc")<br>
+用户名：admin<br>
+密码：admin
 
 用法
 ----
 语法说明文件查看[doc/Api.txt](doc/Api.txt)<br>
-Demo使用的数据文件在[app/data/doc/api](doc/Api.txt)<br>
+Demo使用的数据文件在[app/data/doc/api](app/data/doc/api)<br>
 看Demo和文档基本就会用，更深入问题讨论见<b>联系我们</b>
