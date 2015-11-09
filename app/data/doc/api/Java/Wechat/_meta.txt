@@ -1,0 +1,10 @@
+prefix
+	url	http://localhost:8080/API/{$version}/
+suffix
+wraper
+	return
+		demo	{$demo}
+default
+	url	\k
+	return
+		type	JSON对象

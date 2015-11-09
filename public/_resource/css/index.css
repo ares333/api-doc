@@ -1,0 +1,25 @@
+body header {
+	width:100%;
+	padding-top:8px;
+	background-color:#FFF;
+}
+
+body main{
+	padding-top:45px;
+}
+
+.ym-wrapper {
+	max-width: 100%;
+}
+
+.ym-col1 {
+	width: 20%;
+}
+
+.ym-col1 .ym-cbox{
+	padding-left:0;
+}
+
+.ym-col3 {
+	margin-right: 0;
+}

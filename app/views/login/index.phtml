@@ -1,0 +1,23 @@
+{extends file='_root.phtml'} {block title}登录{/block} {block body}
+<div class="ym-grid">
+	<div class="ym-g20">
+		<div class="ym-gbox">
+			<br>
+			<form class="ym-form ym-full" method="post">
+				<div class="ym-fbox">
+					{if !empty($error)}<span style="color: red">{$error}</span>{/if}
+				</div>
+				<div class="ym-fbox">
+					<input type="text" name="username" placeholder="用户名" />
+				</div>
+				<div class="ym-fbox">
+					<input type="password" name="password" placeholder="密码" />
+				</div>
+				<div class="ym-fbox-footer">
+					<input type="submit" class="ym-button ym-primary" value="登录" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/block}

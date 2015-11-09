@@ -1,0 +1,177 @@
+@import "../../../_yaml-var-globals";
+
+@media all {
+
+	/**
+	* @section browser normalisation
+	* Changing direction of text flow, paddings & margins ...
+	*/
+
+	option { padding: 0 0.4em 0 0; }
+
+	body {
+		text-align: right;
+		direction: rtl;
+	}
+
+	ul,
+	ol,
+	dl { margin: 0 1em 1em 0; }
+
+	li {
+		margin-left: 0;
+		margin-right: 0.8em;
+	}
+
+	dd { margin: 0 0.8em 1em 0; }
+	blockquote,
+	cite { margin: 0 0.8em 1em 0; }
+
+
+
+	/* set text flow */
+	.ym-form {
+		direction:rtl;
+
+		* {
+			text-align: right;
+		}
+
+		input,
+		textarea {
+			display: inline-block;
+		}
+
+		select {
+			display: inline-block;
+		}
+
+		// overrule width settings for inline form elements ...
+		.ym-fbox-check input,
+		input[type="radio"],
+		input[type="checkbox"] {
+			margin-left: 0.5ex;
+			margin-right: 0;
+		}
+
+		.ym-inline {
+			margin-left: 0; // reset rounding tolerance ...
+		}
+	}
+
+	.ym-fbox-wrap {
+		input[type="radio"],
+		input[type="checkbox"] {
+			margin-left: 0.5ex;
+			margin-right: 0;
+		}
+	}
+
+	/*------------------------------------------------------------------------------------------------------*/
+
+	/**
+	* (en) rtl adjustments for forms module
+	* (de) RTL-Anpassungen für das Formular Modul
+	*
+	*/
+
+	.ym-columnar {
+		// Columnar display
+		// Spalten-Darstellung
+		input,
+		textarea,
+		select {
+			float:right;
+			margin-right: 0;
+			margin-left: -3px;
+		}
+
+		label,
+		.ym-label {
+			display:inline;
+			float:right;
+		}
+
+		input+label {
+			margin-right: 0.5ex;
+		}
+
+		// Indent Checkbox fields to match label-width
+		// Checkboxen um den gleichen Wert einrücken, wie die Breite der labels
+		.ym-fbox-check input,
+		.ym-message {
+			margin-left: 0;
+			margin-right: 30%;
+		}
+
+		// reset indention for wrapped form elements ...
+		.ym-fbox-wrap {
+			margin-left: 0;
+			margin-right: 30%;
+			margin-left: -3px;
+
+			.ym-message {
+				margin-right: 0%;
+			}
+
+			label {
+				margin-right: 0;
+			}
+
+			input {
+				margin-right: 0;
+			}
+
+			input[type="radio"],
+			input[type="checkbox"] {
+				margin-left: 0.5ex;
+				margin-right: 0;
+			}
+		}
+
+		.ym-fbox-button {
+			input {
+				float:none;
+				margin-left: 1em;
+				margin-right: 0;
+			}
+		}
+	}
+
+	/*------------------------------------------------------------------------------------------------------*/
+
+	/**
+	* (en) skip links cause large horizontal scrollbars in RTL mode in several browsers
+	* (de) skip links erzeugen große horziontale Scrollbalken in verschiedenen Browserin im RTL-Modus
+	*
+	* @workaround
+	* @affected   Firefox, Safari, IE 5.x - IE7
+	* @css-for    all
+	* @valid      yes
+	*/
+
+	.ym-skiplinks {
+		left: 32768px !important;
+		.ym-skip {
+			&:focus,
+			&:active{ left: -32768px !important; }
+		}
+	}
+
+	.ym-skip,
+	.ym-hideme,
+	.ym-print { left: 32768px !important; }
+	/*------------------------------------------------------------------------------------------------------*/
+
+	/**
+	* @section miscellaneous
+	*
+	* (en) CSS-class for ltr-content (left to right) within a rtl website
+	* (de) Eine CSS-Klasse für ltr-Inhalte (left to right) innerhalb einer rtl-Seite
+	*/
+
+	.ym-text-ltr {
+		direction: ltr;
+		text-align: left;
+	}
+}

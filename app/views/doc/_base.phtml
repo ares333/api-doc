@@ -1,0 +1,30 @@
+{extends file="_root.phtml"}
+{block head}
+<link rel="stylesheet" href="/_resource/css/index.css" type="text/css"/>
+{$smarty.block.child}
+{/block}
+{block title}WebService 接口文档{/block}
+{block body}
+  <div class="ym-wrapper">
+    <div class="ym-wbox">
+      <header style="position:fixed;">
+      	<a style="margin-left: 7px" href="/doc">首页</a>
+      	{foreach $nav as $v}
+			&nbsp;&nbsp;<strong>></strong>&nbsp;&nbsp;
+			{if $v@last}
+			{$v.name|regex_replace:"/\.txt$/":""}
+			{else}
+			<a href="{$v.uri}">{$v.name|regex_replace:"/\.txt$/":""}</a>
+			{/if}
+      	{/foreach}
+      	<span style="float:right;margin-right:7px"><a href="/login/logout">退出登录</a></span>
+      	<hr>
+      </header>
+      <main>
+      {block main}
+      {$smarty.block.child}
+      {/block}
+      </main>
+    </div>
+  </div>
+{/block}

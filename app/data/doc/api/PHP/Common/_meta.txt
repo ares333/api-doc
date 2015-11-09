@@ -1,0 +1,33 @@
+prefix
+	url	http://doc.phpdr.net/api/test/
+suffix
+wraper
+	return
+		demo	{"errorCode":0,"errorMessage":"","value":{$demo},"timecost":0.001}
+default
+	url	\k
+	params
+		httpGet
+			_token	1	用户登录标识
+	return
+		type	JSON对象
+		data
+			value
+				\s0	object
+				\s1	接口实际的返回值
+				data
+					title	键	类型	说明
+			errorCode
+				[]number
+				[]错误码，等于零表示无错误，非零表示出错。1~1000(不包含1000)是全局唯一错误码，1000以上(包含1000)是非全局错误码。
+				data
+					title	错误码	错误描述
+					data
+						more
+							1		版本问题
+							2		接口问题
+							3		参数问题
+							4		未登录
+							10		服务端问题
+			errorMessage	string	错误简短描述，不作为错误标识
+			timecost		number	服务端消耗时间

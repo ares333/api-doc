@@ -1,0 +1,204 @@
+{extends file="doc/_base.phtml"}
+{block head}
+<link rel="stylesheet" href="/_resource/css/yaml412-130728/yaml/navigation/vlist.css" type="text/css"/>
+<style>
+<!--
+.api-list h5 {
+	margin-bottom: 0
+}
+.api-list label {
+	width: 150px;display:inline-block
+}
+.api-list table{
+	margin-bottom:3px;
+}
+.api-list table caption{
+	text-align:left
+}
+.api-list .ym-button{
+	margin-bottom:3px;
+}
+.api-list tr.return-more{
+	display:none;
+}
+.api-list .ym-button.ym-xsmall{
+	font-size:11px;
+}
+.no-hover:hover td{
+	background:none;
+}
+.no-hover th{
+	background:#e0e0e0!important;
+}
+-->
+</style>
+{/block}
+
+{block name="main"}
+<div class="ym-column">
+  <div class="ym-col1" style="position:fixed;top:45px;">
+    <div class="ym-cbox" >
+	<nav class="ym-vlist" >
+	  <h6 class="ym-vtitle">接口列表</h6>
+	  <ul>
+	  {foreach $arr as $v}
+	    <li><a href="#{$v.title}">{$v.title}</a></li>
+	  {/foreach}
+	  </ul>
+	</nav>
+    </div>
+  </div>
+  <div class="ym-col3">
+    <div class="ym-cbox api-list">
+    {foreach $arr as $k=>$v}
+	<h5><strong><span id="{$v.title}" style="padding-top:45px;display:block"></span>{$v.title}</strong></h5>
+	<hr>
+	<label>URL</label><code>{$v.url}</code><br>
+	{foreach $v.params as $k1=>$v1}
+	{if !Helper_Array::emptyr($v1)}
+	<table class="bordertable narrow">
+		<caption>{$k1|upper|replace:"HTTP":"HTTP "} 参数</caption>
+		{if is_string($v1)}
+		<tr><td>{$v1}</td></tr>
+		{else}
+		<thead>
+			<tr>
+				<th>参数名</th>
+				<th>是否必须</th>
+				<th>参数说明</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach $v1 as $k2=>$v2}
+			<tr{if !empty($v2.data.data)} class="no-hover"{/if}>
+				<td style="width:10%">{$k2}</td>
+				<td style="width:8%">{if $v2[0]}<span style="color:red">是</span>{else}否{/if}</td>
+				<td>{$v2[1]}
+				{if !empty($v2.data.data)}
+				<table class="bordertable narrow">
+					<thead>
+						<tr>
+						{foreach $v2.data.title as $v3}
+							<th>{$v3}</th>
+						{/foreach}
+						</tr>
+					</thead>
+					<tbody>
+						{foreach $v2.data.data as $k3=>$v3}
+						<tr>
+							<td>{$k3}</td>
+							{foreach $v3 as $v4}
+							<td>{$v4}</td>
+							{/foreach}
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+				{*demo*}
+				{if !empty($v2.data.demo)}
+				<pre class="dimmed" style="display:none;margin-bottom:0;">{Zend_Json::prettyPrint($v2.data.demo)}</pre>
+				{/if}
+				{/if}
+				{if !empty($v2.data.demo)}
+					<a class="param-demo" href="javascript:void(0);">Demo</a>
+				{/if}
+				</td>
+			</tr>
+			{/foreach}
+		</tbody>
+		{/if}
+	</table>
+	{/if}
+	{/foreach}
+	<table class="bordertable narrow">
+		<caption>返回值 ( {$v.return.type} )</caption>
+		{if is_string($v.return.data)}
+		<tr><td>{$v.return.data}</td></tr>
+		{else}
+		<thead>
+			<tr>
+				<th>键</th>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach $v.return.data as $k1=>$v1}
+			<tr{if !empty($v1.data.data)} class="no-hover"{/if}>
+				<td style="width:10%">{$k1}</td>
+				<td style="width:8%">{$v1[0]}</td>
+				<td>{$v1[1]}<table class="bordertable narrow">
+					{if !empty($v1.data.data)}
+					<thead>
+						<tr>
+						{foreach $v1.data.title as $v2}
+							<th>{$v2}</th>
+						{/foreach}
+						</tr>
+					</thead>
+					<tbody>
+						{foreach $v1.data.data as $k2=>$v2}
+						{if 'more'!==$k2}
+						<tr>
+							<td>{$k2}</td>
+							{foreach $v2 as $v3}
+							<td>{$v3}</td>
+							{/foreach}
+						</tr>
+						{/if}
+						{/foreach}
+						{*more*}
+						{if !empty($v1.data.data.more)}
+						{foreach $v1.data.data.more as $k2=>$v2}
+						<tr class="return-more">
+							<td>{$k2}</td>
+							{foreach $v2 as $v3}
+							<td>{$v3}</td>
+							{/foreach}
+						</tr>
+						{/foreach}
+						{/if}
+					</tbody>
+					{/if}
+					</table>
+					{if !empty($v1.data.data.more)}
+					<a class="return-more" href="javascript:void(0);">展开</a>
+					{/if}
+				</td>
+			</tr>
+			{/foreach}
+		</tbody>
+		{/if}
+	</table>
+	<a href="javascript:void(0)" class="ym-button ym-reply ym-xsmall button-demo">返回值示例</a>
+	<pre class="dimmed" style="border:1px solid #ccc;display:none;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json')}{Zend_Json::prettyPrint($v.return.demo)}{else}{htmlentities($v.return.demo)}{/if}</pre>
+	{/foreach}
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+<!--
+$(function(){
+	$('a.return-more').click(function(){
+		$(this).prev().find('tr.return-more').toggle();
+		if($(this).text()=='展开'){
+			$(this).text('收起');
+		}else{
+			$(this).text('展开');
+		}
+	})
+	$('a.param-demo').click(function(){
+		$(this).prev().toggle();
+		if($(this).text()=='Demo'){
+			$(this).text('收起');
+		}else{
+			$(this).text('Demo');
+		}
+	})
+	$('.button-demo').click(function(){
+		$(this).next().toggle();
+	});
+})
+//-->
+</script>
+{/block}

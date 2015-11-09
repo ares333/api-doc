@@ -1,0 +1,475 @@
+@import "../yaml-var-globals";
+@import "../mixins/yaml-mixins-core";
+
+@media screen {
+	.ym-form {
+		background:#f4f4f4;
+		border:2px #fff solid;
+		margin: 0 0 1.5em 0;
+		@include ym-box-shadow(0,0,4px,#ddd);
+
+		fieldset {
+			position:static;
+			background:transparent;
+			margin: 0.75em 0 0.75em 0;
+			padding: 0 0.5em;
+		}
+
+		legend {
+			background:transparent;
+			color:#000;
+			font-size:1.2em;
+			line-height:1.25em;
+			font-weight:bold;
+			padding:0 0.5em;
+		}
+
+		label,
+		.ym-label {
+			color: #666;
+			line-height: 1.5;
+			padding-top: 0.25em;
+		}
+
+		.ym-fbox {
+			padding: 0 1em;
+			margin: 1em 0 0.5em 0;
+		}
+
+		.ym-fbox-footer {
+			background: #ececec;
+			border-top: 1px #e0e0e0 solid;
+			padding: 1.5em 1em;
+			margin: 0;
+		}
+
+		.ym-fbox + .ym-fbox {
+			margin: 0.5em 0;
+		}
+
+		.ym-fbox:last-child {
+			margin-bottom: 1em;
+		}
+
+		.ym-fbox + .ym-fbox-footer {
+			margin: 1em 0 0 0;
+		}
+
+		.ym-fbox :last-child,
+		.ym-fbox-footer :last-child {
+			margin-bottom: 0;
+		}
+
+		.ym-fbox-heading {
+			font-size: 1em;
+			font-size: 100%;
+			color: #000;
+			margin: 1em;
+		}
+
+		.ym-fbox-check:focus + label {
+			color:#000;
+		}
+
+		.ym-gbox-left {
+			padding: 0 4px 0 0;
+		}
+		.ym-gbox-right {
+			padding: 0 0 0 4px;
+		}
+		.ym-gbox {
+			padding: 0 2px 0 2px;
+		}
+	}
+
+	/**
+	* @section styling form elements
+	*
+	*/
+
+	.ym-form {
+		input,
+		textarea,
+		select {
+			border:1px solid #ddd;
+			line-height: 1em;
+			font-family:Arial, Helvetica, sans-serif;
+			@include ym-box-shadow(0,0,4px,#eee,inset);
+		}
+
+		input,
+		textarea {
+			padding: 4px 0.3em;
+		}
+
+		select {
+			padding: 3px 2px 3px 1px;
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus,
+		input:hover,
+		select:hover,
+		textarea:hover,
+		input:active,
+		select:active,
+		textarea:active {
+			border:1px #888 solid;
+			background:#fff;
+		}
+
+		optgroup {
+			font-family:Arial, Helvetica, sans-serif;
+			font-style:normal;
+			font-weight:bold;
+		}
+
+		.ym-fbox-check input,
+		input[type="image"],
+		input[type="radio"],
+		input[type="checkbox"] {
+			border: 0 none !important;
+			background: transparent !important;
+		}
+
+		.ym-message {
+			color:#666;
+			margin-bottom: 0.5em;
+		}
+		.ym-required {
+			color:#800;
+			font-weight: bold;
+		}
+
+		// valid & invalid state
+		input:valid,
+		textarea:valid { background-color: #fff; }
+		input:invalid,
+		textarea:invalid { background-color: #fdd; }
+
+		.ym-error {
+			label {
+				color: #800;
+				font-weight: normal;
+			}
+			input,
+			select,
+			textarea {
+				border: 1px #800 solid;
+			}
+			input:hover,
+			input:focus,
+			select:hover,
+			select:focus,
+			textarea:hover,
+			textarea:focus {
+				border: 1px #800 solid !important;
+			}
+			.ym-message {
+				color: #800;
+				font-weight: bold;
+				margin-top: 0;
+			}
+		}
+	}
+
+	/**
+	* @section Buttons
+	* inspired from: Catalin Rosu (http://www.red-team-design.com/just-another-awesome-css3-buttons)
+	*/
+
+	.ym-button,
+	.ym-form button,
+	.ym-form input[type="button"],
+	.ym-form input[type="reset"],
+	.ym-form input[type="submit"] {
+		display: inline-block;
+		white-space: nowrap;
+		@include ym-linear-gradient();
+
+		border: 1px solid #777;
+		border-radius: .2em;
+
+		-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.15);
+				box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.15);
+		color: #333 !important;
+		cursor: pointer;
+		font: normal 1em/2em Arial, Helvetica;
+		margin: 0 0.75em 0 0;
+		padding: 0 1.5em;
+		overflow: visible; /* removes extra side spacing in IE */
+		text-decoration: none !important;
+		text-shadow: 0 1px 0 rgba(255,255,255,.8);
+
+		&:hover{
+			@include ym-linear-gradient("to bottom", #fafafa, #ddd);
+		}
+		&:active {
+			@include ym-box-shadow(2px, 2px, 3px, rgba(0,0,0,0.2), inset);
+			@include ym-linear-gradient("to bottom", #ccc, #bbb);
+			position: relative;
+			top: 1px;
+		}
+		&:focus {
+			outline: 0;
+			background: #fafafa;
+		}
+	}
+
+	/* Button size-scaling classes */
+	.ym-button {
+		&.ym-xlarge { font-size: 1.5em; } /* 21px */
+		&.ym-large { font-size: 1.2857em; } /* 18px */
+		&.ym-small { font-size: 0.8571em; } /* 12px */
+		&.ym-xsmall { font-size: 0.7143em; } /* 10px */
+	}
+
+	/* Button color scheme: primary */
+	.ym-button.ym-primary,
+	.ym-form button.ym-primary,
+	.ym-form input[type="button"].ym-primary,
+	.ym-form input[type="reset"].ym-primary,
+	.ym-form input[type="submit"].ym-primary {
+		-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+				box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+
+		@include ym-linear-gradient("to bottom", #88e, #66c);
+
+		border: 1px solid #007;
+		color: #fff !important;
+		text-shadow: 0 1px 0 rgba(0,0,0,.8);
+
+		&:hover {
+			@include ym-linear-gradient("to bottom", #88f, #66d);
+		}
+
+		&:active {
+			@include ym-box-shadow(2px, 2px, 3px, rgba(0,0,0,0.2), inset);
+			@include ym-linear-gradient("to bottom", #88c, #66a);
+		}
+
+		&:focus {
+			outline: 0;
+			background: #88f;
+		}
+	}
+
+	/* Button color scheme: success */
+	.ym-button.ym-success,
+	.ym-form button.ym-success,
+	.ym-form input[type="button"].ym-success,
+	.ym-form input[type="reset"].ym-success,
+	.ym-form input[type="submit"].ym-success {
+		-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+				box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+		@include ym-linear-gradient("to bottom", #6b6, #494);
+		border: 1px solid #070;
+		color: #fff !important;
+		text-shadow: 0 1px 0 rgba(0,0,0,.8);
+
+		&:hover {
+			@include ym-linear-gradient("to bottom", #6c6, #5a5);
+		}
+
+		&:active {
+			@include ym-box-shadow(2px, 2px, 3px, rgba(0,0,0,0.2), inset);
+			@include ym-linear-gradient("to bottom", #6a6, #484);
+		}
+
+		&:focus {
+			outline: 0;
+			background: #6c6;
+		}
+	}
+
+	/* Button color scheme: warning */
+	.ym-button.ym-warning,
+	.ym-form button.ym-warning,
+	.ym-form input[type="button"].ym-warning,
+	.ym-form input[type="reset"].ym-warning,
+	.ym-form input[type="submit"].ym-warning {
+		-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+				box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+		@include ym-linear-gradient("to bottom", #da4, #b72);
+		border: 1px solid #970;
+		color: #fff !important;
+		text-shadow: 0 1px 0 rgba(0,0,0,.8);
+
+		&:hover {
+			@include ym-linear-gradient("to bottom", #eb5, #c83);
+		}
+
+		&:active {
+			@include ym-box-shadow(2px, 2px, 3px, rgba(0,0,0,0.2), inset);
+			@include ym-linear-gradient("to bottom", #c94, #a62);
+		}
+
+		&:focus {
+			outline: 0;
+			background: #da4;
+		}
+	}
+
+	/* Button color scheme: danger */
+	.ym-button.ym-danger,
+	.ym-form button.ym-danger,
+	.ym-form input[type="button"].ym-danger,
+	.ym-form input[type="reset"].ym-danger,
+	.ym-form input[type="submit"].ym-danger {
+		-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+				box-shadow: 0 0 1px 1px rgba(255,255,255,.3) inset, 0 1px 0 rgba(0,0,0,.15);
+		@include ym-linear-gradient("to bottom", #b66, #944);
+		border: 1px solid #700;
+		color: #fff !important;
+		text-shadow: 0 1px 0 rgba(0,0,0,.8);
+
+		&:hover {
+			@include ym-linear-gradient("to bottom", #c66, #a55);
+		}
+
+		&:active {
+			@include ym-box-shadow(2px, 2px, 3px, rgba(0,0,0,0.2), inset);
+			@include ym-linear-gradient("to bottom", #a55, #844);
+		}
+
+		&:focus {
+			outline: 0;
+			background: #c66;
+		}
+	}
+
+	/* pseudo elements don't work on input */
+	.ym-form button:before,
+	.ym-button:before {
+		background: #ccc;
+		background: rgba(0,0,0,.1);
+		float: left;
+		width: 1em;
+		text-align: center;
+		font-size: 1.5em;
+		margin: 0 1em 0 -1em;
+		padding: 0 .2em;
+		-webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+				box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+		border-radius: .15em 0 0 .15em;
+		pointer-events: none;
+	}
+
+	.ym-add:before { content: "\271A"; }
+	.ym-delete:before { content: "\2718"; }
+	.ym-close:before { content: "\2715"; }
+	.ym-edit:before { content: "\270E"; }
+	.ym-email:before { content: "\2709"; }
+	.ym-like:before { content: "\2764"; }
+	.ym-next:before { content: "\279C"; }
+	.ym-play:before { content: "\25B6"; }
+	.ym-reply:before { content: "\27A5"; }
+	.ym-save:before { content: "\2714"; }
+	.ym-sign:before { content: "\270D"; }
+	.ym-spark:before { content: "\2737"; }
+	.ym-support:before { content: "\2706"; }
+	.ym-star:before { content: "\2605"; }
+	/* removes extra inner spacing in Firefox */
+	.ym-form button::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+
+	/* If line-height can't be modified, then fix Firefox spacing with padding */
+	.ym-form input[type=button]::-moz-focus-inner,
+	.ym-form input[type=reset]::-moz-focus-inner,
+	.ym-form input[type=submit]::-moz-focus-inner {
+		padding: .4em;
+	}
+
+	/* The disabled styles */
+	.ym-form button[disabled],
+	.ym-form button[disabled]:hover,
+	.ym-form input[type=button][disabled],
+	.ym-form input[type=button][disabled]:hover,
+	.ym-form input[type=reset][disabled],
+	.ym-form input[type=reset][disabled]:hover,
+	.ym-form input[type=submit][disabled],
+	.ym-form input[type=submit][disabled]:hover,
+	.ym-button.ym-disabled,
+	.ym-button.ym-disabled:hover {
+		background: #eee;
+		color: #aaa !important;
+		border-color: #aaa;
+		cursor: default;
+		text-shadow: none;
+		position: static;
+		-webkit-box-shadow: none;
+				box-shadow: none;
+	}
+
+	/* ie6 support styles - redefined buttons, because of missing support for attribute selectors */
+	* html {
+		.ym-button,
+		.ym-form button {
+			display: inline-block;
+			white-space: nowrap;
+			background-color: #ccc;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+			border: 1px solid #777;
+			color: #333 !important;
+			cursor: pointer;
+			font: normal 1em/2em Arial, Helvetica;
+			margin: 1.5em 0.75em 0 0;
+			padding: 0 1.5em;
+			overflow: visible; /* removes extra side spacing in IE */
+			text-decoration: none !important;
+		}
+
+		.ym-form button:focus,
+		.ym-button:focus {
+			outline: 0;
+			background: #fafafa;
+		}
+
+		.ym-form button:hover,
+		.ym-button:hover {
+			background-color: #ddd;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');
+		}
+
+		.ym-form button:active,
+		.ym-button:active {
+			background-color: #bbb;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc', EndColorStr='#bbbbbb');
+			position: relative;
+			top: 1px;
+		}
+		.ym-button.ym-disabled,
+		.ym-button.ym-disabled:hover {
+			background: #eee;
+			color: #aaa !important;
+			border-color: #aaa;
+			cursor: default;
+			text-shadow: none;
+			position: static;
+		}
+
+		.ym-button {
+			&.ym-primary {
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#8888ee', EndColorStr='#6666cc');
+			}
+			&.ym-success {
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#66bb66', EndColorStr='#449944');
+			}
+			&.ym-warning {
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ddaa44', EndColorStr='#BB7722');
+			}
+			&.ym-danger {
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#bb6666', EndColorStr='#994444');
+			}
+
+			/* Button size-scaling classes */
+			&.ym-xlarge { font-size: 1.5em; } /* 21px */
+			&.ym-large { font-size: 1.2857em; } /* 18px */
+			&.ym-small { font-size: 0.8571em; } /* 12px */
+			&.ym-xsmall { font-size: 0.7143em; } /* 10px */
+		}
+	}
+}

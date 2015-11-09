@@ -1,0 +1,60 @@
+{extends file="doc/_base.phtml"}
+{block head}
+{$smarty.block.child}
+<style>
+<!--
+.list { margin-left:5px}
+.list ul { margin-left:10px;}
+-->
+</style>
+{/block}
+{block main}
+<ul class="list">
+{foreach $list as $k=>$v}
+	<li>
+	{if is_array($v)}
+	<a href="/doc?path={$path}/{$k}">{$k|regex_replace:"/\.txt$/":""}</a>
+		{if !empty($v)}
+		<ul>
+		{foreach $v as $k1=>$v1}
+			<li>
+			{if is_array($v1)}
+			<a href="/doc?path={$path}/{$k}/{$k1}">{$k1|regex_replace:"/\.txt$/":""}</a>
+				{if !empty($v1)}
+				<ul>
+				{foreach $v1 as $k2=>$v2}
+					<li>
+					{if is_array($v2)}
+					<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}">{$k2|regex_replace:"/\.txt$/":""}</a>
+					<ul>
+						{foreach $v2 as $k3=>$v3}
+							<li>
+							{if is_array($v3)}
+							<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}/{$k3}">{$k3}</a>
+							{else}
+							<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}/{$v3}">{$v3|regex_replace:"/\.txt$/":""}</a>
+							{/if}
+							</li>
+						{/foreach}
+					</ul>
+					{else}
+					<a href="/doc?path={$path}/{$k}/{$k1}/{$v2}">{$v2|regex_replace:"/\.txt$/":""}</a>
+					{/if}
+					</li>
+				{/foreach}
+				</ul>
+				{/if}
+			{else}
+			<a href="/doc?path={$path}/{$k}/{$v1}">{$v1|regex_replace:"/\.txt$/":""}</a>
+			{/if}
+			</li>
+		{/foreach}
+		</ul>
+		{/if}
+	{else}
+	<a href="/doc?path={$path}/{$v}">{$v|regex_replace:"/\.txt$/":""}</a>
+	{/if}
+	</li>
+{/foreach}
+</ul>
+{/block}

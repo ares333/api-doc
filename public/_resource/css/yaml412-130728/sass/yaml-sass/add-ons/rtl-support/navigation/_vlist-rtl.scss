@@ -1,0 +1,45 @@
+@import "../../../yaml-var-globals";
+
+@media all {
+
+	/* menu title */
+	.ym-vtitle {
+		padding-left: 0px;
+		padding-right: 10%;
+	}
+
+	/* 4 navigation levels defined */
+	.ym-vlist {
+		text-align: right;
+
+		li { float:right; }
+
+		li a,
+		li strong,
+		li span {
+			padding-left: 0px;
+			padding-right: 10%;
+		}
+
+		li ul li a,
+		li ul li strong,
+		li ul li span {
+			padding-left: 0px;
+			padding-right: 20%;
+		}
+
+		li ul li ul li a,
+		li ul li ul li strong,
+		li ul li ul li span {
+			padding-left: 0px;
+			padding-right: 30%;
+		}
+
+		li ul li ul li ul li a,
+		li ul li ul li ul li strong,
+		li ul li ul li ul li span {
+			padding-left: 0px;
+			padding-right: 40%;
+		}
+	}
+}
