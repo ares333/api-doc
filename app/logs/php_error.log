@@ -7304,3 +7304,5 @@ Stack trace:
 [09-Nov-2015 11:22:50 Asia/Shanghai] PHP Fatal error:  Call to a member function toArray() on a non-object in /mnt/hgfs/work/git/yaf-library/Utility/ModelAbstract.php on line 11
 [09-Nov-2015 11:26:12 Asia/Shanghai] PHP Fatal error:  Call to a member function init() on a non-object in /mnt/hgfs/work/git/yaf-library/Utility/ModelAbstract.php on line 15
 [09-Nov-2015 11:26:32 Asia/Shanghai] PHP Fatal error:  Call to a member function getDefaultDb() on a non-object in /mnt/hgfs/work/git/api-doc/app/models/Abstract.php on line 4
+[11-Nov-2015 22:27:24 Asia/Shanghai]  --> Smarty Compiler: Syntax error in template "/mnt/hgfs/work/git/php-doc-management/app/views/doc/detail.phtml"  on line 56 "$("html,body").animate({scrollTop:0});"  - Unexpected ":", expected one of: "}" <-- 
+

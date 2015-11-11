@@ -14,6 +14,7 @@
     ],
     "license": "Apache-2.0",
     "require": {
-		"php": ">=5.2"
+		"php": ">=5.2",
+		"ext-yaf":"*"
     }
 }

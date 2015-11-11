@@ -1,5 +1,5 @@
 <?php
-class AbstractModel extends Utility_ModelAbstract {
+class AbstractModel extends ModelAbstract {
 	function __construct() {
 	}
 }

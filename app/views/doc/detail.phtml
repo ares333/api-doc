@@ -48,10 +48,26 @@
 	</nav>
     </div>
   </div>
+  <script>
+	$(function(){
+		$('.ym-vlist li a').click(function(){
+			var name=$(this).attr('href');
+			var $obj=$(name);
+			if($obj.attr('data')=='first'){
+				window.location.hash=name;
+				$("html,body").scrollTop(0);
+				return false;
+			}else{
+				$obj.css('padding-top','45px');
+			}
+		});
+		$('html,body').scrollTop(0);
+	})
+  </script>
   <div class="ym-col3">
     <div class="ym-cbox api-list">
     {foreach $arr as $k=>$v}
-	<h5><strong><span id="{$v.title}" style="padding-top:45px;display:block"></span>{$v.title}</strong></h5>
+	<h5><strong><span data="{if $v@first}first{/if}" id="{$v.title}" style="display:block"></span>{$v.title}</strong></h5>
 	<hr>
 	<label>URL</label><code>{$v.url}</code><br>
 	{foreach $v.params as $k1=>$v1}

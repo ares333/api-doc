@@ -1,5 +1,5 @@
 <?php
-class DocModel extends AbstractModel {
+class DocModel extends ModelAbstract {
 	private $basePath;
 	function __construct() {
 		$this->basePath = APP_PATH . '/data/doc/api';

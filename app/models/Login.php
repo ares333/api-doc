@@ -1,5 +1,5 @@
 <?php
-class LoginModel extends AbstractModel {
+class LoginModel extends ModelAbstract {
 	private function getSession() {
 		$expire = 30 * 86400;
 		session_set_cookie_params ( $expire );
