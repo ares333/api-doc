@@ -1,0 +1,20 @@
+{
+	"name": "phpdr.net/php-doc-management",
+    "description": "A powerful document management system written in php",
+    "authors": [
+        {
+            "name": "Ares",
+            "email": "admin@phpdr.net"
+        }
+    ],
+    "keywords": [
+		"api-doc",
+		"php-api-doc",
+		"php-doc-management"
+    ],
+    "license": "Apache-2.0",
+    "require": {
+		"php": ">=5.2",
+        "phpdr.net/php-yaf-library":"1.*"
+    }
+}
