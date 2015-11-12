@@ -19,7 +19,7 @@
   "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
   "autoload-dev" : {
     "psr-0" : {
-      "" : "/mnt/hgfs/work/git/php-yaf-library111"
+      "" : "/mnt/hgfs/work/git/php-yaf-library"
     }
   },
   "config" : {
