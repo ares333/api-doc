@@ -4,7 +4,7 @@
   "require" : {
     "php" : ">=5.2",
     "smarty/smarty" : "3.*",
-    "phpdr.net/php-yaf-library" : "1.*"
+    "phpdr.net/php-yaf-library" : "dev-master"
   },
   "authors" : [ {
     "name" : "Ares",
