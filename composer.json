@@ -5,7 +5,7 @@
     "php" : ">=5.3",
     "smarty/smarty" : "3.*",
 	"zf1/zend-json":"1.*",
-    "phpdr.net/php-yaf-library" : "dev-master"
+    "phpdr.net/php-yaf-library" : "1.*"
   },
   "authors" : [ {
     "name" : "Ares",
