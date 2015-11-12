@@ -4,6 +4,7 @@
   "require" : {
     "php" : ">=5.3",
     "smarty/smarty" : "3.*",
+	'zf1/zend-json':'1.*',
     "phpdr.net/php-yaf-library" : "dev-master"
   },
   "authors" : [ {
@@ -18,7 +19,7 @@
   "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
   "autoload-dev" : {
     "psr-0" : {
-      "" : "/mnt/hgfs/work/git/php-yaf-library"
+      "" : "/mnt/hgfs/work/git/php-yaf-library111"
     }
   },
   "config" : {
