@@ -49,19 +49,8 @@
     </div>
   </div>
   <script>
-	$(function(){
-		$('.ym-vlist li a').click(function(){
-			var name=$(this).attr('href');
-			var $obj=$(name);
-			if($obj.attr('data')=='first'){
-				window.location.hash=name;
-				$("html,body").scrollTop(0);
-				return false;
-			}else{
-				$obj.css('padding-top','45px');
-			}
-		});
-		$('html,body').scrollTop(0);
+  	$(function(){
+	  $("body").addClass("sharp");
 	})
   </script>
   <div class="ym-col3">
