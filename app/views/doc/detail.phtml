@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="/_resource/css/yaml412-130728/yaml/navigation/vlist.css" type="text/css"/>
 <style>
 <!--
+body main{
+	padding-top:0;
+}
 .api-list h5 {
 	margin-bottom: 0
 }
@@ -48,15 +51,10 @@
 	</nav>
     </div>
   </div>
-  <script>
-  	$(function(){
-	  $("body").addClass("sharp");
-	})
-  </script>
   <div class="ym-col3">
     <div class="ym-cbox api-list">
     {foreach $arr as $k=>$v}
-	<h5><strong><span data="{if $v@first}first{/if}" id="{$v.title}" style="display:block"></span>{$v.title}</strong></h5>
+	<h5><strong><span id="{$v.title}" style="padding-top:45px;display:block"></span>{$v.title}</strong></h5>
 	<hr>
 	<label>URL</label><code>{$v.url}</code><br>
 	{foreach $v.params as $k1=>$v1}
