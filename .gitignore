@@ -9,8 +9,10 @@ release.properties
 /.buildpath
 /.classpath
 /.project
+/composer.lock
 /app/cache/*
 /app/logs/*
+/app/library/vendor/
 !/app/cache/.gitkeep
 !/app/logs/.gitkeep
 !/app/library/.gitkeep

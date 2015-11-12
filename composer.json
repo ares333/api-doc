@@ -1,29 +1,28 @@
 {
-	"name": "phpdr.net/php-doc-management",
-	"description": "A powerful document management system written in php",
-	"authors": [
-		{
-		"name": "Ares",
-		"email": "admin@phpdr.net",
-		"homepage": "http://phpdr.net"
-		},
-		{
-		"name":"Zjmainstay",
-		"email":"zjmainstay@163.com",
-		"homepage": "http://www.zjmainstay.cn"
-		}
-	],
-	"keywords": [
-		"doc-management",
-		"php-doc-management",
-		"php-api-doc-management"
-	],
-	"license": "Apache-2.0",
-	"require": {
-		"php": ">=5.2",
-		"phpdr.net/php-yaf-library":"1.*"
-	},
-	"config": {
-		"vendor-dir": "../vendor"
-	}
+  "name" : "phpdr.net/php-doc-management",
+  "description" : "A powerful api document management system written in php",
+  "require" : {
+    "php" : ">=5.2",
+    "smarty/smarty" : "3.*",
+    "phpdr.net/php-yaf-library" : "dev-master"
+  },
+  "authors" : [ {
+    "name" : "Ares",
+    "email" : "admin@phpdr.net",
+    "homepage" : "http://phpdr.net"
+  }, {
+    "name" : "Zjmainstay",
+    "email" : "zjmainstay@163.com",
+    "homepage" : "http://www.zjmainstay.cn"
+  } ],
+  "autoload-dev" : {
+    "psr-0" : {
+      "" : "/mnt/hgfs/work/git/php-yaf-library"
+    }
+  },
+  "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
+  "config" : {
+    "vendor-dir" : "app/library/vendor"
+  },
+  "license" : "Apache-2.0"
 }
