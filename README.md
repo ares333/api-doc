@@ -13,10 +13,7 @@ PHP Yaf 2.3.3+<br>
 
 安装
 ----
-1. 下载[php-yaf-library](https://github.com/ares333/php-yaf-library "php-yaf-library")到本地(比如/srv/www/php-yaf-library)，在目录中执行composer install安装依赖。
-1. 安装yaf扩展并配置，yaf扩展的配置在php.ini或yaf.ini中<br>
-    yaf.library = "/srv/www/php-yaf-library"<br>
-    yaf.environ = "development"<br>
+1. composer install
 1. 绑定www服务器的入口目录为本项目的public目录
 1. 现在应该可以访问了，如果有问题见<b>联系我们</b>
 
