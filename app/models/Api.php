@@ -1,5 +1,5 @@
 <?php
-class ApiModel extends ModelAbstract {
+class ApiModel extends AbstractModel {
 	function test() {
 		$request = Yaf_Dispatcher::getInstance ()->getRequest ();
 		$type = key ( $request->getParams () );

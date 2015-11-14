@@ -1,5 +1,5 @@
 <?php
-class AbstractModel extends ModelAbstract {
-	function __construct() {
-	}
+use Ares333\Singleton;
+class AbstractModel {
+	use Singleton;
 }

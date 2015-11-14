@@ -1,18 +1,20 @@
 <?php
-class DocModel extends ModelAbstract {
+use Ares333\Helper\File;
+use Ares333\Helper\Arrays;
+class DocModel extends AbstractModel {
 	private $basePath;
 	function __construct() {
 		$this->basePath = APP_PATH . '/data/doc/api';
 	}
 	function getList($path, $depth = null) {
 		$dir = $this->basePath . '/' . $path;
-		$list = Helper_File::tree ( $dir, $depth, array (
+		$list = File::tree ( $dir, $depth, array (
 				'.svn'
 		) );
-		Helper_Array::unsetByValuer ( $list, array (
+		Arrays::unsetByValuer ( $list, array (
 				'_meta.txt'
 		) );
-		Helper_Array::unsetByKey ( $list, array (
+		Arrays::unsetByKey ( $list, array (
 				'_inc'
 		) );
 		return $list;
@@ -21,7 +23,7 @@ class DocModel extends ModelAbstract {
 		$file = $this->basePath . '/' . ltrim ( $path, '/' );
 		$res = $this->getContent ( $file );
 		$res = array_keys ( $this->parseArr ( $res, 1 ) );
-		Helper_Array::unsetByValuer ( $res, '_meta' );
+		Arrays::unsetByValuer ( $res, '_meta' );
 		return $res;
 	}
 	private function getContent($file) {
@@ -62,7 +64,7 @@ class DocModel extends ModelAbstract {
 			unset ( $arr ['_meta'] );
 		}
 		if (! empty ( $meta ['_unset'] )) {
-			Helper_Array::unsetr ( $meta, $meta ['_unset'] );
+			Arrays::unsetr ( $meta, $meta ['_unset'] );
 			unset ( $meta ['_unset'] );
 		}
 		foreach ( $arr as $k => $v ) {
@@ -73,7 +75,7 @@ class DocModel extends ModelAbstract {
 			$parent = $meta;
 			// unset
 			if (! empty ( $v ['_unset'] )) {
-				Helper_Array::unsetr ( $parent, $v ['_unset'] );
+				Arrays::unsetr ( $parent, $v ['_unset'] );
 				unset ( $v ['_unset'] );
 			}
 			// default
@@ -82,23 +84,23 @@ class DocModel extends ModelAbstract {
 						$parent ['default'],
 						$v
 				);
-				Helper_Array::merger ( $v, $temp );
+				Arrays::merger ( $v, $temp );
 			}
 			// replace
-			Helper_Array::pregReplacer ( '/^\\\k$/', $k, $v );
+			Arrays::pregReplacer ( '/^\\\k$/', $k, $v );
 			// key clean
-			Helper_Array::pregKeyReplacer ( '/^\\\s(\d+)$/', '\\1', $v );
+			Arrays::pregReplaceKeyr ( '/^\\\s(\d+)$/', '\\1', $v );
 			// prefix
 			if (! empty ( $parent ['prefix'] )) {
-				Helper_Array::prefixr ( $v, $parent ['prefix'] );
+				Arrays::prefixr ( $v, $parent ['prefix'] );
 			}
 			// suffix
 			if (! empty ( $parent ['suffix'] )) {
-				Helper_Array::suffixr ( $v, $parent ['suffix'] );
+				Arrays::suffixr ( $v, $parent ['suffix'] );
 			}
 			// wraper
 			if (! empty ( $parent ['wraper'] )) {
-				Helper_Array::wraperr ( $v, $parent ['wraper'] );
+				Arrays::wraperr ( $v, $parent ['wraper'] );
 			}
 			// var replace
 			if (! empty ( $var )) {
@@ -121,7 +123,7 @@ class DocModel extends ModelAbstract {
 				$search [] = '/^\\\d' . $i . '$/';
 				$replace [] = $hereDoc [$i];
 			}
-			Helper_Array::pregReplacer ( $search, $replace, $v );
+			Arrays::pregReplacer ( $search, $replace, $v );
 			$arr [$k] = $v;
 		}
 		// \h自继承
@@ -129,7 +131,7 @@ class DocModel extends ModelAbstract {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					$key = explode ( ' ', $v );
-					$value = Helper_Array::current ( $arr, $key );
+					$value = Arrays::current ( $arr, $key );
 					$key = array_pop ( $key );
 					$subject [$key] = $value;
 					unset ( $subject [$k] );
@@ -143,7 +145,7 @@ class DocModel extends ModelAbstract {
 		$funcH ( $arr );
 		// \i 包含
 		$dir = dirname ( $file ) . '/_inc';
-		Helper_Array::pregReplaceCallbackr ( '/\\\i(.+)/', function ($node) use($dir) {
+		Arrays::pregReplaceCallbackr ( '/\\\i(.+)/', function ($node) use($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
 			if (file_exists ( $file )) {
 				return file_get_contents ( $file );

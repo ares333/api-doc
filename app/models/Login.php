@@ -1,10 +1,11 @@
 <?php
-class LoginModel extends ModelAbstract {
+use Ares333\Session;
+class LoginModel extends AbstractModel {
 	private function getSession() {
 		$expire = 30 * 86400;
 		session_set_cookie_params ( $expire );
 		session_cache_expire ( $expire );
-		return Utility_Session2::getInstance ( __METHOD__ );
+		return Session::getInstance ( __METHOD__ );
 	}
 	function checkLogin() {
 		return 'yes' === $this->getSession ()->get ( 'isLogin' );

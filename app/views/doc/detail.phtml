@@ -58,7 +58,7 @@ body main{
 	<hr>
 	<label>URL</label><code>{$v.url}</code><br>
 	{foreach $v.params as $k1=>$v1}
-	{if !Helper_Array::emptyr($v1)}
+	{if !Arrays::emptyr($v1)}
 	<table class="bordertable narrow">
 		<caption>{$k1|upper|replace:"HTTP":"HTTP "} 参数</caption>
 		{if is_string($v1)}
