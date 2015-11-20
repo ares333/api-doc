@@ -20,7 +20,7 @@
   "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
   "autoload-dev" : {
     "psr-4" : {
-      "Ares333\\" : "/mnt/hgfs/work/git/php-yaf-library/src"
+      "Ares333\\" : "../php-yaf-library/src"
     }
   },
   "config" : {

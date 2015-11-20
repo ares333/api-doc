@@ -1,4 +1,3 @@
 <?php
-use Ares333\ErrorController;
-class ErrorController extends ErrorController {
+class ErrorController extends Ares333\ErrorController {
 }

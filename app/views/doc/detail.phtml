@@ -3,8 +3,18 @@
 <link rel="stylesheet" href="/_resource/css/yaml412-130728/yaml/navigation/vlist.css" type="text/css"/>
 <style>
 <!--
+body{
+	overflow:hidden;
+}
+.ym-col3{
+	overflow-y:scroll;
+	position:absolute;
+	top:45px;
+	right:0;
+}
 body main{
 	padding-top:0;
+	postion:relative;
 }
 .api-list h5 {
 	margin-bottom: 0
@@ -39,8 +49,8 @@ body main{
 
 {block name="main"}
 <div class="ym-column">
-  <div class="ym-col1" style="position:fixed;top:45px;">
-    <div class="ym-cbox" >
+  <div class="ym-col1" style="position:fixed;top:45px;overflow-y:scroll">
+    <div class="ym-cbox">
 	<nav class="ym-vlist" >
 	  <h6 class="ym-vtitle">接口列表</h6>
 	  <ul>
@@ -54,7 +64,7 @@ body main{
   <div class="ym-col3">
     <div class="ym-cbox api-list">
     {foreach $arr as $k=>$v}
-	<h5><strong><span id="{$v.title}" style="padding-top:45px;display:block"></span>{$v.title}</strong></h5>
+	<h5><strong><span id="{$v.title}"></span>{$v.title}</strong></h5>
 	<hr>
 	<label>URL</label><code>{$v.url}</code><br>
 	{foreach $v.params as $k1=>$v1}
@@ -175,6 +185,7 @@ body main{
 	</table>
 	<a href="javascript:void(0)" class="ym-button ym-reply ym-xsmall button-demo">返回值示例</a>
 	<pre class="dimmed" style="border:1px solid #ccc;display:none;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json')}{Zend_Json::prettyPrint($v.return.demo)}{else}{htmlentities($v.return.demo)}{/if}</pre>
+	<br><br><br>
 	{/foreach}
     </div>
   </div>
@@ -201,6 +212,12 @@ $(function(){
 	$('.button-demo').click(function(){
 		$(this).next().toggle();
 	});
+	var height=$(window).height()-45;
+	$('.ym-col1').css('height',height+'px');
+	$('.ym-col3').css('height',height+'px');
+
+	//solve browser refresh problem
+	window.location.href=window.location.href;
 })
 //-->
 </script>

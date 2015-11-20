@@ -8,7 +8,7 @@ class DocController extends Yaf_Controller_Abstract {
 		while ( ! empty ( $path ) && $path != '.' ) {
 			$out ['nav'] [] = array (
 					'name' => basename ( $path ),
-					'uri' => '/'.strtolower($this->getRequest()->getControllerName()).'?path=' . $path
+					'uri' => '/' . strtolower ( $this->getRequest ()->getControllerName () ) . '?path=' . $path
 			);
 			$path = dirname ( $path );
 		}
