@@ -117,7 +117,7 @@ class DocModel extends AbstractModel {
 					}
 				}, $var );
 			}
-			// \d 恢复
+			// \d recover
 			$search = $replace = array ();
 			for($i = 0; $i < count ( $hereDoc ); $i ++) {
 				$search [] = '/^\\\d' . $i . '$/';
@@ -126,7 +126,7 @@ class DocModel extends AbstractModel {
 			Arrays::pregReplacer ( $search, $replace, $v );
 			$arr [$k] = $v;
 		}
-		// \h自继承
+		// \h self inherit
 		$funcH = function (array &$subject) use(&$funcH, $arr) {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
@@ -143,7 +143,7 @@ class DocModel extends AbstractModel {
 			}
 		};
 		$funcH ( $arr );
-		// \i 包含
+		// \i include
 		$dir = dirname ( $file ) . '/_inc';
 		Arrays::pregReplaceCallbackr ( '/\\\i(.+)/', function ($node) use($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
