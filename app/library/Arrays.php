@@ -21,4 +21,23 @@ class Arrays {
 			}
 		}
 	}
+
+	/**
+	 *
+	 * @param array $arr
+	 * @param mixed $key
+	 */
+	static function current($arr, $key) {
+		if (! is_array ( $key )) {
+			$key = array (
+					$key
+			);
+		}
+		foreach ( $key as $v ) {
+			if (array_key_exists ( $v, $arr )) {
+				$arr = $arr [$v];
+			}
+		}
+		return $arr;
+	}
 }

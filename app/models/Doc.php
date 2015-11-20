@@ -131,7 +131,7 @@ class DocModel extends AbstractModel {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					$key = explode ( ' ', $v );
-					$value = Arrays::current ( $arr, $key );
+					$value = \Arrays::current ( $arr, $key );
 					$key = array_pop ( $key );
 					$subject [$key] = $value;
 					unset ( $subject [$k] );
