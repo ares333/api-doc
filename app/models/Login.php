@@ -1,5 +1,5 @@
 <?php
-use Ares333\Session;
+use Ares333\YafLib\Session;
 class LoginModel extends AbstractModel {
 	private function getSession() {
 		$expire = 30 * 86400;

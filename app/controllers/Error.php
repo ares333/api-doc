@@ -1,3 +1,3 @@
 <?php
-class ErrorController extends Ares333\ErrorController {
+class ErrorController extends Ares333\YafLib\ErrorController {
 }

@@ -1,6 +1,6 @@
 <?php
-use Ares333\Helper\File;
-use Ares333\Helper\Arrays;
+use Ares333\YafLib\Helper\File;
+use Ares333\YafLib\Helper\Arrays;
 class DocModel extends AbstractModel {
 	private $basePath;
 	function __construct() {
