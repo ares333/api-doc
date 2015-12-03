@@ -1,14 +1,13 @@
 <?php
-use Ares333\YafLib\Session;
 class LoginModel extends AbstractModel {
-	private function getSession() {
+	function __construct() {
 		$expire = 30 * 86400;
 		session_set_cookie_params ( $expire );
-		session_cache_expire ( $expire );
-		return Session::getInstance ( __METHOD__ );
+		ini_set ( 'session.gc_maxlifetime', $expire );
+		session_start ();
 	}
 	function checkLogin() {
-		return 'yes' === $this->getSession ()->get ( 'isLogin' );
+		return ! empty ( $_SESSION ['isLogin'] ) && 'yes' === $_SESSION ['isLogin'];
 	}
 	function login($username, $password) {
 		if ($this->checkLogin ()) {
@@ -18,13 +17,14 @@ class LoginModel extends AbstractModel {
 			$usernameValid = 'admin';
 			$passwordValid = 'admin';
 			if ($username == $usernameValid && $password == $passwordValid) {
-				$this->getSession ()->set ( 'isLogin', 'yes' );
+				$_SESSION ['isLogin'] = 'yes';
 				return true;
 			}
 		}
 		return false;
 	}
 	function logout() {
-		return $this->getSession ()->del ( 'isLogin' );
+		unset ( $_SESSION ['isLogin'] );
+		return true;
 	}
 }
