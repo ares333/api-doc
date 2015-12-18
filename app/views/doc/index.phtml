@@ -13,39 +13,39 @@
 {foreach $list as $k=>$v}
 	<li>
 	{if is_array($v)}
-	<a href="/doc?path={$path}/{$k}">{$k|regex_replace:"/\.txt$/":""}</a>
+	<a href="/doc?path={$path}/{$map[$k]}">{$k|regex_replace:"/\.txt$/":""}</a>
 		{if !empty($v)}
 		<ul>
 		{foreach $v as $k1=>$v1}
 			<li>
 			{if is_array($v1)}
-			<a href="/doc?path={$path}/{$k}/{$k1}">{$k1|regex_replace:"/\.txt$/":""}</a>
+			<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}">{$k1|regex_replace:"/\.txt$/":""}</a>
 				{if !empty($v1)}
 				<ul>
 				{foreach $v1 as $k2=>$v2}
 					<li>
 					{if is_array($v2)}
-					<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}">{$k2|regex_replace:"/\.txt$/":""}</a>
+					<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}">{$k2|regex_replace:"/\.txt$/":""}</a>
 					<ul>
 						{foreach $v2 as $k3=>$v3}
 							<li>
 							{if is_array($v3)}
-							<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}/{$k3}">{$k3}</a>
+							<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}/{$map[$k3]}">{$k3}</a>
 							{else}
-							<a href="/doc?path={$path}/{$k}/{$k1}/{$k2}/{$v3}">{$v3|regex_replace:"/\.txt$/":""}</a>
+							<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}/{$map[$k3]}">{$v3|regex_replace:"/\.txt$/":""}</a>
 							{/if}
 							</li>
 						{/foreach}
 					</ul>
 					{else}
-					<a href="/doc?path={$path}/{$k}/{$k1}/{$v2}">{$v2|regex_replace:"/\.txt$/":""}</a>
+					<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$mapVal[$v2]}">{$v2|regex_replace:"/\.txt$/":""}</a>
 					{/if}
 					</li>
 				{/foreach}
 				</ul>
 				{/if}
 			{else}
-			<a href="/doc?path={$path}/{$k}/{$v1}">{$v1|regex_replace:"/\.txt$/":""}</a>
+			<a href="/doc?path={$path}/{$map[$k]}/{$mapVal[$v1]}">{$v1|regex_replace:"/\.txt$/":""}</a>
 			{/if}
 			</li>
 		{/foreach}

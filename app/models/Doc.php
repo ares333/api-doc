@@ -131,7 +131,7 @@ class DocModel extends AbstractModel {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					$key = explode ( ' ', $v );
-					$value = \Arrays::current ( $arr, $key );
+					$value = Arrays::current ( $arr, $key );
 					$key = array_pop ( $key );
 					$subject [$key] = $value;
 					unset ( $subject [$k] );
@@ -145,7 +145,7 @@ class DocModel extends AbstractModel {
 		$funcH ( $arr );
 		// \i include
 		$dir = dirname ( $file ) . '/_inc';
-		Arrays::pregReplaceCallbackr ( '/\\\i(.+)/', function ($node) use($dir) {
+		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
 			if (file_exists ( $file )) {
 				return file_get_contents ( $file );
@@ -160,7 +160,7 @@ class DocModel extends AbstractModel {
 			return $res;
 		}
 		$arr = preg_split ( '/\n+(?=^[^\t])/um', $str );
-		// 解析顶头的组
+		// parse start section
 		foreach ( $arr as $v ) {
 			$two = explode ( "\n", $v, 2 );
 			if (false === strpos ( $two [0], "\t" )) {
@@ -181,14 +181,14 @@ class DocModel extends AbstractModel {
 				}
 			} else {
 				$two = preg_split ( "/\t+/", $two [0] );
-				// 第一列是否作为键
+				// first column is key?
 				if (0 !== strpos ( $two [0], '[]' )) {
 					$key = $two [0];
 				} else {
 					$key = null;
 					$two [0] = substr ( $two [0], 2 );
 				}
-				// 是否只有两列
+				// only two columns?
 				if (2 < count ( $two )) {
 					if (isset ( $key )) {
 						array_shift ( $two );
@@ -198,7 +198,7 @@ class DocModel extends AbstractModel {
 						$two = $two [1];
 					}
 				}
-				// 附加
+				// append
 				if (! isset ( $key )) {
 					$res [] = $two;
 				} else {

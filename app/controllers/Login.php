@@ -19,7 +19,7 @@ class LoginController extends Yaf_Controller_Abstract {
 				$out ['error'] = '登录失败';
 			}
 		}
-		$this->getView()->assign ( $out );
+		$this->getView ()->assign ( $out );
 	}
 	function logoutAction() {
 		$redirect = $this->getRequest ()->getQuery ( 'redirect', '/' );

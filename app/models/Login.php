@@ -1,13 +1,25 @@
 <?php
 class LoginModel extends AbstractModel {
-	function __construct() {
-		$expire = 30 * 86400;
-		session_set_cookie_params ( $expire );
-		ini_set ( 'session.gc_maxlifetime', $expire );
-		session_start ();
+	private function getSession() {
+		static $session;
+		if (! isset ( $session )) {
+			$dir = APP_PATH . '/runtime/session/wechat';
+			if (! is_dir ( $dir )) {
+				mkdir ( $dir, 0755, true );
+			}
+			$expire = 7 * 24 * 3600;
+			Zend_Session::setOptions ( array (
+					'cookie_lifetime' => $expire,
+					'gc_maxlifetime' => $expire,
+					'save_path' => $dir
+			) );
+			Zend_Session::start ();
+			$session = new Zend_Session_Namespace ( __METHOD__, Zend_Session_Namespace::SINGLE_INSTANCE );
+		}
+		return $session;
 	}
 	function checkLogin() {
-		return ! empty ( $_SESSION ['isLogin'] ) && 'yes' === $_SESSION ['isLogin'];
+		return 'yes' === $this->getSession ()->isLogin;
 	}
 	function login($username, $password) {
 		if ($this->checkLogin ()) {
@@ -15,16 +27,16 @@ class LoginModel extends AbstractModel {
 		}
 		if (! empty ( $username )) {
 			$usernameValid = 'admin';
-			$passwordValid = 'admin';
+			$passwordValid = 'ald2000';
 			if ($username == $usernameValid && $password == $passwordValid) {
-				$_SESSION ['isLogin'] = 'yes';
+				$this->getSession ()->isLogin = 'yes';
 				return true;
 			}
 		}
 		return false;
 	}
 	function logout() {
-		unset ( $_SESSION ['isLogin'] );
+		unset ( $this->getSession ()->isLogin );
 		return true;
 	}
 }
