@@ -32,7 +32,7 @@
 							{if is_array($v3)}
 							<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}/{$map[$k3]}">{$k3}</a>
 							{else}
-							<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}/{$map[$k3]}">{$v3|regex_replace:"/\.txt$/":""}</a>
+							<a href="/doc?path={$path}/{$map[$k]}/{$map[$k1]}/{$map[$k2]}/{$mapVal[$v3]}">{$v3|regex_replace:"/\.txt$/":""}</a>
 							{/if}
 							</li>
 						{/foreach}

@@ -8,8 +8,12 @@ class DocController extends Yaf_Controller_Abstract {
 		$path = trim ( $this->getRequest ()->getQuery ( 'path', '' ), ' /' );
 		$out ['path'] = urlencode ( $path );
 		while ( ! empty ( $path ) && $path != '.' ) {
+			$name = basename ( $path );
+			if (0 === strpos ( PHP_OS, 'WIN' )) {
+				$name = mb_convert_encoding ( $name, "UTF-8", "GBK" );
+			}
 			$out ['nav'] [] = array (
-					'name' => basename ( $path ),
+					'name' => $name,
 					'uri' => '/' . strtolower ( $this->getRequest ()->getControllerName () ) . '?path=' . $path
 			);
 			$path = dirname ( $path );
@@ -56,10 +60,7 @@ class DocController extends Yaf_Controller_Abstract {
 		$out = array ();
 		$model = DocModel::getInstance ();
 		$path = $this->getRequest ()->getParam ( 'path' );
-		//printr ( $path );
-		//printr(file_get_contents(APP_PATH.'/PHP/�����/Android��IOS/1.0.0/鐢ㄦ埛.txt'));
-
-		preg_match ( '/\/([\d\.]+(-\w+)?)\//', $path, $match );
+		preg_match ( '/\/([\d\.]+(-\w+)?)/', $path, $match );
 		$out ['arr'] = $model->parse ( $path, array (
 				'version' => $match [1]
 		) );

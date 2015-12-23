@@ -12,9 +12,11 @@ release.properties
 /composer.lock
 /app/cache/*
 /app/logs/*
+/app/runtime/*
 /app/library/vendor/
 !/app/cache/.gitkeep
 !/app/logs/.gitkeep
+!/app/runtime/.gitkeep
 !/app/library/.gitkeep
 
 # =========================

@@ -3,7 +3,7 @@ class LoginModel extends AbstractModel {
 	private function getSession() {
 		static $session;
 		if (! isset ( $session )) {
-			$dir = APP_PATH . '/runtime/session/wechat';
+			$dir = APP_PATH . '/runtime/session';
 			if (! is_dir ( $dir )) {
 				mkdir ( $dir, 0755, true );
 			}
@@ -27,7 +27,7 @@ class LoginModel extends AbstractModel {
 		}
 		if (! empty ( $username )) {
 			$usernameValid = 'admin';
-			$passwordValid = 'ald2000';
+			$passwordValid = 'admin';
 			if ($username == $usernameValid && $password == $passwordValid) {
 				$this->getSession ()->isLogin = 'yes';
 				return true;
