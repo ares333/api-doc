@@ -8,7 +8,8 @@ class DocController extends Yaf_Controller_Abstract {
 		$path = trim ( $this->getRequest ()->getQuery ( 'path', '' ), ' /' );
 		$out ['path'] = urlencode ( $path );
 		while ( ! empty ( $path ) && $path != '.' ) {
-			$name = basename ( $path );
+			$name = explode ( '/', $path );
+			$name = end ( $name );
 			if (0 === strpos ( PHP_OS, 'WIN' )) {
 				$name = mb_convert_encoding ( $name, "UTF-8", "GBK" );
 			}

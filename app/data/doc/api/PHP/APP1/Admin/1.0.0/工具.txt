@@ -1,0 +1,2 @@
+﻿_meta
+	inherit		../../Android/1.0.0/工具.txt	Tool/pictureUpload	Tool/DoubanReplyCaptcha	Tool/replyList

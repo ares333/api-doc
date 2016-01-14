@@ -1,14 +1,13 @@
+var
+	platform	Android
 prefix
-	url	http://doc.phpdr.net/api/test/
+	url	https://localhost/{$platform}/v{$version}/
 suffix
 wraper
 	return
-		demo	{"errorCode":0,"errorMessage":"","value":{$demo},"timecost":0.001}
+		demo	{"errorCode":0,"errorMessage":"","value":{$demo},"timeCost":0.09645}
 default
 	url	\k
-	params
-		httpGet
-			_token	1	用户登录标识
 	return
 		type	JSON对象
 		data
@@ -19,7 +18,7 @@ default
 					title	键	类型	说明
 			errorCode
 				[]number
-				[]错误码，等于零表示无错误，非零表示出错。1~1000(不包含1000)是全局唯一错误码，1000以上(包含1000)是非全局错误码。
+				[]错误码，等于零表示无错误，非零表示出错。1~1000(不包含1000)是全局唯一错误码，1000~2000(不包含2000)是非全局错误码。
 				data
 					title	错误码	错误描述
 					data
@@ -30,4 +29,4 @@ default
 							4		未登录
 							10		服务端问题
 			errorMessage	string	错误简短描述，不作为错误标识
-			timecost		number	服务端消耗时间
+			timeCost	number	服务端代码执行时间，单位秒

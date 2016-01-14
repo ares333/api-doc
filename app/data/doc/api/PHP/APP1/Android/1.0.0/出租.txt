@@ -1,0 +1,85 @@
+﻿Rent/publish
+	title	发布
+	params
+		httpGet
+			_sid	1	会话标识
+		httpPost
+			cityId		1	城市id
+			longitude	1	经度
+			latitude	1	纬度
+			address		1	完整地址
+			bedroomId	1	居室id
+			bedroomTypeId	1	居室类型id
+			money		1	租金
+			checkinDate	1	最早入住日期
+			sexId		1	性别id
+			picHouse[]	1	房子图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+			picRoomie[]	1	室友图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+			regionName	0	行政区名称
+			markName	0	地标名称
+	return
+		demo	1156
+		data
+			value
+				\s0	string
+				\s1	帖子id
+			errorCode
+				data
+					data
+						\s1000	同一时间不能发布多条
+						\s1001	城市id错误
+						\s1002	性别id错误
+						\s1003	居室id错误
+						\s1004	居室类型id错误
+						\s1010	发布失败
+Rent/search
+	title	搜索
+	params
+		httpPost
+			searchType	1	搜索类型，生活圈：sphere，地铁；subway
+			cityId		1	城市id
+			page		1	第几页
+			pageSize	1	每页显示数量，最大值10
+			sexId		0	性别id
+			minMoney	0	租金最小值
+			maxMoney	0	租金最大值
+			regionId	0	行政区id，sphere搜索使用
+			markId		0	地标id，sphere搜索使用
+			subwayId	0	地铁线id，subway搜索使用
+			subwayStationId	0	地铁站id，subway搜索使用
+	return
+		demo	[{"id":"1","address":"\u5317\u4eac\u5e02\u671d\u9633\u533a\u5b89\u8d1e\u95e8","favoriteNum":"17","replyNum":"17","publishTime":"1451009727","nickname":"Ares","sexId":"0","avatar":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499182.jpg","content":"\u79df\u91d11000\uff0c2015-01-23\u540e\u53ef\u5165\u4f4f\uff0c\u4e24\u5c45\u5ba4\u7684\u4e3b\u5367\u3002","pic":{"1":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499165.jpg"],"2":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499174.jpg"]},"isDouban":true},{"id":"2","address":"\u5317\u4eac\u5e02\u671d\u9633\u533a\u5965\u6797\u5339\u514b\u516c\u56ed","favoriteNum":"12","replyNum":"13","publishTime":"1451009727","nickname":"\u8aaa\u800c\u4e0d\u8bf4","sexId":"0","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","content":"\u79df\u91d11000\uff0c2015-01-24\u540e\u53ef\u5165\u4f4f\uff0c\u4e09\u5c45\u5ba4\u7684\u6b21\u5367\u3002","pic":{"1":["http:\/\/img4.douban.com\/view\/group_topic\/large\/public\/p40499117.jpg"],"2":["http:\/\/img4.douban.com\/view\/group_topic\/large\/public\/p40499048.jpg"]},"isDouban":true}]
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段见详情文档
+			errorCode
+				data
+					data
+						\s1000	searchType 不合法
+Rent/detail
+	title	详情
+	params
+		httpPost
+			id	1	帖子id
+	return
+		demo	{"id":"1","lal":["116.406082","39.966709"],"favoriteNum":"17","replyNum":"17","publishTime":"1451009727","pic":{"1":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499165.jpg"],"2":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499174.jpg"]},"user":{"id":"3845","sexId":"0","nickname":"Ares","avatar":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499182.jpg","wordsRoomie":"","tags":{"1":{"1":"\u5c0f\u9c9c\u8089","2":"\u5927\u53d4"},"2":{"5":"\u5b85\u7537"}}},"content":"\u79df\u91d11000\uff0c2015-01-23\u540e\u53ef\u5165\u4f4f\uff0c\u4e24\u5c45\u5ba4\u7684\u4e3b\u5367\uff0c\u51fa\u79df\u5bf9\u8c61\u7537\u3002"}
+		data
+			value
+				\s0	array
+				\s1	字段如下
+				data
+					data
+						id		string	帖子id
+						lal		array	经纬度，第一个是经度
+						favoriteNum	string	收藏数
+						replyNum	string	留言数
+						publishTime	string	发布时间，时间戳
+						pic	array	配图，第一维代表图片类型
+						user	array	发帖人信息
+						content	string	正文内容
+						isDouban	boolean		帖子是否来源于豆瓣
+			errorCode
+				data
+					data
+						\s1000	信息未找到

@@ -1,0 +1,85 @@
+﻿Tool/welcome
+	title	欢迎页
+	desc	欢迎页需要的几张图片
+	return
+		demo	["http:\/\/test.img.zuba.life\/hezuba\/5d0\/da9\/5b9c15bce852ea82dbd170c8ec.jpg","http:\/\/test.img.zuba.life\/hezuba\/5d0\/da9\/5b9c15bce852ea82dbd170c8e1.jpg"]
+		data
+			value
+				\s0	array
+				\s1	数组顺序和图片顺序一致
+Tool/pictureUpload
+	title	上传图片
+	params
+		httpGet
+			_sid	1	会话标识
+		httpPost
+			picture	1	需要上传的图片文件或图片url，每次只能上传一张，上传文件的http头：Content-Type: multipart/form-data;
+	return
+		demo	"20"
+		data
+			value
+				\s0	string
+				\s1	上传的图片id
+			errorCode
+				data
+					data
+						\s1000	没有上传任何文件
+						\s1001	文件上传发生错误
+Tool/DoubanReplyCaptcha
+	title	回帖验证码
+	desc	如果帖子来源于豆瓣，回复此贴会同时给豆瓣用户发送豆油
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		demo	"http:\/\/www.douban.com\/misc\/captcha?id=HGwCTIGRFJllJAKXf0AYQeIN:zh"
+		data
+			value
+				\s0	string
+				\s1	豆瓣验证码，如果为空说明不需要验证码
+Tool/reply
+	title	回复帖子
+	params
+		httpGet
+			_sid	1	会话标识
+		httpPost
+			typeId		1	帖子类型id
+			typeValueId	1	帖子id
+			content		1	回复内容
+			captcha		0	验证码
+	return
+		demo	"168"
+		data
+			value
+				\s0	string
+				\s1	本条回复的id
+			errorCode
+				data
+					data
+						\s1000	typeId非法
+Tool/replyList
+	title	回复列表
+	params
+		httpGet
+			_sid	1	会话标识
+		httpPost
+			typeId		1	帖子类型id
+			typeValueId	1	帖子id
+			page		1	页码
+			pageSize	1	每页条数
+	return
+		demo	[{"content":"inoFGLNZ45","avatar":"http:\/\/test.img.zuba.life\/hezuba\/","user_id":"3845","nickname":""}]
+		data
+			value
+				\s0	array
+				\s1	回复列表，每条包含以下内容
+				data
+					data
+						content		string	回复内容
+						avatar		string	用户的头像
+						user_id		string	用户id
+						nickname	string	用户昵称
+			errorCode
+				data
+					data
+						\s1000	typeId非法

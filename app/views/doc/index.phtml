@@ -52,7 +52,7 @@
 		</ul>
 		{/if}
 	{else}
-	<a href="/doc?path={$path}/{$v}">{$v|regex_replace:"/\.txt$/":""}</a>
+	<a href="/doc?path={$path}/{$mapVal[$v]}">{$v|regex_replace:"/\.txt$/":""}</a>
 	{/if}
 	</li>
 {/foreach}

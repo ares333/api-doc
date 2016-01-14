@@ -1,0 +1,8 @@
+inherit	../Android/_meta.txt
+_unset
+	default
+		params
+			httpGet
+				_token
+prefix
+	url	http://localhost/admin/api/index/v{$version}/

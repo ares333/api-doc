@@ -20,7 +20,9 @@ body main{
 	margin-bottom: 0
 }
 .api-list label {
-	width: 150px;display:inline-block
+	width: 10%;
+	display:inline-block;
+	float:left;
 }
 .api-list table{
 	margin-bottom:3px;
@@ -66,63 +68,68 @@ body main{
     {foreach $arr as $k=>$v}
 	<h5><strong><span id="{$v.title}"></span>{$v.title}</strong></h5>
 	<hr>
-	<label>URL</label><code>{$v.url}</code><br>
-	{foreach $v.params as $k1=>$v1}
-	{if !Arrays::emptyr($v1)}
-	<table class="bordertable narrow">
-		<caption>{$k1|upper|replace:"HTTP":"HTTP "} 参数</caption>
-		{if is_string($v1)}
-		<tr><td>{$v1}</td></tr>
-		{else}
-		<thead>
-			<tr>
-				<th>参数名</th>
-				<th>是否必须</th>
-				<th>参数说明</th>
-			</tr>
-		</thead>
-		<tbody>
-			{foreach $v1 as $k2=>$v2}
-			<tr{if !empty($v2.data.data)} class="no-hover"{/if}>
-				<td style="width:10%">{$k2}</td>
-				<td style="width:8%">{if $v2[0]}<span style="color:red">是</span>{else}否{/if}</td>
-				<td>{$v2[1]}
-				{if !empty($v2.data.data)}
-				<table class="bordertable narrow">
-					<thead>
-						<tr>
-						{foreach $v2.data.title as $v3}
-							<th>{$v3}</th>
-						{/foreach}
-						</tr>
-					</thead>
-					<tbody>
-						{foreach $v2.data.data as $k3=>$v3}
-						<tr>
-							<td>{$k3}</td>
-							{foreach $v3 as $v4}
-							<td>{$v4}</td>
-							{/foreach}
-						</tr>
-						{/foreach}
-					</tbody>
-				</table>
-				{*demo*}
-				{if !empty($v2.data.demo)}
-				<pre class="dimmed" style="display:none;margin-bottom:0;">{Zend_Json::prettyPrint($v2.data.demo)}</pre>
-				{/if}
-				{/if}
-				{if !empty($v2.data.demo)}
-					<a class="param-demo" href="javascript:void(0);">Demo</a>
-				{/if}
-				</td>
-			</tr>
-			{/foreach}
-		</tbody>
-		{/if}
-	</table>
+	<label>URL</label><code style="float:left;width:90%">{$v.url}</code><br>
+	{if !empty($v.desc)}
+	<label>接口描述</label><div style="float:left;width:90%">{$v.desc}</div><br>
 	{/if}
-	{/foreach}
+	{if isset($v.params)}
+		{foreach $v.params as $k1=>$v1}
+		{if !Arrays::emptyr($v1)}
+		<table class="bordertable narrow">
+			<caption>{$k1|upper|replace:"HTTP":"HTTP "} 参数</caption>
+			{if is_string($v1)}
+			<tr><td>{$v1}</td></tr>
+			{else}
+			<thead>
+				<tr>
+					<th>参数名</th>
+					<th>是否必须</th>
+					<th>参数说明</th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $v1 as $k2=>$v2}
+				<tr{if !empty($v2.data.data)} class="no-hover"{/if}>
+					<td style="width:10%">{$k2}</td>
+					<td style="width:8%">{if $v2[0]}<span style="color:red">是</span>{else}否{/if}</td>
+					<td>{$v2[1]}
+					{if !empty($v2.data.data)}
+					<table class="bordertable narrow">
+						<thead>
+							<tr>
+							{foreach $v2.data.title as $v3}
+								<th>{$v3}</th>
+							{/foreach}
+							</tr>
+						</thead>
+						<tbody>
+							{foreach $v2.data.data as $k3=>$v3}
+							<tr>
+								<td>{$k3}</td>
+								{foreach $v3 as $v4}
+								<td>{$v4}</td>
+								{/foreach}
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+					{*demo*}
+					{if !empty($v2.data.demo)}
+					<pre class="dimmed" style="display:none;margin-bottom:0;">{Zend_Json::prettyPrint($v2.data.demo)}</pre>
+					{/if}
+					{/if}
+					{if !empty($v2.data.demo)}
+						<a class="param-demo" href="javascript:void(0);">Demo</a>
+					{/if}
+					</td>
+				</tr>
+				{/foreach}
+			</tbody>
+			{/if}
+		</table>
+		{/if}
+		{/foreach}
+	{/if}
 	<table class="bordertable narrow">
 		<caption>返回值 ( {$v.return.type} )</caption>
 		{if is_string($v.return.data)}

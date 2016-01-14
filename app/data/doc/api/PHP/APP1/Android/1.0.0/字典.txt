@@ -1,0 +1,162 @@
+﻿Dict/city
+	title	城市
+	return
+		demo	[{"id":"1","name":"\u5317\u4eac"},{"id":"2","name":"\u6df1\u5733"},{"id":"3","name":"\u4e0a\u6d77"},{"id":"4","name":"\u5e7f\u5dde"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/region
+	title	行政区
+	params
+		httpPost
+			cityId		1	城市ID
+	return
+		demo	[{"id":"8","name":"\u4e1c\u57ce"},{"id":"3","name":"\u4e30\u53f0"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/mark
+	title	地标
+	params
+		httpPost
+			regionId		1	行政区ID
+	return
+		demo	[{"id":"231","name":"\u5148\u519c\u575b"},{"id":"233","name":"\u53f3\u5b89\u95e8\u5185"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/subway
+	title	地铁
+	params
+		httpPost
+			cityId		1	城市ID
+	return
+		demo	[{"id":"1","name":"10\u53f7\u7ebf"},{"id":"5","name":"13\u53f7\u7ebf"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/subwayStation
+	title	地铁站
+	params
+		httpPost
+			subwayId		1	地铁ID
+	return
+		demo	[{"id":"218","name":"\u9ad8\u7c73\u5e97\u5317\u7ad9"},{"id":"217","name":"\u9ad8\u7c73\u5e97\u5357\u7ad9"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/sex
+	title	性别
+	return
+		demo	[{"id":"1","name":"\u7537"},{"id":"2","name":"\u5973"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/bedroom
+	title	居室
+	return
+		demo	[{"id":"1","name":"\u4e24\u5c45"},{"id":"2","name":"\u4e09\u5c45"},{"id":"3","name":"\u56db\u5c45"},{"id":"4","name":"\u5176\u5b83"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称，例如：一居室、二居室等
+Dict/bedroomType
+	title	居室类型
+	return
+		demo	[{"id":"1","name":"\u4e3b\u5367"},{"id":"2","name":"\u6b21\u5367"},{"id":"3","name":"\u5176\u5b83"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称，例如：主卧、次卧
+Dict/tag
+	title	tag
+	params
+		httpPost
+			sexId	0	性别ID
+	return
+		demo	[{"id":"1","sex":"1","name":"\u5c0f\u9c9c\u8089"},{"id":"2","sex":"1","name":"\u5927\u53d4"},{"id":"3","sex":"1","name":"\u6696\u7537"},{"id":"4","sex":"1","name":"\u6570\u7801\u63a7"},{"id":"5","sex":"1","name":"\u5b85\u7537"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						sex		string	性别列表的id，具体性别去查性别列表
+						name	string	名称
+Dict/state
+	title	房屋状态
+	desc	出租状态或找房状态
+	return
+		demo	[{"id":"1","name":"\u672a\u627e\u5230"},{"id":"2","name":"\u5df2\u627e\u5230"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+Dict/type
+	title	帖子类型
+	return
+		demo	[{"id":"1","name":"\u51fa\u79df"},{"id":"2","name":"\u6c42\u79df"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称						
+Dict/userIdType
+	title	账户类型
+	desc	第三方登录的用户类型
+	return
+		demo	[{"id":"1","name":"\u65b0\u6d6a\u5fae\u535a"},{"id":"2","name":"\u5fae\u4fe1"}]
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						name	string	名称

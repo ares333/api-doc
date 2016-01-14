@@ -1,5 +1,3 @@
-[![build status](https://travis-ci.org/sabberworm/PHP-CSS-Parser.png)](https://github.com/ares333/curlmulti)
-
 关于
 -----
 
@@ -14,6 +12,7 @@ PHP Yaf 2.3.3+<br>
 安装
 ----
 1. 下载源码解压缩
+1. composer install
 1. 绑定web服务器的入口目录为本项目的public目录
 1. 现在应该可以访问了，如果有问题见<b>联系我们</b>
 

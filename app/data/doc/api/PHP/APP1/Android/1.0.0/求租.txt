@@ -1,0 +1,64 @@
+Want/publish
+	title	发布
+	params
+		httpPost
+			cityId		1	城市
+			regionId	1	行政区
+			markId		1	地标
+			money		1	预算
+			checkinDate	1	入住日期
+			sexId		1	性别
+			sourceId	1	帖子来源
+			pic[]		1	图片ID或图片完整url，例如传两张图：pic[]=1001&pic[]=http://localhost/a.jpg
+			rentPicType	1	1是房子图片，2是自拍图片
+	return
+		demo	1156
+		data
+			value
+				\s0	number
+				\s1	帖子id
+			errorCode
+				data
+					data
+						\s1000	图片上传失败
+Want/search
+	title	搜索
+	params
+		httpPost
+			searchType	1	搜索类型，生活圈：sphere，地铁；subway
+			cityId		1	城市id
+			page		1	第几页
+			pageSize	1	每页条数
+	return
+		demo	[{"id":"1","sex_id":"1","money":"1000","checkin_date":"2015-01-23","bedroom_id":"1","bedroom_type_id":"1","favorite_num":"12","reply_num":"17","publish_time":"1451009727","desc":"\u79df\u91d1 1000,2015-01-23\u540e\u53ef\u5165\u4f4f,\u4e24\u5c45\u7684\u4e3b\u5367,\u51fa\u79df\u5bf9\u8c61\u7537","pic":{"1":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499165.jpg","2":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499174.jpg"},"isDouban":true,"user":{"id":"1","sex_id":"0","nickname":"\u52b2\u677e\u5409\u5c4b","avatar":"http:\/\/img4.douban.com\/icon\/user_normal.jpg"}}]
+		data
+			value
+				\s0	number
+				\s1	帖子id
+			errorCode
+				data
+					data
+						\s1000	type类型不合法
+Want/detail
+	title	详情
+	params
+		httpPost
+			id	1	帖子id
+	return
+		demo	{"id":"1","replyNum":"0","publishTime":"0","user":{"id":"3","sexId":"0","nickname":"\u8aaa\u800c\u4e0d\u8bf4","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","wordsRoomie":"","tag":{"1":{"4":"\u6570\u7801\u63a7"}}},"pic":{"1":{"1":["http:\/\/img3.douban.com\/icon\/u128425995-5.jpg"]}},"content":"\u6211\u5e0c\u671b\u5728\u5317\u4eac\u9644\u8fd1\u627e\u4e2a\u623f\u5b50\uff0c\u9884\u7b97\u671d\u9633\uff0c\u6700\u8fdf3\u642c\u5bb6\u3002"}
+		data
+			value
+				\s0	array
+				\s1	字段如下
+				data
+					data
+						id		string	帖子id
+						replyNum	string	留言数
+						publishTime	string	发布时间，时间戳
+						pic	array	配图，第一维代表图片类型
+						user	array	发帖人信息
+						content	string	正文内容
+			errorCode
+				data
+					data
+						\s1000	信息未找到

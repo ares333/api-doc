@@ -1,5 +1,5 @@
 prefix
-	url	http://localhost:8080/API/{$version}/
+	url	http://localhost/api/{$version}/
 suffix
 wraper
 	return

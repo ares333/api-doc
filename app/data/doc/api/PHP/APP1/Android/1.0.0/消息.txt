@@ -1,0 +1,33 @@
+﻿Message/count
+	title	消息条数
+	desc	只统计未读消息
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		demo	16
+		data
+			value
+				\s0	number
+				\s1	未读消息条数
+Message/list
+	title	消息列表
+	params
+		httpGet
+			_sid	1	会话标识
+		httpPost
+			page		1	页码
+			pageSize	1	每页条数，最大20
+	return
+		demo	[{"content":"beprvIN345","reply_time":"1452243034","type_id":"2","type_value_id":"2","nickname":"Ares","avatar":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40499182.jpg"}]
+		data
+			value
+				\s0	array
+				data
+					data
+						content		string	回复内容
+						reply_time	string	回复时间
+						type_id		string	帖子类型
+						type_value_id	string	帖子id
+						nickname	string	回帖人的昵称
+						avatar		string	回帖人的头像
