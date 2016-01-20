@@ -224,9 +224,11 @@ $(function(){
 	$('.ym-col3').css('height',height+'px');
 
 	//solve browser refresh problem
-	if(window.location.hash.length){
-		window.location.href=window.location.href;
+	window.location.hash.length?window.location.href=window.location.href:'';
+	window.onhashchange = function() {
+	  window.location.href=window.location.href
 	}
+	
 })
 //-->
 </script>
