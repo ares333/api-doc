@@ -1,5 +1,6 @@
 <?php
-class LoginController extends Yaf_Controller_Abstract {
+use Yaf\Controller_Abstract;
+class LoginController extends Controller_Abstract {
 	function indexAction() {
 		$redirect = $this->getRequest ()->getQuery ( 'redirect', '/' );
 		$model = LoginModel::getInstance ();

@@ -1,6 +1,7 @@
 <?php
 use Ares333\YafLib\Helper\Arrays;
-class DocController extends Yaf_Controller_Abstract {
+use Yaf\Controller_Abstract;
+class DocController extends Controller_Abstract {
 	function init() {
 		$out = array ();
 		$model = DocModel::getInstance ();

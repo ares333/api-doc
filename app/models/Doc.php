@@ -80,7 +80,7 @@ class DocModel extends AbstractModel {
 					Arrays::merger ( $metaInherit, $metaCurrent );
 					$metaCurrent = &$metaInherit;
 				}
-				$meta = array_merge_recursive ( $meta, $metaCurrent );
+				Arrays::merger( $meta, $metaCurrent );
 			}
 		}
 		// var in doc

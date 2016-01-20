@@ -1,5 +1,6 @@
 <?php
-class IndexController extends Yaf_Controller_Abstract {
+use Yaf\Controller_Abstract;
+class IndexController extends Controller_Abstract {
 	function indexAction() {
 		$this->redirect ( '/doc' );
 		return false;
