@@ -1,6 +1,9 @@
 <?php
-class LoginPlugin extends Yaf_Plugin_Abstract {
-	function preDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+use Yaf\Plugin_Abstract;
+use Yaf\Response_Abstract;
+use Yaf\Request_Abstract;
+class LoginPlugin extends Plugin_Abstract {
+	function preDispatch(Request_Abstract $request, Response_Abstract $response) {
 		$controllerName = strtolower ( $request->getControllerName () );
 		$exclude = array (
 				'api',
