@@ -68,15 +68,15 @@ body main{
     {foreach $arr as $k=>$v}
 	<h5><strong><span id="{$v.title}"></span>{$v.title}</strong></h5>
 	<hr>
-	<label>URL</label><code style="float:left;width:90%">{$v.url}</code><br>
+	<label><b>URL</b></label><code style="float:left;width:90%">{$v.url}</code><br>
 	{if !empty($v.desc)}
-	<label>接口描述</label><div style="float:left;width:90%">{$v.desc}</div><br>
+	<label><b>接口描述</b></label><div style="float:left;width:90%">{$v.desc}</div><br>
 	{/if}
 	{if isset($v.params)}
 		{foreach $v.params as $k1=>$v1}
 		{if !Arrays::emptyr($v1)}
 		<table class="bordertable narrow">
-			<caption>{$k1|upper|replace:"HTTP":"HTTP "} 参数</caption>
+			<caption><b>{$k1|upper|replace:"HTTP":"HTTP "} 参数</b></caption>
 			{if is_string($v1)}
 			<tr><td>{$v1}</td></tr>
 			{else}
@@ -131,7 +131,7 @@ body main{
 		{/foreach}
 	{/if}
 	<table class="bordertable narrow">
-		<caption>返回值 ( {$v.return.type} )</caption>
+		<caption><b>返回值({$v.return.type})</b></caption>
 		{if is_string($v.return.data)}
 		<tr><td>{$v.return.data}</td></tr>
 		{else}
@@ -228,7 +228,7 @@ $(function(){
 	window.onhashchange = function() {
 	  window.location.href=window.location.href
 	}
-	
+
 })
 //-->
 </script>
