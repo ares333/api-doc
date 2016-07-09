@@ -1,5 +1,5 @@
 var
-	platform	Android
+	platform	android
 prefix
 	url	https://localhost/{$platform}/v{$version}/
 suffix
@@ -8,6 +8,9 @@ wraper
 		demo	{"errorCode":0,"errorMessage":"","value":{$demo},"timeCost":0.09645}
 default
 	url	\k
+	params
+		httpPost
+			appVersion	1	APP当前版本
 	return
 		type	JSON对象
 		data

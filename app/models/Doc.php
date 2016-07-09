@@ -64,6 +64,34 @@ class DocModel extends AbstractModel {
 	 */
 	function parse($path, array $var = array(), $maxDepth = null) {
 		$file = $this->basePath . '/' . ltrim ( $path, '/' );
+		// replace var
+		$funcVarReplace = function ($arr, $var) {
+			if (! empty ( $var )) {
+				$flag = false;
+				if (is_string ( $arr )) {
+					$flag = true;
+					$arr = array (
+							$arr
+					);
+				}
+				array_walk_recursive ( $arr, function (&$v, $k, $var) {
+					if (is_string ( $v )) {
+						preg_match_all ( '/\{\$(\w+)\}/', $v, $matches );
+						if (! empty ( $matches [1] )) {
+							foreach ( $matches [1] as $v1 ) {
+								if (isset ( $var [$v1] )) {
+									$v = str_replace ( '{$' . $v1 . '}', $var [$v1], $v );
+								}
+							}
+						}
+					}
+				}, $var );
+			}
+			if ($flag) {
+				$arr = $arr [0];
+			}
+			return $arr;
+		};
 		$meta = array ();
 		// merge _meta.txt
 		foreach ( array (
@@ -73,6 +101,11 @@ class DocModel extends AbstractModel {
 			$v .= '/_meta.txt';
 			if (file_exists ( $v )) {
 				$metaCurrent = $this->parseArr ( $this->getContent ( $v ), $maxDepth );
+				$lastUnset = array ();
+				if (! empty ( $metaCurrent ['_unset'] )) {
+					$lastUnset = $metaCurrent ['_unset'];
+					unset ( $metaCurrent ['_unset'] );
+				}
 				// meta inherit
 				if (! empty ( $metaCurrent ['inherit'] )) {
 					$metaInherit = $this->parseArr ( $this->getContent ( dirname ( $v ) . '/' . $metaCurrent ['inherit'] ), $maxDepth );
@@ -80,10 +113,15 @@ class DocModel extends AbstractModel {
 					Arrays::merger ( $metaInherit, $metaCurrent );
 					$metaCurrent = &$metaInherit;
 				}
-				Arrays::merger( $meta, $metaCurrent );
+				Arrays::merger ( $meta, $metaCurrent );
+				Arrays::unsetr ( $meta, $lastUnset );
+				if (! empty ( $meta['_unset'] )) {
+					$lastUnset = $$meta['_unset'];
+					unset ( $$meta ['_unset'] );
+				}
 			}
 		}
-		// var in doc
+		// merge var in doc
 		if (! empty ( $meta ['var'] )) {
 			Arrays::merger ( $var, $meta ['var'] );
 			unset ( $meta ['var'] );
@@ -98,39 +136,48 @@ class DocModel extends AbstractModel {
 		// parse content
 		$arr = $this->parseArr ( $content, $maxDepth );
 		// inline _meta
-		if (array_key_exists ( '_meta', $arr )) {
-			if (! empty ( $arr ['_meta'] )) {
-				// process inherit first
-				if (! empty ( $arr ['_meta'] ['inherit'] )) {
-					if (is_string ( $arr ['_meta'] ['inherit'] )) {
-						$inheritFile = $arr ['_meta'] ['inherit'];
-						$inheritKeys = null;
-					} elseif (is_array ( $arr ['_meta'] ['inherit'] )) {
-						$inheritFile = $arr ['_meta'] ['inherit'] [0];
-						$inheritKeys = $arr ['_meta'] ['inherit'];
-						array_shift ( $inheritKeys );
-					} else {
-						user_error ( 'inherit file is invalid', E_USER_ERROR );
-					}
-					$arrInherit = $this->parseArr ( $this->getContent ( dirname ( $file ) . '/' . $inheritFile ), $maxDepth );
-					if (isset ( $inheritKeys )) {
-						foreach ( $arrInherit as $k => $v ) {
-							if (! in_array ( $k, $inheritKeys )) {
-								unset ( $arrInherit [$k] );
-							}
+		if (! empty ( $arr ['_meta'] )) {
+			// process inherit first
+			$fileCurrent = $file;
+			$lastUnset = array ();
+			if (! empty ( $arr ['_unset'] )) {
+				$lastUnset = $arr ['_unset'];
+				unset ( $arr ['_unset'] );
+			}
+			while ( ! empty ( $arr ['_meta'] ['inherit'] ) ) {
+				if (is_string ( $arr ['_meta'] ['inherit'] )) {
+					$inheritFile = $arr ['_meta'] ['inherit'];
+					$inheritKeys = null;
+				} elseif (is_array ( $arr ['_meta'] ['inherit'] )) {
+					$inheritFile = $arr ['_meta'] ['inherit'] [0];
+					$inheritKeys = $arr ['_meta'] ['inherit'];
+					array_shift ( $inheritKeys );
+				} else {
+					user_error ( 'inherit file is invalid', E_USER_ERROR );
+				}
+				unset ( $arr ['_meta'] ['inherit'] );
+				$inheritFile = dirname ( $fileCurrent ) . '/' . $funcVarReplace ( $inheritFile, $var );
+				$fileCurrent = $inheritFile;
+				$arrInherit = $this->parseArr ( $this->getContent ( $inheritFile ), $maxDepth );
+				if (isset ( $inheritKeys )) {
+					foreach ( $arrInherit as $k => $v ) {
+						if (! in_array ( $k, $inheritKeys )) {
+							unset ( $arrInherit [$k] );
 						}
 					}
-					Arrays::merger ( $arrInherit, $arr );
-					$arr = &$arrInherit;
-					unset ( $arr ['_meta'] ['inherit'] );
 				}
+				Arrays::unsetr ( $arrInherit, $lastUnset );
+				if (! empty ( $arrInherit ['_unset'] )) {
+					$lastUnset = $arrInherit ['_unset'];
+					unset ( $arrInherit ['_unset'] );
+				}
+				Arrays::merger ( $arrInherit, $arr );
+				$arr = $arrInherit;
+			}
+			if (array_key_exists ( '_meta', $arr )) {
 				$meta = array_merge_recursive ( $meta, $arr ['_meta'] );
 			}
 			unset ( $arr ['_meta'] );
-		}
-		if (! empty ( $meta ['_unset'] )) {
-			Arrays::unsetr ( $meta, $meta ['_unset'] );
-			unset ( $meta ['_unset'] );
 		}
 		// do _meta definitions
 		foreach ( $arr as $k => $v ) {
@@ -139,11 +186,6 @@ class DocModel extends AbstractModel {
 				continue;
 			}
 			$metaReplace = $meta;
-			// unset
-			if (! empty ( $v ['_unset'] )) {
-				Arrays::unsetr ( $metaReplace, $v ['_unset'] );
-				unset ( $v ['_unset'] );
-			}
 			// default
 			if (! empty ( $metaReplace ['default'] )) {
 				list ( $v, $temp ) = array (
@@ -169,20 +211,7 @@ class DocModel extends AbstractModel {
 				Arrays::wraperr ( $v, $metaReplace ['wraper'] );
 			}
 			// var replace
-			if (! empty ( $var )) {
-				array_walk_recursive ( $v, function (&$v, $k, $var) {
-					if (is_string ( $v )) {
-						preg_match_all ( '/\{\$(\w+)\}/', $v, $matches );
-						if (! empty ( $matches [1] )) {
-							foreach ( $matches [1] as $v1 ) {
-								if (isset ( $var [$v1] )) {
-									$v = str_replace ( '{$' . $v1 . '}', $var [$v1], $v );
-								}
-							}
-						}
-					}
-				}, $var );
-			}
+			$v = $funcVarReplace ( $v, $var );
 			// \d recover
 			$search = $replace = array ();
 			for($i = 0; $i < count ( $hereDoc ); $i ++) {
@@ -193,7 +222,7 @@ class DocModel extends AbstractModel {
 			$arr [$k] = $v;
 		}
 		// \h self inherit
-		$funcH = function (array &$subject) use(&$funcH, $arr) {
+		$funcInherit = function (array &$subject) use(&$funcInherit, $arr) {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					if (is_string ( $v )) {
@@ -208,21 +237,34 @@ class DocModel extends AbstractModel {
 					$subject [$key] = $value;
 					unset ( $subject [$k] );
 				} elseif (is_array ( $v )) {
-					call_user_func_array ( $funcH, array (
+					call_user_func_array ( $funcInherit, array (
 							&$v
 					) );
 				}
 			}
 		};
-		$funcH ( $arr );
+		$funcInherit ( $arr );
 		// \i include
-		$dir = dirname ( $file ) . '/_inc';
+		$dir = dirname ( $file );
 		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
 			if (file_exists ( $file )) {
 				return file_get_contents ( $file );
 			}
 		}, $arr );
+		// sort param
+		foreach ( $arr as &$v ) {
+			if (! empty ( $v ['params'] ['httpPost'] )) {
+				uasort ( $v ['params'] ['httpPost'], function ($a, $b) {
+					return $a [0] < $b [0];
+				} );
+			}
+			if (! empty ( $v ['params'] ['httpGet'] )) {
+				uasort ( $v ['params'] ['httpGet'], function ($a, $b) {
+					return $a [0] < $b [0];
+				} );
+			}
+		}
 		return $arr;
 	}
 	/**

@@ -211,7 +211,7 @@ WechatApplySubmit
 					data
 						info			string	信息
 WechatApplyPass
-	title	租霸--资料审核通过
+	title	资料审核通过
 	params
 		httpGet
 			cellphone							1	电话			
@@ -234,7 +234,7 @@ WechatApplyPass
 					data
 						info			string	信息
 WechatPhotoQuery
-	title	租霸--资料上传的主页
+	title	资料上传的主页
 	params
 		httpGet
 			cellphone							1	电话		
@@ -266,7 +266,7 @@ WechatPhotoQuery
 						id_main_photo		string	身份证正面
 						marriage_photo		string	结婚证照片
 WechatPhotoIDUpload
-	title	租霸--上传身份证
+	title	上传身份证
 	params
 		httpGet
 			cellphone			1	电话
@@ -292,7 +292,7 @@ WechatPhotoIDUpload
 					data
 						info			string	信息提示
 WechatPhotoContractUpload
-	title	租霸--上传租房合同证（上传5张）
+	title	上传租房合同证（上传5张）
 	params
 		httpGet
 			cellphone			1	电话
@@ -321,7 +321,7 @@ WechatPhotoContractUpload
 					data
 						info			string	信息提示
 WechatPhotoMarriageUpload
-	title	租霸--上传结婚证照片
+	title	上传结婚证照片
 	params
 		httpGet
 			cellphone			1	电话
@@ -345,7 +345,7 @@ WechatPhotoMarriageUpload
 					data
 						info			string	信息提示
 WechatQueryLoanInfo
-	title	租霸--查看借款信息页面
+	title	查看借款信息页面
 	params
 		httpGet
 			cellphone			1	电话
@@ -368,7 +368,7 @@ WechatQueryLoanInfo
 					data
 						info			string	信息提示
 WechatQueryIDInfo
-	title	租霸--查看身份信息页面
+	title	查看身份信息页面
 	params
 		httpGet
 			cellphone			1	电话
@@ -402,7 +402,7 @@ WechatQueryIDInfo
 						social_security_pass			string	社保查询密码
 						qq								string	QQ号码
 WechatQueryJobInfo
-	title	租霸--工作信息页面
+	title	工作信息页面
 	params
 		httpGet
 			cellphone			1	电话
@@ -431,7 +431,7 @@ WechatQueryJobInfo
 						hire_date					string	入职时间
 						after_tax_monthly_income 	string 税后月收入
 WechatContractInfo
-	title	租霸--保存联系人信息
+	title	保存联系人信息
 	params
 		httpGet
 			cellphone			1	电话
@@ -471,7 +471,7 @@ WechatContractInfo
 						cellphone					string	电话
 						name						string	姓名
 WechatQueryContractInfo
-	title	租霸--联系人信息页面
+	title	联系人信息页面
 	params
 		httpGet
 			cellphone			1	电话
@@ -498,7 +498,7 @@ WechatQueryContractInfo
 						cellphone					string	电话
 						name						string	姓名
 WechatQueryBankCardInfo
-	title	租霸--查看银行卡信息页面
+	title	查看银行卡信息页面
 	params
 		httpGet
 			cellphone			1	电话

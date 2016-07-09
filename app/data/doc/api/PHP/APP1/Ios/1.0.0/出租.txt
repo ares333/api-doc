@@ -1,2 +1,2 @@
 ﻿_meta
-	inherit		../../Android/1.0.0/出租.txt
+	inherit		../../Android/{$version}/出租.txt

@@ -6,7 +6,6 @@ class LoginPlugin extends Plugin_Abstract {
 	function preDispatch(Request_Abstract $request, Response_Abstract $response) {
 		$controllerName = strtolower ( $request->getControllerName () );
 		$exclude = array (
-				'api',
 				'index',
 				'error',
 				'login'

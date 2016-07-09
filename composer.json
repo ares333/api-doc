@@ -7,7 +7,7 @@
     "smarty/smarty" : "3.*",
     "zf1/zend-json":"1.*",
     "zf1/zend-session" : "1.*",
-    "phpdr.net/php-yaf-library" : "2.*"
+    "phpdr.net/php-yaf-library" : "v2.5.1"
   },
   "authors" : [ {
     "name" : "Ares",
