@@ -1,0 +1,9 @@
+﻿Test/data
+	title	数据类型
+	params
+	return
+		demo	{"a":[],"b":{},"c":null,"d":10,"e":["v1","v2","v3"],"f":{"k1":"v1","k2":"v2","k3":"v3"}}
+		data
+			value
+				\s0	string
+				\s1	一个包含各种类型数据的对象用于客户端测试。

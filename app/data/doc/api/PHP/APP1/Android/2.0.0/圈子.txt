@@ -1,0 +1,309 @@
+circle.list
+	title	圈子列表
+	params
+		httpPost
+			type	0	搜索类型，地域：sphere，兴趣：interest
+			cityId	1	城市id
+			page	1	第几页
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+						desc	string	圈子简介
+						isJoined	boolean	是否加入了该圈
+						iconUrl	string	图标
+						lastTopic	object	最新主题
+						lastTopic.id	string	最新主题id
+						lastTopic.title	string	最新主题标题
+			errorCode
+				data
+					data
+						1000	没有更多数据
+circle.detail
+	title	圈子详情
+	params
+		httpPost
+			id	1	圈子id
+	return
+		data
+			value
+				\s0	object
+				\s1	字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+						desc	string	圈子简介
+						isFavorite	string	是否已经收藏
+						isJoined	boolean	是否加入了该圈
+						iconUrl	string	图标
+						lastTopic	object	最新主题
+						lastTopic.id	string	最新主题id
+						lastTopic.title	string	最新主题标题
+			errorCode
+				data
+					data
+						1000	没找到
+circle.mine
+	title	我的圈子
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+						desc	string	圈子简介
+						iconUrl	string	图标
+						lastTopic	object	最新主题
+						lastTopic.id	string	最新主题id
+						lastTopic.title	string	最新主题标题
+circle.join
+	title	加入圈子
+	params
+		httpPost
+			circleId	1	圈子id
+	return
+		data
+			value
+				\s0	boolean
+				\s1	是否成功
+circle.quit
+	title	退出圈子
+	params
+		httpPost
+			circleId	1	圈子id
+	return
+		data
+			value
+				\s0	boolean
+				\s1	是否成功
+circletopic.publish
+	title	发布主题
+	params
+		httpPost
+			circleId	1	圈子id
+			content		1	正文
+			title		1	标题
+			pic[]		0	此参数可以传递过个，半角冒号分隔图片id和描述，例如：1113:这张图真NB
+	return
+		data
+			value
+				\s0	string
+				\s1	主题id
+			errorCode
+				data
+					data
+						1000	没有加入圈子
+circletopic.delete
+	title	删除主题
+	params
+		httpPost
+			id	1	主题id
+	return
+		data
+			value
+				\s0	boolean
+				\s1	是否成功
+circletopic.detail
+	title	主题详情
+	params
+		httpPost
+			topicId	1	主题id
+	return
+		data
+			value
+				\s0	object
+				\s1	详情
+				data
+					data
+						id		string	主题id
+						circleId	string	圈子id
+						title	string	标题
+						user	object	用户信息
+						user.id	string	用户id
+						user.nickname	string	昵称
+						user.avatar	string	头像
+						publishTime	string	发布时间
+						content	string	正文内容
+						contentPic	string	正文配图
+circletopic.list
+	title	主题列表
+	params
+		httpPost
+			circleId	1	圈子id
+			page	1	第几页
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						title	string	标题
+						replyNum	string	回复数
+						pic		array	图片列表
+						pic.$	string	图片url
+						user	object	用户信息
+						user.id	string	用户id
+						user.nickname	string	用户昵称
+						user.avatar		string	用户头像
+						lastReplyTime	string	最后回复时间
+			errorCode
+				data
+					data
+						1000	没有更多数据
+circletopic.listtop
+	title	置顶的主题
+	params
+		httpPost
+			circleId	1	圈子id
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						title	string	标题
+circletopicreply.list
+	title	回复列表
+	params
+		httpPost
+			topicId	1	主题id
+			offset	0	起始位置，从0开始
+	return
+		data
+			value
+				\s0	object
+				\s1	每一条数据字段如下
+				data
+					data
+						offset	string	下一次请求的开始位置
+						list	array	回复列表
+						list.$.id		string	id
+						list.$.content	string	回复内容
+						list.$.parent	object	原评论内容
+						list.$.parent.userNickname	string	用户昵称
+						list.$.parent.content	string	内容
+						list.$.user	object	用户信息
+						list.$.user.id	string	用户id
+						list.$.user.nickname	stirng	用户昵称
+						list.$.user.avatar	string	用户头像
+						list.$.floorName	string	楼层名称
+						list.$.publishTime	string	回复时间
+			errorCode
+				data
+					data
+						1000	没有更多数据
+circletopicreply.publish
+	title	回复
+	params
+		httpPost
+			topicId	1	主题id
+			content	1	回复内容
+			replyId	0	引用的回复id
+	return
+		data
+			value
+				\s0	string
+				\s1	回复id
+			errorCode
+				data
+					data
+						1000	没有加入圈子
+circletopicreply.delete
+	title	删除回复
+	params
+		httpPost
+			replyId	1	回复id
+	return
+		data
+			value
+				\s0	boolean
+				\s1	是否成功
+			errorCode
+				data
+					data
+						1000	没有权限删除
+circletopic.mine
+	title	我发布的主题
+	params
+		httpPost
+			page	1	第几页
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						title	string	标题
+						replyNum	string	回复数
+						publishTime	string	发布时间
+						circle	object	圈子
+						circle.id	string	圈子id
+						circle.name	string	圈子名称
+						circle.iconUrl	string	圈子图标
+			errorCode
+				data
+					data
+						1000	没有更多数据
+circletopic.myreplied
+	title	我回复的主题
+	params
+		httpPost
+			page	1	第几页
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						title	string	标题
+						replyNum	string	回复数
+						publishTime	string	发布时间
+						circle	object	圈子
+						circle.id	string	圈子id
+						circle.name	string	圈子名称
+						circle.iconUrl	string	圈子图标
+			errorCode
+				data
+					data
+						1000	没有更多数据
+circletopic.myfavorite
+	title	我收藏的主题
+	params
+		httpPost
+			page	1	第几页
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						title	string	标题
+						replyNum	string	回复数
+						publishTime	string	发布时间
+						circle	object	圈子
+						circle.id	string	圈子id
+						circle.name	string	圈子名称
+						circle.iconUrl	string	圈子图标
+			errorCode
+				data
+					data
+						1000	没有更多数据
