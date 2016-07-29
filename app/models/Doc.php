@@ -115,8 +115,8 @@ class DocModel extends AbstractModel {
 				}
 				Arrays::merger ( $meta, $metaCurrent );
 				Arrays::unsetr ( $meta, $lastUnset );
-				if (! empty ( $meta['_unset'] )) {
-					$lastUnset = $$meta['_unset'];
+				if (! empty ( $meta ['_unset'] )) {
+					$lastUnset = $$meta ['_unset'];
 					unset ( $$meta ['_unset'] );
 				}
 			}
@@ -262,6 +262,14 @@ class DocModel extends AbstractModel {
 			if (! empty ( $v ['params'] ['httpGet'] )) {
 				uasort ( $v ['params'] ['httpGet'], function ($a, $b) {
 					return $a [0] < $b [0];
+				} );
+			}
+		}
+		// sort value
+		foreach ( $arr as &$v ) {
+			if (! empty ( $v ['return'] ['data'] ['value'] ['data'] ['data'] )) {
+				uksort ( $v ['return'] ['data'] ['value'] ['data'] ['data'], function ($a, $b) {
+					return $a > $b;
 				} );
 			}
 		}
