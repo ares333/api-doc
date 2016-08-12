@@ -232,7 +232,7 @@ class DocModel extends AbstractModel {
 					} else {
 						$key = $v;
 					}
-					$value = \Arrays::current ( $arr, $key );
+					$value = Arrays::current ( $arr, $key );
 					$key = array_pop ( $key );
 					$subject [$key] = $value;
 					unset ( $subject [$k] );

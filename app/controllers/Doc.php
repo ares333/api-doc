@@ -34,9 +34,33 @@ class DocController extends Controller_Abstract {
 		$out = array ();
 		$model = DocModel::getInstance ();
 		$out ['list'] = $model->getList ( $path, 4 );
+		// set version list in inverted order
+		Arrays::walkr ( $out ['list'], function (&$v) {
+			if (is_array ( $v )) {
+				reset ( $v );
+				$k1 = key ( $v );
+				$v1 = current ( $v );
+				next ( $v );
+				$k2 = key ( $v );
+				$v2 = current ( $v );
+				$pattern = '/^v\d\.\d\.\d/';
+				if (preg_match ( $pattern, $k1 ) && preg_match ( $pattern, $k2 )) {
+					uksort ( $v, function ($a, $b) {
+						return $a < $b;
+					} );
+				}
+				if (is_string ( $v1 ) && is_string ( $v2 )) {
+					if (preg_match ( $pattern, $v1 ) && preg_match ( $pattern, $v2 )) {
+						uasort ( $v, function ($a, $b) {
+							return $a < $b;
+						} );
+					}
+				}
+			}
+		} );
 		$mapKey = array ();
 		$mapValue = array ();
-		Arrays::pregReplaceKeyr ( '/.+/', function ($match) use(&$mapKey) {
+		Arrays::pregReplaceKeyr ( '/.+/', function ($match) use (&$mapKey) {
 			if (0 === strpos ( PHP_OS, 'WIN' )) {
 				$enc = mb_convert_encoding ( $match [0], "UTF-8", "GBK" );
 			} else {
@@ -45,7 +69,7 @@ class DocController extends Controller_Abstract {
 			$mapKey [$enc] = urlencode ( $match [0] );
 			return $enc;
 		}, $out ['list'] );
-		Arrays::pregReplacer ( '/.+/', function ($match) use(&$mapValue) {
+		Arrays::pregReplacer ( '/.+/', function ($match) use (&$mapValue) {
 			if (0 === strpos ( PHP_OS, 'WIN' )) {
 				$enc = mb_convert_encoding ( $match [0], "UTF-8", "GBK" );
 			} else {
@@ -62,10 +86,12 @@ class DocController extends Controller_Abstract {
 		$out = array ();
 		$model = DocModel::getInstance ();
 		$path = $this->getRequest ()->getParam ( 'path' );
-		preg_match ( '/\/([\d\.]+(-\w+)?)/', $path, $match );
+		// v1.0.0-beta
+		preg_match ( '/\/(v[\d\.]+(-\w+)?)/', $path, $match );
 		$out ['arr'] = $model->parse ( $path, array (
 				'version' => $match [1]
 		) );
+		$this->getView ()->getAdapter ()->registerClass ( "Arrays", "Ares333\YafLib\Helper\Arrays" );
 		$this->getView ()->assign ( $out );
 	}
 }
