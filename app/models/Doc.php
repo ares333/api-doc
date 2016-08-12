@@ -116,8 +116,8 @@ class DocModel extends AbstractModel {
 				Arrays::merger ( $meta, $metaCurrent );
 				Arrays::unsetr ( $meta, $lastUnset );
 				if (! empty ( $meta ['_unset'] )) {
-					$lastUnset = $$meta ['_unset'];
-					unset ( $$meta ['_unset'] );
+					$lastUnset = $meta ['_unset'];
+					unset ( $meta ['_unset'] );
 				}
 			}
 		}
