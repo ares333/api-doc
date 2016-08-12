@@ -1,0 +1,131 @@
+want.publish
+	title	发布
+	params
+		httpPost
+			markId[]	0	地标，可以传多个，例如：markId[]=20&markId[]=117&markId[]=104
+			subwayStationId[]	0	地铁站，可以传多个，例如：subwayStationId[]=1&subwayStationId[]=20
+			extMessage	0	补充信息
+			money		1	预算
+			cityId		1	城市id
+			checkinDate	1	最早入住日期，格式YYYY-MM-DD
+			isAlbum		1	1或0，代表是否使用相册里的图片
+			picRoomie[]	0	室友图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+	return
+		data
+			value
+				\s0	string
+				\s1	帖子id
+want.update
+	title	更新
+	params
+		httpPost
+			id		1	帖子id
+			markId[]	0	地标，可以传多个，例如：markId[]=20&markId[]=117&markId[]=104
+			subwayStationId[]	0	地铁站，可以传多个，例如：subwayStationId[]=1&subwayStationId[]=20
+			extMessage	0	补充信息
+			money		0	预算
+			stateId		0	帖子状态
+			cityId		0	城市id
+			checkinDate	0	最早入住日期，格式YYYY-MM-DD
+			isAlbum		0	1或0，代表是否使用相册里的图片
+			picRoomie[]	0	室友图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+	return
+		data
+			value
+				\s0	boolean
+				\s1	成功或失败
+want.search
+	title	搜索
+	params
+		httpPost
+			searchType	1	搜索类型，生活圈：sphere，地铁：subway
+			cityId		1	城市id
+			page		1	第几页
+			sexId		0	性别id
+			minMoney	0	租金最小值
+			maxMoney	0	租金最大值
+			regionId	0	行政区id，sphere搜索使用
+			markId		0	地标id，sphere搜索使用
+			subwayId	0	地铁线id，subway搜索使用
+			subwayStationId	0	地铁站id，subway搜索使用
+			noSmoke	0	0或1，1代表选中
+			noPet	0	0或1，1代表选中
+			noSleepLate	0	0或1，1代表选中
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						typeId		string	帖子类型id
+						typeValueId	string	帖子id
+						money	string	租金
+						checkinDate	string	入住日期
+						user	object	用户信息
+						user.id	string	用户id
+						user.nickname	string	用户昵称
+						user.profession	string	用户行业
+						user.sexName	string	性别
+						user.avatar	string	头像url
+						user.constellationName	string	星座
+						pic	object	配图信息
+						pic.width	string	配图宽度
+						pic.height	string	配图高度
+						pic.url	string	配图url
+						location	string	位置
+			errorCode
+				data
+					data
+						1000	没有更多数据
+want.detail
+	title	详情
+	params
+		httpPost
+			id	0	帖子id
+	return
+		data
+			value
+				\s0	object
+				\s1	字段详情如下
+				data
+					data
+						id	string	帖子id
+						cityId	string	城市id
+						isAlbum	boolean	配图是否来自相册
+						pic	array	配图
+						pic.$.id	string	配图id
+						pic.$.width	string	配图宽度
+						pic.$.height	string	配图高度
+						pic.$.url	string	配图url
+						user	object	用户信息
+						user.id	string	用户id
+						user.avatar	string	头像url
+						user.nickname	string	用户昵称
+						user.sexName	string	性别
+						user.constellationName	string	星座
+						user.profession	string	用户行业
+						user.tagMine	array	我的标签
+						user.tagMine.$	object	标签
+						user.tagMine.$.name	string	标签名称
+						user.tagRoomie	array	室友标签
+						user.tagRoomie.$	object	标签
+						user.tagRoomie.$.name	object	标签名称
+						user.tagRoomieSpecial	array	室友特殊标签
+						user.tagRoomieSpecial.$	string	标签id
+						isFavorite	boolean	是否已收藏
+						checkinDate	string	入住日期
+						location	array	位置列表
+						location.$	object	位置
+						location.$.regionId	string	行政区id
+						location.$.markId	string	地标id
+						location.$.name	string	名称
+						subway	array	地铁列表
+						subway.$	object	地铁
+						subway.$.subwayId	string	地铁线id
+						subway.$.subwayStationId	string	地铁站id
+						subway.$.name	string	名称
+						stateId	string	帖子状态id
+						money	string	租金
+						extMessage	string	补充信息
+						isMine	boolean	是否我发布的

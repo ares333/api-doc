@@ -1,0 +1,141 @@
+﻿rent.update
+	title	更新
+	params
+		httpPost
+			id	1	帖子id
+			stateId		0	帖子状态id
+			provinceName	0	省/直辖市名称
+			cityName	0	城市名称
+			facility[]	0	房屋设施，可以传多个
+			extMessage	0	补充信息
+			longitude	0	经度
+			latitude	0	纬度
+			address		0	完整地址
+			money		0	租金
+			checkinDate	0	最早入住日期，格式YYYY-MM-DD
+			picHouse[]	0	房子图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+			picRoomie[]	0	室友图片ID，例如传两张图：picRoomie[]=1001&picRoomie[]=1002
+	return
+		data
+			value
+				\s0	boolean
+				\s1	成功或失败
+rent.search
+	title	搜索
+	params
+		httpPost
+			searchType	1	搜索类型，生活圈：sphere，地铁：subway
+			cityId		1	城市id
+			page		1	第几页
+			sourceName	0	来源，三个有效值：apartment,rent,douban
+			sexId		0	性别id
+			minMoney	0	租金最小值
+			maxMoney	0	租金最大值
+			regionId	0	行政区id，sphere搜索使用
+			markId		0	地标id，sphere搜索使用
+			subwayId	0	地铁线id，subway搜索使用
+			subwayStationId	0	地铁站id，subway搜索使用
+			noSmoke	0	0或1，1代表选中
+			noPet	0	0或1，1代表选中
+			noSleepLate	0	0或1，1代表选中
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						typeId	string	帖子类型id
+						typeValueId	string	帖子id
+						money	string	租金
+						publishTime	string	发布时间
+						user	object	用户信息
+						user.id	string	用户id
+						user.nickname	string	用户昵称
+						user.profession	string	用户行业
+						user.sexName	string	性别
+						user.avatar	string	头像url
+						user.constellationName	string	星座
+						pic.width	string	配图宽度
+						pic.height	string	配图高度
+						pic.url	string	配图url
+						isDouban	boolean		帖子是否来源于豆瓣
+			errorCode
+				data
+					data
+						1000	没有更多数据
+rent.detail
+	title	详情
+	params
+		httpPost
+			id	0	帖子id
+	return
+		data
+			value
+				\s0	object
+				\s1	字段详情如下
+				data
+					data
+						id	string	帖子id
+						cityId	string	城市id
+						picHouse	array	房子配图
+						picHouse.$.id	string	配图id
+						picHouse.$.width	string	配图宽度
+						picHouse.$.height	string	配图高度
+						picHouse.$.url	string	配图url
+						picRoomie	array	配图
+						picRoomie.$.id	string	配图id
+						picRoomie.$.width	string	配图宽度
+						picRoomie.$.height	string	配图高度
+						picRoomie.$.url	string	配图url
+						user	object	用户信息
+						user.id	string	用户id
+						user.avatar	string	头像url
+						user.nickname	string	用户昵称
+						user.sexName	string	性别
+						user.constellationName	string	星座
+						user.profession	string	用户行业
+						user.tagMine	array	我的标签
+						user.tagMine.$	object	标签
+						user.tagMine.$.name	object	标签名称
+						user.tagRoomie	array	室友标签
+						user.tagRoomie.$	string	标签
+						user.tagRoomie.$.name	string	标签名称
+						user.tagRoomieSpecial	array	室友特殊标签
+						user.tagRoomieSpecial.$	string	标签id
+						isFavorite	boolean	是否已收藏
+						checkinDate	string	入住日期
+						longitude	string	经度
+						latitude	string	围堵
+						address	array	位置
+						money	string	租金
+						stateId	string	帖子状态id
+						facility	array	房屋设施
+						extMessage	string	补充信息
+						isMine	boolean	是否我发布的
+rent.detailDouban
+	title	详情（豆瓣）
+	params
+		httpPost
+			id	0	帖子id
+	return
+		data
+			value
+				\s0	object
+				\s1	字段详情如下
+				data
+					data
+						id	string	帖子id
+						isFavorite	boolean	是否已收藏
+						pic	array	配图
+						pic.$.width	string	配图宽度
+						pic.$.height	string	配图高度
+						pic.$.url	string	配图url
+						user	object	用户信息
+						user.id	string	用户id
+						user.avatar	string	头像url
+						user.nickname	string	用户昵称
+						publishTime	string	发布时间
+						title	string	豆瓣标题
+						money	string	租金
+						content	string	豆瓣内容

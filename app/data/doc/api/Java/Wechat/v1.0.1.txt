@@ -1,0 +1,764 @@
+﻿GetWechatSMS
+	title	登录页面---获取验证码(wechat)
+	params
+		httpGet
+			cellphone		1	电话（Base64编码）
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"sms":"522083"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"短信发送失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						sms		string	短信
+						info	string	中文信息提示
+WechatSMSLogin
+	title	登录页面---点击登录(wechat)
+	params
+		httpGet
+			cellphone					1	电话（Base64编码）
+			city						1	城市信息(页面输入，下面的地理位置信息为百度的地理位置信息,要进行urlencode)
+			lng							1	经度//116.45075
+			lat							1	纬度//39.930485
+			baidu_formatted_address		1	详细地址//北京市朝阳区朝阳门外大街--要进行urlencode
+			baidu_business				1	商区//朝阳门,朝外,工体--要进行urlencode
+			baidu_city					1	城市//北京市--要进行urlencode
+			baidu_direction				1	趋势//如果是中文，要进行urlencode
+			baidu_distance				1	距离
+			baidu_district				1	区//朝阳区--要进行urlencode
+			baidu_province				1	省份//北京市--要进行urlencode
+			baidu_street				1	街道 //朝阳门外大街--要进行urlencode
+			baidu_street_number			1	街道号码
+			baidu_citycode				1	城市代码//131 
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"loginInfo":"登录成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"loginInfo":"登录失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						loginInfo		string	登录提示信息
+WechatEnterApplyPage
+	title	申请分期页面--进入申请分期页面
+	params
+		httpGet
+			cellphone		1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"cellphone":"15910259277","order_state":"1","data_integrity":"20","info":"操作成功","loan_info":"","id_info":"","job_info":"","contract_info":"","photo_info":"","bank_card_info":""}]}<br>失败:<br>{"message_code":"0","message_info":[{"cellphone":"15910259277","order_state":"1","data_integrity":"20","info":"操作失败","loan_info":"","id_info":"","job_info":"","contract_info":"","photo_info":"","bank_card_info":""}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						cellphone		string	电话号码
+						data_integrity	string	资料完整度
+						order_state		string	订单状态 "1"--订单审核中, "2"--订单审核成功,"3"--订单审核失败,"4"--订单放款中, "5"--订单已放款, "6"--订单完结
+						info			string	信息
+						loan_info		string	借款信息是否填写
+						id_info			string	身份信息是否填写
+						job_info		string	工作信息是否填写
+						contract_info	string	联系人信息是否填写
+						photo_info		string	面审资料是否填写
+						bank_card_info	string	银行卡信息是否填写:<br>1填写,0未填写
+						fail_count		string	审核失败次数
+WechatLoanInfo
+	title	借款信息--点击保存按钮
+	params
+		httpGet
+			cellphone						1	电话
+			loan							1	贷款金额
+			periods							1	贷款期数
+			acceptable_max_repayment		1	可接受最高月还款额
+			data_integrity					1	数据完整度
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"操作成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"操作失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息
+WechatIDInfo
+	title	身份信息--点击保存按钮
+	params
+		httpGet
+			cellphone						1	电话
+			username						1	姓名（只要是页面中要填写的内容是中文就要进行urlencode）
+			identity_card					1	身份证号
+			sex								1	性别
+			marital_status					1	婚姻状态
+			data_integrity					1	数据完整度
+			bank_card_bind_id				1	绑定银行卡个人信息---身份证
+			bank_card_bind_name				1	绑定银行卡个人信息---姓名（urlencode）
+			public_accumulation_funds		1	公积金账号--要进行urlencode
+			public_accumulation_funds_pass	1	公积金查询密码
+			social_security					1	社保账号--要进行urlencode
+			social_security_pass			1	社保查询密码
+			qq								1	QQ号码
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"操作成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"操作失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息
+WechatJobInfo
+	title	工作信息--点击保存按钮
+	params
+		httpGet
+			cellphone							1	电话
+			corporate_name						1	公司名称（只要是页面中要填写的内容是中文就要进行urlencode）
+			title_level							1	职位级别
+			department							1	所在部门（只要是页面中要填写的内容是中文就要进行urlencode）
+			job_title							1	职务名称（只要是页面中要填写的内容是中文就要进行urlencode）
+			hire_date							1	入职时间
+			after_tax_monthly_income			1	税后月收入
+			data_integrity						1	数据完整度
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"操作成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"操作失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息
+WechatApplySubmit
+	title	申请分期--点击提交申请
+	params
+		httpGet
+			cellphone							1	电话
+			recommon_code						1	推荐码
+			data_integrity						1	资料完整度
+			loan								1	贷款金额
+			periods								1	贷款期数
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"申请成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"申请失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息
+WechatApplyPass
+	title	资料审核通过
+	params
+		httpGet
+			cellphone							1	电话			
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"20000"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息
+WechatPhotoQuery
+	title	资料上传的主页
+	params
+		httpGet
+			cellphone							1	电话		
+	return
+		demo	成功:<br>{"message_code":"0","message_info":[{"cellphone":null,"loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":null,"identity_card":null,"sex":null,"marital_status":null,"corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"cellphone":null,"loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":null,"identity_card":null,"sex":null,"marital_status":null,"corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						cellphone			string	信息
+						contract_photo_0	string	租房合同
+						contract_photo_1	string	租房合同1
+						contract_photo_2	string	租房合同2
+						contract_photo_3	string	租房合同3
+						contract_photo_4	string	租房合同4
+						id_back_photo		string	身份证背面
+						id_hand_photo		string	手持身份证
+						id_main_photo		string	身份证正面
+						marriage_photo		string	结婚证照片
+WechatPhotoIDUpload
+	title	上传身份证
+	params
+		httpGet
+			cellphone			1	电话
+			id_back_photo		1	身份证背面
+			id_hand_photo		1	手持身份证
+			id_main_photo		1	身份证正面
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息提示
+WechatPhotoContractUpload
+	title	上传租房合同证（上传5张）
+	params
+		httpGet
+			cellphone			1	电话
+			contract_photo_0	1	租房合同照片1
+			contract_photo_1	1	租房合同照片2
+			contract_photo_2	1	租房合同照片3
+			contract_photo_3	1	租房合同照片4
+			contract_photo_4	1	租房合同照片5
+			data_integrity		1	资料完整度
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息提示
+WechatPhotoMarriageUpload
+	title	上传结婚证照片
+	params
+		httpGet
+			cellphone			1	电话
+			marriage_photo		1	结婚证照片
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息提示
+WechatQueryLoanInfo
+	title	查看借款信息页面
+	params
+		httpGet
+			cellphone			1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	信息提示
+WechatQueryIDInfo
+	title	查看身份信息页面
+	params
+		httpGet
+			cellphone			1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"cellphone":"","loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":"","identity_card":"","sex":"","marital_status":"","corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"cellphone":"","loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":"","identity_card":"","sex":"","marital_status":"","corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info							string	信息提示
+						username						string	姓名
+						identity_card					string	身份证
+						sex								string	性别
+						marital_status					string	婚姻状态
+						bank_card_bind_id				string	银行信息--绑定卡的身份证号
+						bank_card_bind_name				string	银行信息--绑定卡的姓名
+						public_accumulation_funds		string	公积金账号
+						public_accumulation_funds_pass	string	公积金查询密码
+						social_security					string	社保账号
+						social_security_pass			string	社保查询密码
+						qq								string	QQ号码
+WechatQueryJobInfo
+	title	工作信息页面
+	params
+		httpGet
+			cellphone			1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"cellphone":"","loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":"","identity_card":"","sex":"","marital_status":"","corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"cellphone":"","loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":"","identity_card":"","sex":"","marital_status":"","corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info						string	信息提示
+						corporate_name				string	企业名称
+						title_level					string	职位级别
+						department					string	所在部门
+						job_title					string	职务名称
+						hire_date					string	入职时间
+						after_tax_monthly_income 	string 税后月收入
+WechatContractInfo
+	title	保存联系人信息
+	params
+		httpGet
+			cellphone			1	电话
+			relationship_1		1	配偶（0配偶|1房东/中介|2朋友）
+			name_1				1	姓名（要进行urlencode）
+			know_loan_1			1	是否知晓贷款（1是|0否）
+			cellphone_1			1	配偶电话
+			relationship_2		1	房东/中介联系人
+			name_2				1	姓名（要进行urlencode）
+			know_loan_2			1	是否知晓贷款（1是|0否）
+			cellphone_2			1	房东/中介联系人电话
+			relationship_3		1	朋友
+			name_3				1	姓名（要进行urlencode）
+			know_loan_3			1	是否知晓贷款（1是|0否）
+			cellphone_3			1	朋友电话
+			data_integrity		1	资料完整度
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"操作成功"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"操作失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第list里面的array
+				data
+					title	键	类型	描述
+					data
+						info						string	信息提示
+						relationship				string	关系
+						know_loan					string	是否知晓贷款
+						cellphone					string	电话
+						name						string	姓名
+WechatQueryContractInfo
+	title	联系人信息页面
+	params
+		httpGet
+			cellphone			1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"master_cellphone":"18510337728","list":[{"relationship":"","name":"","know_loan":"","cellphone":"","master_cellphone":null}],"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"cellphone":"","loan":null,"nubmers":null,"acceptable_max_repayment":null,"username":"","identity_card":"","sex":"","marital_status":"","corporate_name":null,"title_level":null,"department":null,"job_title":null,"hire_date":null,"after_tax_monthly_income":null,"id_main_photo":null,"id_back_photo":null,"id_hand_photo":null,"marriage_photo":null,"contract_photo":null,"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第list里面的array
+				data
+					title	键	类型	描述
+					data
+						info						string	信息提示
+						relationship				string	关系
+						know_loan					string	是否知晓贷款
+						cellphone					string	电话
+						name						string	姓名
+WechatQueryBankCardInfo
+	title	查看银行卡信息页面
+	params
+		httpGet
+			cellphone			1	电话
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"info":"服务正常","list":[{"masterid":"","bank_cellphone":"158xxxxxxxx","bank_code":"","bankCardType":null,"bankCard":"xxxx620910xxxx6xxxx","cardMaster":"xxx","proxyPay":null,"bankName":"xxx"}]}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第list里面的array
+				data
+					title	键	类型	描述
+					data
+						info					string	信息提示
+						cardMaster				string	持卡人姓名
+						masterid				string	持卡人身份证
+						bank_code				string	开户行代码
+						bankCard				string	银行卡卡号
+						bank_cellphone			string	银行预留手机号
+						personal_name			string	个人身份信息--姓名
+						personal_id				string	个人身份信息--身份证号
+						bind_state				string	银行卡绑定状态:<br>1绑定；0未绑定，null,""也算未绑定
+WechatBindCardStep1
+	title	绑定银行卡--点击获取验证码 （绑卡第一步）
+	params
+		httpGet
+			cellphone			1	电话
+			card_master			1	持卡人姓名（只要是页面中要填写的内容是中文就要进行urlencode）
+			id_card 			1	身份证号
+			bank_name			1	开户行
+			bank_card			1	银行卡号
+			bank_mobile			1	银行预留手机号
+			bank_code			1   银行代码
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"bindCardSeq":"xxxx"}]}<br>失败:<br>{"message_code":"0","message_info":[{"error_code":"xxxx","error_msg":"xxxx"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第list里面的array
+				data
+					title	键	类型	描述
+					data
+						bindCardSeq		string	绑卡请求序号
+						error_code		string	绑卡错误代码
+						error_msg		string	绑卡错误信息
+WechatBindCardStep2
+	title	确认绑定银行卡(绑卡-wechat)
+	params
+		httpGet
+			cellphone			1	手机号
+			card_master			1	持卡人姓名（只要是页面中要填写的内容是中文就要进行urlencode）
+			id_card				1	身份证号
+			bank_name			1	开户行
+			bank_card			1	银行卡号
+			bank_mobile			1	银行预留手机号
+			bind_sms			1	短信验证码
+			bind_card_seq		1	绑卡请求序列号
+			bank_code			1	银行代码
+	return
+		demo	成功:<br>{"message_code":"1","message_info":[{"bindCardInfo":"xxxx"}]}<br>失败:<br>{"message_code":"0","message_info":[{"error_code":"xxxx","error_msg":"xxxx"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						bindCardInfo	string	绑卡信息详细
+						error_code		string	绑卡错误代码
+						error_msg		string	绑卡错误信息
+WechatQueryLoaningInfo
+	title	查看进行中的分期
+	params
+		httpGet
+			cellphone			1	手机号
+	return
+		demo	成功:{"message_code":"1","message_info":[{"info":"服务正常","list":[{"cellphone":"18510337728","pay_loan":"","periods":"","loan_pay_state":"1","bill_list":[{"bill_no":"11111","bill_periods":"1","pay_money":"1","last_pay_date":"2015-11-15 16:42:36.0","bill_state":"0","normal_money":"11.00","overdue_money":"0.00","overdue_days":"0","overdue_flag":"0"},{"bill_periods":"2","pay_money":"2","last_pay_date":"2015-11-15 16:43:02.0","bill_state":"0","normal_money":"11.00","overdue_money":"0.00","overdue_days":"0","overdue_flag":"0"},{"bill_periods":"3","pay_money":"3","last_pay_date":"2015-11-15 16:43:19.0","bill_state":"0","normal_money":"11.00","overdue_money":"0.00","overdue_days":"0","overdue_flag":"0"}],"order_id":null,"over_time":null,"apply_time":null}]}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常","list":[{"cellphone":"18510337728","pay_loan":"","periods":"","loan_pay_state":"1","bill_list":[{"bill_periods":"","pay_money":"","last_pay_date":"","bill_state":"","normal_money":"11.00","overdue_money":"0.00","overdue_days":"0","overdue_flag":"0"}],"order_id":null,"over_time":null,"apply_time":null}]}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	接口信息
+						loan_pay_state	string	放款状态:<br>1审核中|2审核成功|3审核失败|4放款中|5已放款|6完结
+						pay_loan		string	审批金额
+						periods			string	分期期数
+						bill_list		array	账单信息（账单存放于此，有账单的情况会有多张个）
+						bill_no			string	账单编号
+						bill_periods	string	账单期数
+						pay_money		string	应还金额
+						last_pay_date	string	最后还款日
+						bill_state		string	账单状态:<br>0未还|1已还|2逾期|3还款中
+						user_apply		string	用户点击立即提交申请:<br>1用户点击过|其他均为未点击，包括null,""
+						user_apply_time	string	如果用户点击过立即提交申请，会有对应的点击时间。
+						normal_money	string	正常费用
+						overdue_money	string	逾期金额
+						overdue_days	string	逾期天数
+						overdue_flag	string	逾期标记:<br>0正常|1逾期
+WechatQueryOverInfo
+	title	查看已完结的分期
+	params
+		httpGet
+			cellphone			1	手机号
+	return
+		demo	成功:{"message_code":"1","message_info":[{"info":"服务正常","list":[{"cellphone":null,"pay_loan":null,"periods":null,"loan_pay_state":null,"bill_list":null,"order_id":"11153000004","over_time":"2015-11-17 17:00:18.0","apply_time":"2015-11-15 17:00:09.0"},{"cellphone":null,"pay_loan":null,"periods":null,"loan_pay_state":null,"bill_list":null,"order_id":"11113000004","over_time":"2015-11-15 16:58:29.0","apply_time":"2015-11-13 16:35:56.0"}]}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"服务异常"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						info			string	服务正常
+						list			array	账单信息
+						order_id		string	订单id
+						over_time		string	分期完结时间
+						apply_time		string	分期申请时间
+WechatPayBack
+	title	还款按钮
+	params
+		httpGet
+			cellphone			1	手机号
+			bill_no				1	账单编号
+			userPayBack			1	全部应还（正常+逾期）
+	return
+		demo	成功:{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"error_code":"xxxx","error_msg":"xxxx"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+WechatLoginBySMS
+	title	通过验证码和手机号登录
+	params
+		httpGet
+			cellphone			1	手机号（Base64编码）
+	return
+		demo	成功:{"message_code":"1","message_info":[{"info":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"info":"登录失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						message_code	string	服务正常
+						loginInfo			string	登录信息
+WechatLoginByPassword
+	title	通过密码和手机号登录
+	params
+	params
+	params
+	params
+	params
+		httpGet
+			cellphone			1	手机号（Base64编码）
+			password			1	密码（AES加密）
+	return
+		demo	成功:{"message_code":"1","message_info":[{"loginInfo":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"loginInfo":"登录失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						message_code	string	服务正常
+						loginInfo			string	登录信息
+WechatRegisterNewUser
+	title	注册新用户信息
+	params
+		httpGet
+			username			1	姓名（urlencode）
+			gender				1	性别（1：男，2：女）
+			cellphone			1	手机号（Base64编码）
+			verify_code			1	验证码
+			password			1	密码（AES加密）
+			recommon_code		1	推广码
+	return
+		demo	成功:{"message_code":"1","message_info":[{"loginInfo":"服务正常"}]}<br>失败:<br>{"message_code":"0","message_info":[{"loginInfo":"登录失败"}]}
+		data
+			message_code
+				\s0	string
+				\s1	状态码
+				data
+					title	值	说明
+					data
+						\s1	成功
+						\s0	失败
+			message_info
+				\s0	array
+				\s1	取第一个
+				data
+					title	键	类型	描述
+					data
+						message_code	string	服务正常
+						loginInfo			string	登录信息

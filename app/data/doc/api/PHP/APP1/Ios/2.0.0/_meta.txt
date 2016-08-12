@@ -1,4 +1,0 @@
-prefix
-	url	https://localhost/{$platform}/v{$version}/
-suffix
-	url	/json

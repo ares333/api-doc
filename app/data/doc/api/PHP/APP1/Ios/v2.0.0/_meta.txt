@@ -1,0 +1,4 @@
+prefix
+	url	https://localhost/{$platform}/{$version}/
+suffix
+	url	/json
