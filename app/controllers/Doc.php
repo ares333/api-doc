@@ -35,7 +35,7 @@ class DocController extends Controller_Abstract {
 		$model = DocModel::getInstance ();
 		$out ['list'] = $model->getList ( $path, 4 );
 		// set version list in inverted order
-		Arrays::walkr ( $out ['list'], function (&$v) {
+		$sort = function (&$v) {
 			if (is_array ( $v )) {
 				reset ( $v );
 				$k1 = key ( $v );
@@ -57,6 +57,10 @@ class DocController extends Controller_Abstract {
 					}
 				}
 			}
+		};
+		$sort ( $out ['list'] );
+		Arrays::walkr ( $out ['list'], function (&$v) use ($sort) {
+			$sort ( $v );
 		} );
 		$mapKey = array ();
 		$mapValue = array ();
