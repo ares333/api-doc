@@ -108,7 +108,15 @@ class DocModel extends AbstractModel {
 				}
 				// meta inherit
 				if (! empty ( $metaCurrent ['inherit'] )) {
-					$metaInherit = $this->parseArr ( $this->getContent ( dirname ( $v ) . '/' . $metaCurrent ['inherit'] ), $maxDepth );
+					// replace version in _meta.txt
+					$metaFile = dirname ( $v ) . '/' . $metaCurrent ['inherit'];
+					if (false !== strpos ( $metaFile, '{$version}' )) {
+						preg_match ( '/v\d\.\d\.\d/', $metaFile, $metaFileVersion );
+						if (! empty ( $metaFileVersion [0] )) {
+							$metaFile = str_replace ( '{$version}', $metaFileVersion [0], $metaFile );
+						}
+					}
+					$metaInherit = $this->parseArr ( $this->getContent ( $metaFile ), $maxDepth );
 					unset ( $metaCurrent ['inherit'] );
 					Arrays::merger ( $metaInherit, $metaCurrent );
 					$metaCurrent = &$metaInherit;
@@ -129,7 +137,7 @@ class DocModel extends AbstractModel {
 		$content = $this->getContent ( $file );
 		// parse here doc
 		$hereDoc = array ();
-		$content = preg_replace_callback ( '/<<<(.+)>>>/sm', function (&$node) use(&$hereDoc) {
+		$content = preg_replace_callback ( '/<<<(.+)>>>/sm', function (&$node) use (&$hereDoc) {
 			$hereDoc [] = $node [1];
 			return '\d' . (count ( $hereDoc ) - 1);
 		}, $content );
@@ -222,7 +230,7 @@ class DocModel extends AbstractModel {
 			$arr [$k] = $v;
 		}
 		// \h self inherit
-		$funcInherit = function (array &$subject) use(&$funcInherit, $arr) {
+		$funcInherit = function (array &$subject) use (&$funcInherit, $arr) {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					if (is_string ( $v )) {
@@ -246,7 +254,7 @@ class DocModel extends AbstractModel {
 		$funcInherit ( $arr );
 		// \i include
 		$dir = dirname ( $file );
-		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use($dir) {
+		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use ($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
 			if (file_exists ( $file )) {
 				return file_get_contents ( $file );
