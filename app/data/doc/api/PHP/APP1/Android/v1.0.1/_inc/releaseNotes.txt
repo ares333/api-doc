@@ -1,0 +1,6 @@
+<ol>
+<li>修改"字典->Dict/sphereAndSubway"，改为有序列表形式</li>
+<li>修改"出租->Rent/publish"，支持更新</li>
+<li>修改"求租->Rent/publish"，支持更新</li>
+<li>新增"工具->Tool/active"，目前只支持Android</li>
+</ol>

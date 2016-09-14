@@ -108,16 +108,24 @@ class DocModel extends AbstractModel {
 				}
 				// meta inherit
 				if (! empty ( $metaCurrent ['inherit'] )) {
-					$metaInherit = $this->parseArr ( $this->getContent ( dirname ( $v ) . '/' . $metaCurrent ['inherit'] ), $maxDepth );
+					// replace version in _meta.txt
+					$metaFile = dirname ( $v ) . '/' . $metaCurrent ['inherit'];
+					if (false !== strpos ( $metaFile, '{$version}' )) {
+						preg_match ( '/v\d\.\d\.\d/', $metaFile, $metaFileVersion );
+						if (! empty ( $metaFileVersion [0] )) {
+							$metaFile = str_replace ( '{$version}', $metaFileVersion [0], $metaFile );
+						}
+					}
+					$metaInherit = $this->parseArr ( $this->getContent ( $metaFile ), $maxDepth );
 					unset ( $metaCurrent ['inherit'] );
 					Arrays::merger ( $metaInherit, $metaCurrent );
 					$metaCurrent = &$metaInherit;
 				}
 				Arrays::merger ( $meta, $metaCurrent );
 				Arrays::unsetr ( $meta, $lastUnset );
-				if (! empty ( $meta['_unset'] )) {
-					$lastUnset = $$meta['_unset'];
-					unset ( $$meta ['_unset'] );
+				if (! empty ( $meta ['_unset'] )) {
+					$lastUnset = $meta ['_unset'];
+					unset ( $meta ['_unset'] );
 				}
 			}
 		}
@@ -129,7 +137,7 @@ class DocModel extends AbstractModel {
 		$content = $this->getContent ( $file );
 		// parse here doc
 		$hereDoc = array ();
-		$content = preg_replace_callback ( '/<<<(.+)>>>/sm', function (&$node) use(&$hereDoc) {
+		$content = preg_replace_callback ( '/<<<(.+)>>>/sm', function (&$node) use (&$hereDoc) {
 			$hereDoc [] = $node [1];
 			return '\d' . (count ( $hereDoc ) - 1);
 		}, $content );
@@ -222,7 +230,7 @@ class DocModel extends AbstractModel {
 			$arr [$k] = $v;
 		}
 		// \h self inherit
-		$funcInherit = function (array &$subject) use(&$funcInherit, $arr) {
+		$funcInherit = function (array &$subject) use (&$funcInherit, $arr) {
 			foreach ( $subject as $k => &$v ) {
 				if ('\h' === $k) {
 					if (is_string ( $v )) {
@@ -232,7 +240,7 @@ class DocModel extends AbstractModel {
 					} else {
 						$key = $v;
 					}
-					$value = \Arrays::current ( $arr, $key );
+					$value = Arrays::current ( $arr, $key );
 					$key = array_pop ( $key );
 					$subject [$key] = $value;
 					unset ( $subject [$k] );
@@ -246,7 +254,7 @@ class DocModel extends AbstractModel {
 		$funcInherit ( $arr );
 		// \i include
 		$dir = dirname ( $file );
-		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use($dir) {
+		Arrays::pregReplacer ( '/\\\i(.+)/', function ($node) use ($dir) {
 			$file = $dir . '/' . trim ( $node [1] );
 			if (file_exists ( $file )) {
 				return file_get_contents ( $file );
@@ -262,6 +270,14 @@ class DocModel extends AbstractModel {
 			if (! empty ( $v ['params'] ['httpGet'] )) {
 				uasort ( $v ['params'] ['httpGet'], function ($a, $b) {
 					return $a [0] < $b [0];
+				} );
+			}
+		}
+		// sort value
+		foreach ( $arr as &$v ) {
+			if (! empty ( $v ['return'] ['data'] ['value'] ['data'] ['data'] )) {
+				uksort ( $v ['return'] ['data'] ['value'] ['data'] ['data'], function ($a, $b) {
+					return $a > $b;
 				} );
 			}
 		}

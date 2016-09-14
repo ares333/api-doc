@@ -1,7 +1,7 @@
 var
 	platform	android
 prefix
-	url	https://localhost/{$platform}/v{$version}/
+	url	https://localhost/{$platform}/{$version}/
 suffix
 wraper
 	return

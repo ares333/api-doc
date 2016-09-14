@@ -1,0 +1,4 @@
+_meta
+	inherit		../../Android/{$version}/_版本说明.txt
+_note
+	doc	\i../../Android/{$version}/_inc/releaseNotes.txt

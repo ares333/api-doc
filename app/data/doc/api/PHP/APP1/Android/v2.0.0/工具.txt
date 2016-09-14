@@ -1,0 +1,26 @@
+tool.checknew
+	title	检查新版本
+	return
+		data
+			value
+				\s0	object
+				\s1	如果没有新版本返回空对象
+				data
+					data
+						version	string	最新的版本号
+						desc	string	更新描述
+						updateTime	string	更新时间
+						isForceUpdate	boolean	是否强制更新
+						downloadUrl	string	下载地址
+tool.banner
+	title	首页banner
+	return
+		data
+			value
+				\s0	array
+				\s1	类型对照表<table class="bordertable narrow"><tr><th>typeName</th><th>类型描述</th><th>data中的字段</th></tr><tr><td>detailDouban</td><td>豆瓣详情</td><td>id:string</td></tr><tr><td>detailRent</td><td>出租详情</td><td>id:string</td></tr><tr><td>detailWant</td><td>求租详情</td><td>id:string</td></tr><tr><td>detailApartment</td><td>公寓详情</td><td>id:string</td></tr><tr><td>detailCircleTopic</td><td>圈子主题详情</td><td>id:string</td></tr><tr><td>detailRoomie</td><td>用户详情</td><td>id:string</td></tr><tr><td>detailCircle</td><td>圈子详情</td><td>id:string</td></tr><tr><td>noop</td><td>不进行跳转</td><td></td></tr><tr><td>h5</td><td>打开h5页面</td><td>url:string</td></tr></table>字段详情说明
+				data
+					data
+						pic	string	配图
+						typeName	string	类型名称，参考类型对照表
+						data	object	类型对应数据，参考类型对照表
