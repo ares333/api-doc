@@ -95,7 +95,7 @@ class DocController extends Controller_Abstract {
 		$out ['arr'] = $model->parse ( $path, array (
 				'version' => $match [1]
 		) );
-		$this->getView ()->getAdapter ()->registerClass ( "Arrays", "Ares333\YafLib\Helper\Arrays" );
+		$this->getView ()->getAdapter ()->registerClass ( "Arrays", 'Ares333\YafLib\Helper\Arrays' );
 		$this->getView ()->assign ( $out );
 	}
 }
