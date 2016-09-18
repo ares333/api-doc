@@ -107,6 +107,7 @@ class DocModel extends AbstractModel
             }
             return $arr;
         };
+        $i = 0;
         $meta = array();
         // merge _meta.txt
         foreach (array(
@@ -122,9 +123,14 @@ class DocModel extends AbstractModel
                     unset($metaCurrent['_unset']);
                 }
                 // meta inherit
-                if (! empty($metaCurrent['inherit'])) {
+                $metaFile = $v;
+                while (! empty($metaCurrent['inherit'])) {
+                    if ($i ++ > 10) {
+                        // break;
+                    }
                     // replace version in _meta.txt
-                    $metaFile = dirname($v) . '/' . $metaCurrent['inherit'];
+                    $metaFile = dirname($metaFile) . '/' . $metaCurrent['inherit'];
+                    unset($metaCurrent['inherit']);
                     if (false !== strpos($metaFile, '{$version}')) {
                         preg_match('/v\d\.\d\.\d/', $metaFile, $metaFileVersion);
                         if (! empty($metaFileVersion[0])) {
@@ -132,12 +138,10 @@ class DocModel extends AbstractModel
                         }
                     }
                     $metaInherit = $this->parseArr($this->getContent($metaFile), $maxDepth);
-                    unset($metaCurrent['inherit']);
-                    Arrays::merger($metaInherit, $metaCurrent);
-                    $metaCurrent = &$metaInherit;
+                    $metaCurrent = Arrays::merger($metaInherit, $metaCurrent);
                 }
-                Arrays::merger($meta, $metaCurrent);
-                Arrays::unsetr($meta, $lastUnset);
+                $meta = Arrays::merger($meta, $metaCurrent);
+                $meta = Arrays::unsetr($meta, $lastUnset);
                 if (! empty($meta['_unset'])) {
                     $lastUnset = $meta['_unset'];
                     unset($meta['_unset']);
@@ -146,7 +150,7 @@ class DocModel extends AbstractModel
         }
         // merge var in doc
         if (! empty($meta['var'])) {
-            Arrays::merger($var, $meta['var']);
+            $var = Arrays::merger($var, $meta['var']);
             unset($meta['var']);
         }
         $content = $this->getContent($file);
@@ -189,12 +193,12 @@ class DocModel extends AbstractModel
                         }
                     }
                 }
-                Arrays::unsetr($arrInherit, $lastUnset);
+                $arrInherit = Arrays::unsetr($arrInherit, $lastUnset);
                 if (! empty($arrInherit['_unset'])) {
                     $lastUnset = $arrInherit['_unset'];
                     unset($arrInherit['_unset']);
                 }
-                Arrays::merger($arrInherit, $arr);
+                $arrInherit = Arrays::merger($arrInherit, $arr);
                 $arr = $arrInherit;
             }
             if (array_key_exists('_meta', $arr)) {
@@ -215,7 +219,7 @@ class DocModel extends AbstractModel
                     $metaReplace['default'],
                     $v
                 );
-                Arrays::merger($v, $temp);
+                $v = Arrays::merger($v, $temp);
             }
             // replace
             Arrays::pregReplacer('/^\\\k$/', $k, $v);
