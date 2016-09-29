@@ -15,8 +15,8 @@ class DocModel extends AbstractModel
     /**
      * file tree list
      *
-     * @param string $path
-     * @param int $depth
+     * @param string $path            
+     * @param int $depth            
      */
     function getList($path, $depth = null)
     {
@@ -38,7 +38,7 @@ class DocModel extends AbstractModel
     /**
      * spares of later development
      *
-     * @param string $path
+     * @param string $path            
      */
     function getApiList($path)
     {
@@ -52,7 +52,7 @@ class DocModel extends AbstractModel
     /**
      * get file content
      *
-     * @param string $file
+     * @param string $file            
      */
     private function getContent($file)
     {
@@ -70,10 +70,10 @@ class DocModel extends AbstractModel
     /**
      * parse doc file and relative files
      *
-     * @param string $path
+     * @param string $path            
      * @param array $var
      *            replacement in doc
-     * @param int $maxDepth
+     * @param int $maxDepth            
      * @return mixed
      */
     function parse($path, array $var = array(), $maxDepth = null)
@@ -308,7 +308,7 @@ class DocModel extends AbstractModel
      *
      * @param string $str
      *            file content
-     * @param int $maxDepth
+     * @param int $maxDepth            
      */
     private function parseArr($str, $maxDepth = null)
     {
