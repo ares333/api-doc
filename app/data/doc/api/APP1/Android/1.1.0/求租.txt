@@ -1,0 +1,51 @@
+_meta
+	inherit		../1.0.1/求租.txt
+_unset
+	Want/search
+	Want/detail
+		return
+			data
+				value
+					data
+						data
+							picId
+	Want/publish
+		params
+			httpPost
+				regionId
+				markId
+				sexId
+		return
+			data
+				errorCode
+					data
+						data
+							\s1002
+Want/publish
+	title	发布
+	desc	新发布或更新，如果有id参数就是更新
+	params
+		httpPost
+			markId[]	0	地标，可以传多个，markId和subwayStationId必须有一个非空，例如：markId[]=20&markId[]=117&markId[]=104
+			subwayStationId[]	0	地铁站，可以传多个，markId和subwayStationId必须有一个非空，例如：subwayStationId[]=1&subwayStationId[]=20
+			extMessage	0	补充信息
+	return
+		demo	"1156"
+		data
+			value
+				\s0	string
+				\s1	帖子id
+			errorCode
+				data
+					data
+						\s1000	帖子id非法
+						\s1002	subwayStationId非法
+						\s1012	markId和subwayStationId不能同时为空
+Want/detail
+	return
+		demo	{"id":"17376","cityId":"1","regionId":"4","markId":"151","stateId":"1","money":"1300","sexId":"3","checkinDate":"2016-03-27","replyNum":"9","publishTime":"1457846016","isDouban":false,"doubanTitle":null,"user":{"id":"77962","sexId":"2","nickname":"\u5b50\u6657","profession":"","avatar":"http:\/\/resource.api.youja.cn\/resource_type\/101\/resource_id\/465382621","wordsRoomie":"","tag":{"1":{"34":"\u6d01\u7656","36":"\u5065\u8eab","37":"\u7535\u5f71\u8ff7","41":"\u6ce1\u5427"},"2":{"34":"\u6d01\u7656","37":"\u7535\u5f71\u8ff7","42":"\u6237\u5916"}},"age":23},"content":"\u6211\u5e0c\u671b\u5728\u660c\u5e73\u5929\u901a\u82d1\u9644\u8fd1\u627e\u4e2a\u623f\u5b50\uff0c\u9884\u7b971300\uff0c\u5ba4\u53cb\u6027\u522b\u4e0d\u9650\uff0c\u6700\u8fdf2016-03-27\u642c\u5bb6\u3002","pic":{"2":[{"id":"102070","url":"http:\/\/test.static.zuba.life\/img\/hezuba\/20a\/5c5\/662e669ccea7ce0082944da6d8.jpg"}]},"location":"\u4e09\u91cc\u5c6f"}
+		data
+			value
+				data
+					data
+						location	string	位置

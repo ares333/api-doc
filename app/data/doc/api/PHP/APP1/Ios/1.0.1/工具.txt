@@ -1,4 +1,0 @@
-﻿_meta
-	inherit		../../Android/{$version}/工具.txt
-_unset
-	Tool/active

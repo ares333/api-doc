@@ -1,0 +1,2 @@
+﻿_meta
+	inherit		../1.0.0/用户.txt
