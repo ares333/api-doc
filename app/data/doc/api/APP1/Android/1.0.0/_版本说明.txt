@@ -1,3 +1,0 @@
-_note
-	title	发行说明
-	doc	\i_inc/releaseNotes.txt
