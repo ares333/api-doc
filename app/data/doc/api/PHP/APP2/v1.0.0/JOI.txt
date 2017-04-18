@@ -1,0 +1,13 @@
+﻿_meta
+	inherit	../root.txt
+_unset
+	_meta
+		prefix
+		suffix
+		default
+table_gisCity.ihousesearch
+	url	http://localhost/api/table_gisCity.ihousesearch/json
+	title	搜索
+	params
+		httpPost
+			word	1	关键词

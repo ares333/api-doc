@@ -1,0 +1,24 @@
+﻿_meta
+	inherit	../root.txt
+table_user.mobilelogin
+	title	手机号登陆
+	params
+		httpPost
+			mobile	1	手机号
+			captcha	1	验证码
+	return
+		data
+			value
+				\s0	bool
+				\s1	是否是新用户
+			code
+				data
+					data
+						\s1000	验证码错误
+table_user.update
+	title	更新用户资料
+	params
+		httpPost
+			data[nickname]	0	昵称
+			data[avatar]	0	头像
+			data[recommender]	0	推荐人手机号

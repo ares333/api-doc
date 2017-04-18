@@ -1,0 +1,14 @@
+﻿_meta
+	inherit	../root.txt
+table_sms.captcha
+	title	手机验证码
+	params
+		httpPost
+			mobile	1	手机号
+			text	1	登陆：登陆验证码为{code}，十分钟内有效
+			
+table_image.add
+	title	图片上传
+	params
+		httpPost
+			image	1	图片文件
