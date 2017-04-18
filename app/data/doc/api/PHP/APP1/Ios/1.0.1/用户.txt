@@ -1,2 +1,0 @@
-﻿_meta
-	inherit		../../Android/{$version}/用户.txt
