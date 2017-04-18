@@ -1,6 +1,6 @@
 ﻿_meta
 	inherit		../1.0.0/出租.txt
-Rent/publish
+Rent/publish#这里的字符会被忽略
 	title	发布
 	desc	新发布或更新，如果有id参数就是更新
 	params

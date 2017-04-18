@@ -228,7 +228,8 @@ class DocModel extends AbstractModel
                 $v = Arrays::merger($v, $temp);
             }
             // replace
-            Arrays::pregReplacer('/^\\\k$/', $k, $v);
+            $kNew = explode('#', $k)[0];
+            Arrays::pregReplacer('/^\\\k$/', $kNew, $v);
             // key clean
             Arrays::pregReplaceKeyr('/^\\\s(\d+)$/', '\\1', $v);
             // prefix
