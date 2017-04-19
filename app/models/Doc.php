@@ -144,9 +144,10 @@ class DocModel extends AbstractModel
                     }
                     $metaInherit = $this->parseArr($this->getContent($metaFile),
                         $maxDepth);
-                    $metaCurrent = Arrays::merger($metaInherit, $metaCurrent);
+                    $metaCurrent = Arrays::merger($metaInherit, $metaCurrent,
+                        true);
                 }
-                $meta = Arrays::merger($meta, $metaCurrent);
+                $meta = Arrays::merger($meta, $metaCurrent, true);
                 $meta = Arrays::unsetr($meta, $lastUnset);
                 if (! empty($meta['_unset']) || ! empty($lastUnset)) {
                     if (empty($meta['_unset'])) {
@@ -160,7 +161,7 @@ class DocModel extends AbstractModel
         }
         // merge var in doc
         if (! empty($meta['var'])) {
-            $var = Arrays::merger($var, $meta['var']);
+            $var = Arrays::merger($var, $meta['var'], true);
             unset($meta['var']);
         }
         $content = $this->getContent($file);
