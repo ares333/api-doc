@@ -224,6 +224,30 @@ class DocModel extends AbstractModel
             }
             unset($arr['_meta']);
         }
+        $funcWraper = function (&$arr1, $arr2) use (&$funcWraper) {
+            if (! empty($arr2)) {
+                foreach ($arr2 as $k => $v) {
+                    if (array_key_exists($k, $arr1)) {
+                        if (is_array($v)) {
+                            call_user_func_array($funcWraper,
+                                array(
+                                    &$arr1[$k],
+                                    $v
+                                ));
+                        } elseif (is_string($v)) {
+                            if (is_string($arr1[$k])) {
+                                if (0 !== strpos($arr1[$k], '#')) {
+                                    $arr1[$k] = str_replace('{$' . $k . '}',
+                                        $arr1[$k], $v);
+                                } else {
+                                    $arr1[$k] = substr($arr1[$k], 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
         // do _meta definitions
         foreach ($arr as $k => $v) {
             if (null == $v) {
@@ -254,7 +278,8 @@ class DocModel extends AbstractModel
             }
             // wraper
             if (! empty($metaReplace['wraper'])) {
-                Arrays::wraperr($v, $metaReplace['wraper']);
+                Arrays::pregReplacer('/\\\k/', $kNew, $metaReplace['wraper']);
+                call_user_func($funcWraper, $v, $metaReplace['wraper']);
             }
             // var replace
             $v = $funcVarReplace($v, $var);
