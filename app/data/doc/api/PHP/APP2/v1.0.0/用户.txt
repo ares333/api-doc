@@ -1,5 +1,5 @@
 ﻿_meta
-	inherit	../root.txt
+	inherit	../_root.txt
 table_user.mobilelogin
 	title	手机号登陆
 	params

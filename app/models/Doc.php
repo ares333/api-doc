@@ -28,7 +28,8 @@ class DocModel extends AbstractModel
                 '.DS_Store'
             ));
         Arrays::unsetByValuer($list, array(
-            '_meta.txt'
+            '_meta.txt',
+            '_root.txt'
         ));
         Arrays::unsetByKey($list, array(
             '_inc'

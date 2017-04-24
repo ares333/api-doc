@@ -1,5 +1,5 @@
 ﻿_meta
-	inherit	../root.txt
+	inherit	../_root.txt
 table_sms.captcha
 	title	手机验证码
 	params

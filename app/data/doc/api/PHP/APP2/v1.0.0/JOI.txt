@@ -1,5 +1,5 @@
 ﻿_meta
-	inherit	../root.txt
+	inherit	../_root.txt
 _unset
 	_meta
 		prefix

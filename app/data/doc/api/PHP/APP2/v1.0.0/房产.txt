@@ -1,5 +1,5 @@
 ﻿_meta
-	inherit	../root.txt
+	inherit	../_root.txt
 table_house.search
 	title	搜索
 	params
