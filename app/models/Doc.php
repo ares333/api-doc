@@ -27,10 +27,11 @@ class DocModel extends AbstractModel
                 '.git',
                 '.DS_Store'
             ));
-        Arrays::unsetByValuer($list, array(
-            '_meta.txt',
-            '_root.txt'
-        ));
+        Arrays::unsetByValuer($list,
+            array(
+                '_meta.txt',
+                '_root.txt'
+            ));
         Arrays::unsetByKey($list, array(
             '_inc'
         ));
@@ -280,7 +281,11 @@ class DocModel extends AbstractModel
             // wraper
             if (! empty($metaReplace['wraper'])) {
                 Arrays::pregReplacer('/\\\k/', $kNew, $metaReplace['wraper']);
-                call_user_func($funcWraper, $v, $metaReplace['wraper']);
+                call_user_func_array($funcWraper,
+                    array(
+                        &$v,
+                        $metaReplace['wraper']
+                    ));
             }
             // var replace
             $v = $funcVarReplace($v, $var);
