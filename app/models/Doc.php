@@ -267,7 +267,7 @@ class DocModel extends AbstractModel
             }
             // replace
             $kNew = explode('#', $k)[0];
-            Arrays::pregReplacer('/^\\\k$/', $kNew, $v);
+            Arrays::pregReplacer('/\\\k/', $kNew, $v);
             // key clean
             Arrays::pregReplaceKeyr('/^\\\s(\d+)$/', '\\1', $v);
             // prefix
