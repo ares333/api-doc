@@ -99,7 +99,7 @@ body main{
 				<tbody>
 					{foreach $v1 as $k2=>$v2}
 					<tr{if !empty($v2.data.data)} class="no-hover"{/if}>
-						<td style="width:10%">{$k2}</td>
+						<td style="width:20%">{$k2}</td>
 						<td style="width:8%">{if $v2[0]}<span style="color:red">是</span>{else}否{/if}</td>
 						<td>{$v2[1]}
 						{if !empty($v2.data.data)}
@@ -124,7 +124,7 @@ body main{
 						</table>
 						{*demo*}
 						{if !empty($v2.data.demo)}
-						<pre class="dimmed" style="display:none;margin-bottom:0;">{Zend_Json::prettyPrint($v2.data.demo)}</pre>
+						<pre class="dimmed" style="display:;margin-bottom:0;">{if '{'==substr($v2.data.demo,0,1)}{Zend_Json::prettyPrint($v2.data.demo)}{else}{$v2.data.demo}{/if}</pre>
 						{/if}
 						{/if}
 						{if !empty($v2.data.demo)}
@@ -156,7 +156,7 @@ body main{
 				<tr {if !empty($v1.data.data)} class="no-hover"{/if}>
 					<td style="width:10%">{$k1}</td>
 					<td style="width:8%">{$v1[0]}</td>
-					<td>{$v1[1]}<table class="bordertable narrow">
+					<td style="padding-top:3px">{$v1[1]}<table class="bordertable narrow">
 						{if !empty($v1.data.data)}
 						<thead>
 							<tr>
@@ -201,7 +201,7 @@ body main{
 		</table>
 		{if !empty($v.return.demo)}
 		<a href="javascript:void(0)" class="ym-button ym-reply ym-xsmall button-demo">返回值示例</a>
-		<pre class="dimmed" style="border:1px solid #ccc;display:none;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json')}{Zend_Json::prettyPrint($v.return.demo)}{else}{htmlentities($v.return.demo)}{/if}</pre>
+		<pre class="dimmed" style="border:1px solid #ccc;display:;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json') && '{'==substr($v.return.demo,0,1)}{Zend_Json::prettyPrint($v.return.demo)}{else}{$v.return.demo}{/if}</pre>
 		{/if}
 		<br><br><br>
 	{/if}
