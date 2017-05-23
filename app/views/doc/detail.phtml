@@ -99,7 +99,7 @@ body main{
 				<tbody>
 					{foreach $v1 as $k2=>$v2}
 					<tr{if !empty($v2.data.data)} class="no-hover"{/if}>
-						<td style="width:20%">{$k2}</td>
+						<td style="width:20%">{htmlspecialchars($k2)}</td>
 						<td style="width:8%">{if $v2[0]}<span style="color:red">是</span>{else}否{/if}</td>
 						<td>{$v2[1]}
 						{if !empty($v2.data.data)}
