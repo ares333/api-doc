@@ -18,7 +18,7 @@
     "email" : "zjmainstay@163.com",
     "homepage" : "http://www.zjmainstay.cn"
   } ],
-  "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
+  "keywords" : [ "api doc" , "api doc management" ],
   "config" : {
     "vendor-dir" : "app/library/vendor"
   },
