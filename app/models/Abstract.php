@@ -1,5 +1,6 @@
 <?php
-use Ares333\YafLib\Singleton;
+
+use Ares333\Yaf\Tool\Singleton;
 
 class AbstractModel
 {

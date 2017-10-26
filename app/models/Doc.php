@@ -1,6 +1,6 @@
 <?php
-use Ares333\YafLib\Helper\File;
-use Ares333\YafLib\Helper\Arrays;
+use Ares333\Yaf\Helper\File;
+use Yaf\Application;
 
 class DocModel extends AbstractModel
 {
@@ -9,7 +9,7 @@ class DocModel extends AbstractModel
 
     function __construct()
     {
-        $this->basePath = APP_PATH . '/data/doc/api';
+        $this->basePath = Application::app()->getAppDirectory() . '/data/api';
     }
 
     /**

@@ -1,26 +1,25 @@
 {
-  "name" : "phpdr.net/php-doc-management",
-  "type" : "project",
-  "description" : "A powerful api document management system written in php",
-  "require" : {
-    "php" : ">=5.3",
-    "smarty/smarty" : "3.*",
-    "zf1/zend-json":"1.*",
-    "zf1/zend-session" : "1.*",
-    "phpdr.net/php-yaf-library" : "v2.5.2"
-  },
-  "authors" : [ {
-    "name" : "Ares",
-    "email" : "admin@phpdr.net",
-    "homepage" : "http://phpdr.net"
-  }, {
-    "name" : "Zjmainstay",
-    "email" : "zjmainstay@163.com",
-    "homepage" : "http://www.zjmainstay.cn"
-  } ],
-  "keywords" : [ "api-doc-management", "php-doc-management", "php-api-doc-management" ],
-  "config" : {
-    "vendor-dir" : "app/library/vendor"
-  },
-  "license" : "Apache-2.0"
+	"name": "phpdr.net/php-doc-management",
+	"type": "project",
+	"description": "A powerful api document management system written in php",
+	"require": {
+		"php": ">=5.3",
+		"ares333/yaf-library": "^4.0",
+		"ares333/php-ide-doc": "^1.2",
+		"smarty/smarty": "^3.1"
+	},
+	"authors": [
+		{
+			"name": "Ares",
+			"homepage": "http://phpdr.net"
+		}
+	],
+	"keywords": [
+		"api doc",
+		"php api doc"
+	],
+	"config": {
+		"vendor-dir": "app/library/vendor"
+	},
+	"license": "Apache-2.0"
 }

@@ -14,6 +14,7 @@ release.properties
 /app/logs/*
 /app/runtime/*
 /app/library/vendor/
+/public/_assets/vendor/
 !/app/cache/.gitkeep
 !/app/logs/.gitkeep
 !/app/runtime/.gitkeep
