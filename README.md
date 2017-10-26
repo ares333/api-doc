@@ -5,9 +5,9 @@ API文档编写是非常重要的一项工作，但是编写维护非常麻烦�
 
 需求
 ----
-PHP 5.4+<br>
-PHP Yaf 2.3.3+<br>
-[php-yaf-library](https://github.com/ares333/php-yaf-library "php-yaf-library")
+PHP: >=5.4
+
+ext-yaf: >=2.3.3
 
 安装
 ----
@@ -30,7 +30,7 @@ QQ群:424844502
 
 Demo
 ----
-[http://doc.phpdr.net](http://doc.phpdr.net "api-doc")<br>
+[http://demo-apidoc.phpdr.net](http://demo-apidoc.phpdr.net "Demo")<br>
 用户名：admin<br>
 密码：admin
 
