@@ -1,7 +1,7 @@
 ﻿Topic/search
 	title	搜索
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			searchType	1	搜索类型，生活圈：sphere，地铁：subway
 			cityId		1	城市id
 			page		1	第几页

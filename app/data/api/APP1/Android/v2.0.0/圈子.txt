@@ -1,7 +1,7 @@
 circle.list
 	title	圈子列表
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			type	0	搜索类型，地域：sphere，兴趣：interest
 			cityId	1	城市id
 			page	1	第几页
@@ -27,7 +27,7 @@ circle.list
 circle.detail
 	title	圈子详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	圈子id
 	return
 		data
@@ -68,7 +68,7 @@ circle.mine
 circle.join
 	title	加入圈子
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			circleId	1	圈子id
 	return
 		data
@@ -78,7 +78,7 @@ circle.join
 circle.quit
 	title	退出圈子
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			circleId	1	圈子id
 	return
 		data
@@ -88,7 +88,7 @@ circle.quit
 circletopic.publish
 	title	发布主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			circleId	1	圈子id
 			content		1	正文
 			title		1	标题
@@ -105,7 +105,7 @@ circletopic.publish
 circletopic.delete
 	title	删除主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	主题id
 	return
 		data
@@ -115,7 +115,7 @@ circletopic.delete
 circletopic.detail
 	title	主题详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			topicId	1	主题id
 	return
 		data
@@ -137,7 +137,7 @@ circletopic.detail
 circletopic.list
 	title	主题列表
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			circleId	1	圈子id
 			page	1	第几页
 	return
@@ -164,7 +164,7 @@ circletopic.list
 circletopic.listtop
 	title	置顶的主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			circleId	1	圈子id
 	return
 		data
@@ -178,7 +178,7 @@ circletopic.listtop
 circletopicreply.list
 	title	回复列表
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			topicId	1	主题id
 			offset	0	起始位置，从0开始
 	return
@@ -208,7 +208,7 @@ circletopicreply.list
 circletopicreply.publish
 	title	回复
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			topicId	1	主题id
 			content	1	回复内容
 			replyId	0	引用的回复id
@@ -224,7 +224,7 @@ circletopicreply.publish
 circletopicreply.delete
 	title	删除回复
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			replyId	1	回复id
 	return
 		data
@@ -238,7 +238,7 @@ circletopicreply.delete
 circletopic.mine
 	title	我发布的主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page	1	第几页
 	return
 		data
@@ -262,7 +262,7 @@ circletopic.mine
 circletopic.myreplied
 	title	我回复的主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page	1	第几页
 	return
 		data
@@ -286,7 +286,7 @@ circletopic.myreplied
 circletopic.myfavorite
 	title	我收藏的主题
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page	1	第几页
 	return
 		data

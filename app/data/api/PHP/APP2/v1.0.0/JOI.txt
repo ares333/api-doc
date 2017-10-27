@@ -9,5 +9,5 @@ table_gisCity.ihousesearch
 	url	http://localhost/api/table_gisCity.ihousesearch/json
 	title	搜索
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			word	1	关键词

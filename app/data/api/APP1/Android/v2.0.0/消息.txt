@@ -1,7 +1,7 @@
 ﻿message.list
 	title	列表
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			type	1	消息分类：roomie、circle
 			page		1	第几页
 	return

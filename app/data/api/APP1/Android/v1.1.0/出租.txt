@@ -21,7 +21,7 @@ Rent/publish
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			cityId	0	城市id，更新的时候必传
 			provinceName	0	省/直辖市名称，发布的时候必传
 			cityName	0	城市名称，发布的时候必传

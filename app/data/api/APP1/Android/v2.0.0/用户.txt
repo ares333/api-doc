@@ -1,7 +1,7 @@
 user.info
 	title	用户资料
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			userId	0	用户id，如果不传就取当前登录用户
 	return
 		data
@@ -64,7 +64,7 @@ user.mypublished
 user.infoupdate
 	title	更新资料
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			avatar	0	头像图片id
 			nickname	0	昵称
 			sexId	0	性别
@@ -83,7 +83,7 @@ user.infoupdate
 user.favorite
 	title	收藏
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId	1	帖子类型id
 			typeValueId	1	类型对应的id
 	return
@@ -94,7 +94,7 @@ user.favorite
 user.defavorite
 	title	取消收藏
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId	1	帖子类型id
 			typeValueId	1	类型对应的id
 	return
@@ -105,7 +105,7 @@ user.defavorite
 user.favoriteroomie
 	title	收藏列表（室友）
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page	1	页码
 	return
 		data
@@ -137,7 +137,7 @@ user.favoriteroomie
 user.favoritehouse
 	title	收藏列表（房子）
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page	1	页码
 	return
 		data

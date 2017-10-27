@@ -3,7 +3,7 @@ Want/publish
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			cityId		1	城市id
 			regionId	1	行政区id
 			markId		1	地标id
@@ -30,7 +30,7 @@ Want/publish
 Want/search
 	title	搜索
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			searchType	1	搜索类型，生活圈：sphere，地铁：subway
 			cityId		1	城市id
 			page		1	第几页
@@ -63,7 +63,7 @@ Want/search
 Want/detail
 	title	详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 	return
 		demo	{"id":"1000","money":"7000","sexId":"2","checkinDate":"2016-02-26","replyNum":"2","publishTime":"1453778897","isDouban":true,"doubanTitle":"\u8398\u5e841\/5\u53f7\u7ebf\u6ca1\u6709\u5438\u5f15\u4eba\u7684\u5e7f\u544a\u8bcd\uff0c\u53ea\u8981\u6700\u6700\u771f\u5b9e\u7684\u623f...","user":{"id":"16945","sexId":"1","nickname":"Cu_C","avatar":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40287698.jpg","wordsRoomie":"\u53cc\u4e95\u56fd\u8d38\u534e\u817e\u56ed\u6b63\u89c4\u6b21\u5367\u5408\u79df\uff08\u65e0\u9694\u65ad\uff09","tag":{"1":{"6":"\u5403\u8d27","8":"\u7231\u8fd0\u52a8","9":"\u5065\u8eab"},"2":{"3":"\u6696\u7537","7":"\u5bb6\u52a1\u80fd\u624b","14":"LOL","17":"\u6ce1\u5427","25":"\u5fa1\u59d0","31":"\u840c\u5ba0\u63a7","33":"\u5403\u8d27","36":"\u5065\u8eab","41":"\u6ce1\u5427"}},"age":22},"pic":{"1":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p38157666.jpg"],"2":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p38157666.jpg","http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p38157668.jpg","http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p38157668.jpg","http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p38157668.jpg"]},"content":"\u6211\u5e0c\u671b\u5728\u5357\u5c71\u86c7\u53e3\u9644\u8fd1\u627e\u4e2a\u623f\u5b50\uff0c\u9884\u7b977000\uff0c\u5ba4\u53cb\u6027\u522b\u5973\uff0c\u6700\u8fdf2016-02-26\u642c\u5bb6\u3002"}
@@ -97,7 +97,7 @@ Want/update
 	title	更新
 	desc	更新特定字段
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 			stateId	0	帖子状态id
 	return

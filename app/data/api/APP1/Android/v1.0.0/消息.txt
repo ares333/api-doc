@@ -18,7 +18,7 @@ Message/replyList
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page		1	页码
 			pageSize	1	每页条数，最大20
 	return
@@ -42,7 +42,7 @@ Message/replyUpdate
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id		1	消息id
 			readed	0	消息是否已读，如果已读值必须为1
 	return

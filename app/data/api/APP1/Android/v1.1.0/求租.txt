@@ -25,7 +25,7 @@ Want/publish
 	title	发布
 	desc	新发布或更新，如果有id参数就是更新
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			markId[]	0	地标，可以传多个，markId和subwayStationId必须有一个非空，例如：markId[]=20&markId[]=117&markId[]=104
 			subwayStationId[]	0	地铁站，可以传多个，markId和subwayStationId必须有一个非空，例如：subwayStationId[]=1&subwayStationId[]=20
 			extMessage	0	补充信息

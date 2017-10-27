@@ -4,7 +4,7 @@ wraper
 default
 	url	\k
 	return
-		type	JSON对象
+		type	JSON
 		data
 			value
 				\s0	object

@@ -3,7 +3,7 @@
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			cityId		1	城市id
 			longitude	1	经度
 			latitude	1	纬度
@@ -34,7 +34,7 @@
 Rent/search
 	title	搜索
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			searchType	1	搜索类型，生活圈：sphere，地铁：subway
 			cityId		1	城市id
 			page		1	第几页
@@ -78,7 +78,7 @@ Rent/search
 Rent/detail
 	title	详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 	return
 		demo	{"id":"4519","sexId":"1","money":"2100","address":"\u5e7f\u5dde\u767d\u4e91\u6842\u82b1\u5c97","lal":["113.263336","23.150211"],"checkinDate":"2016-02-08","bedroomId":"2","bedroomTypeId":"2","favoriteNum":"39","replyNum":"15","stateId":"2","publishTime":"1453734526","pic":{"1":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40239266.jpg","http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40239268.jpg"],"2":["http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40239157.jpg","http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40239268.jpg"]},"user":{"id":"7896","sexId":"1","nickname":"china","avatar":"http:\/\/img3.douban.com\/view\/group_topic\/large\/public\/p40185298.jpg","wordsRoomie":"321123","tag":{"1":{"3":"\u6696\u7537","4":"\u6570\u7801\u63a7","15":"\u4e0d\u5438\u70df","21":"\u53a8\u795e","24":"\u591c\u5e97\u5c0f\u738b\u5b50","29":"\u5446\u840c"},"2":{"2":"\u5927\u53d4","3":"\u6696\u7537","19":"\u5927\u7537\u5b50\u4e3b\u4e49","24":"\u591c\u5e97\u5c0f\u738b\u5b50"}},"age":46},"content":"\u79df\u91d12100\uff0c2016-02-08\u540e\u53ef\u5165\u4f4f\uff0c\u4e09\u5c45\u5ba4\u7684\u6b21\u5367\uff0c\u51fa\u79df\u5bf9\u8c61\u7537\u3002","isDouban":false,"doubanTitle":null}
@@ -118,7 +118,7 @@ Rent/update
 	title	更新
 	desc	更新特定字段
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 			stateId	0	帖子状态id
 	return

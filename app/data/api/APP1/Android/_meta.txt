@@ -9,10 +9,10 @@ wraper
 default
 	url	\k
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			appVersion	1	APP当前版本
 	return
-		type	JSON对象
+		type	JSON
 		data
 			value
 				\s0	object

@@ -1,7 +1,7 @@
 apartment.detail
 	title	详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 	return
 		data

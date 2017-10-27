@@ -3,7 +3,7 @@
 table_user.mobilelogin
 	title	手机号登陆
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			mobile	1	手机号
 			captcha	1	验证码
 	return
@@ -18,7 +18,7 @@ table_user.mobilelogin
 table_user.update
 	title	更新用户资料
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			data[nickname]	0	昵称
 			data[avatar]	0	头像
 			data[recommender]	0	推荐人手机号

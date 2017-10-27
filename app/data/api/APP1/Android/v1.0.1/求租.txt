@@ -6,7 +6,7 @@ Want/publish
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id			0	帖子id
 			stateId		0	帖子状态id
 			money		1	预算

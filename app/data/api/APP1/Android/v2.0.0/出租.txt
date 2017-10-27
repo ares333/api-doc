@@ -1,7 +1,7 @@
 ﻿rent.update
 	title	更新
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	1	帖子id
 			stateId		0	帖子状态id
 			provinceName	0	省/直辖市名称
@@ -23,7 +23,7 @@
 rent.search
 	title	搜索
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			searchType	1	搜索类型，生活圈：sphere，地铁：subway
 			cityId		1	城市id
 			page		1	第几页
@@ -67,7 +67,7 @@ rent.search
 rent.detail
 	title	详情
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	0	帖子id
 	return
 		data
@@ -116,7 +116,7 @@ rent.detail
 rent.detailDouban
 	title	详情（豆瓣）
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			id	0	帖子id
 	return
 		data

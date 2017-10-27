@@ -3,7 +3,7 @@
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			picture[]	1	需要上传的图片文件或图片url，最多不超过10张，例如picture[]=http://localhost/1.jpg&picture[]=http://localhost/2.jpg<br>上传文件需要http头：Content-Type: multipart/form-data;
 	return
 		demo	{"success":{"0":"2676","2":"2677"},"fail":{"1":"write file failed"}}
@@ -38,7 +38,7 @@ Tool/reply
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			content		1	回复内容
 			replyId		0	回复id，回复回复时使用
 			typeId		0	帖子类型id
@@ -58,7 +58,7 @@ Tool/reply
 Tool/replyList
 	title	回复列表
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId		1	帖子类型id
 			typeValueId	1	帖子id
 			page		1	页码
@@ -102,7 +102,7 @@ Tool/checkNew
 Tool/report
 	title	举报
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId		1	类型id
 			typeValueId	1	对应类型的内容id
 			reportId	0	举报类型id
@@ -116,7 +116,7 @@ Tool/report
 Tool/bugReport
 	title	提交异常
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			request		0	对服务端的请求
 			response	0	服务端的响应
 			log			0	其他信息

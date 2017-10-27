@@ -1,7 +1,7 @@
 ﻿User/registerCaptcha
 	title	注册验证码
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			mobile	1	手机号
 	return
 		demo	"m7th9f2156jni67213197m0st0"
@@ -18,7 +18,7 @@
 User/loginCaptcha
 	title	登录验证码
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			mobile	1	手机号
 	return
 		demo	"m7th9f2156jni67213197m0st0"
@@ -38,7 +38,7 @@ User/register
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			mobile		1	手机号
 			password	1	密码
 			captcha		1	验证码
@@ -60,7 +60,7 @@ User/login
 	title	登录
 	desc	优先级：手机验证码 > 密码
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			mobile		1	手机号
 			captcha		0	登录手机验证码
 			password	0	密码
@@ -115,7 +115,7 @@ User/infoUpdate
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			avatar		0	头像的图片id
 			nickname	0	昵称
 			sexId		0	性别
@@ -164,7 +164,7 @@ User/favorite
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId	1	类型id
 			typeValueId	1	类型对应的id
 	return
@@ -182,7 +182,7 @@ User/favoriteList
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page		1	第几页
 			pageSize	1	每页显示数量，最大值10
 	return
@@ -202,7 +202,7 @@ User/visitList
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			page		1	第几页
 			pageSize	1	每页显示数量，最大值10
 	return
@@ -233,7 +233,7 @@ User/block
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			userId	1	需要拉黑的用户
 			cancel	0	是否是取消拉黑，值为空或者yes
 	return

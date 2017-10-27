@@ -10,7 +10,7 @@ Lottery/checkPrivilege
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			type	1	抽奖类型，值：注册、发布
 	return
 		data
@@ -41,7 +41,7 @@ Lottery/draw
 	params
 		httpGet
 			_sid	1	会话标识
-		httpPost
+		HTTP REQUEST BODY (POST)
 			type	1	抽奖类型，值：注册、发布
 	return
 		data

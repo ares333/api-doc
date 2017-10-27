@@ -85,7 +85,7 @@ body main{
 			{foreach $v.params as $k1=>$v1}
 			{if !Arrays::emptyr($v1)}
 			<table class="bordertable narrow">
-				<caption><b>{$k1|upper|replace:"HTTP":"HTTP "} 参数</b></caption>
+				<caption><b>{$k1}</b></caption>
 				{if is_string($v1)}
 				<tr><td>{$v1}</td></tr>
 				{else}
@@ -140,7 +140,7 @@ body main{
 			{/foreach}
 		{/if}
 		<table class="bordertable narrow">
-			<caption><b>返回值({$v.return.type})</b></caption>
+			<caption><b>HTTP RESPONSE BODY ({$v.return.type})</b></caption>
 			{if is_string($v.return.data)}
 			<tr><td>{$v.return.data}</td></tr>
 			{else}

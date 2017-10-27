@@ -1,7 +1,7 @@
 topic.reply
 	title	回复
 	params
-		httpPost
+		HTTP REQUEST BODY (POST)
 			typeId	1	帖子类型id
 			typeValueId	1	帖子id
 			content	1	回复的内容
