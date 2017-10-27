@@ -37,6 +37,6 @@ Demo
 
 用法
 ----
-语法说明文件查看[doc/api.txt](doc/Api.txt)<br>
+语法说明文件查看[doc/api.txt](doc/api.txt)<br>
 Demo使用的数据文件在[app/data/api](app/data/api)<br>
 看Demo和文档基本就会用，更深入问题讨论见<b>联系我们</b>
