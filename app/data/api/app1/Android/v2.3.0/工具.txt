@@ -1,0 +1,2 @@
+_meta
+	inherit		../v2.2.0/工具.txt

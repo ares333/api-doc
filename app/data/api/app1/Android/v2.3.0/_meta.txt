@@ -1,0 +1,12 @@
+inherit		../v2.2.0/_meta.txt
+default
+	params
+		httpPost
+			_language	1	当前语言，值列表：zh，en
+	return
+		data
+			errorCode
+				data
+					data
+						more
+							20		没必要特殊处理的错误

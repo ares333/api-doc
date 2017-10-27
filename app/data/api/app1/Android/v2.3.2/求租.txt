@@ -1,0 +1,29 @@
+_meta
+	inherit		../v2.3.1/求租.txt
+_unset
+	want.detail
+		return
+			data
+	want.search
+		params
+			httpPost
+				noSmoke
+				noPet
+				noSleepLate
+		return
+			data
+want.search
+	params
+		httpPost
+			searchType	1	subway,region,viewpoint和字典里一一对应
+			habit[]	0	1:不吸烟，2:不养宠物，3:拒绝晚睡
+want.publish
+	params
+		httpPost
+			viewpointId[]	0	地标id
+			markId[]	0	生活圈id
+want.delete
+	title	删除
+	params
+		httpPost
+			id	1	id

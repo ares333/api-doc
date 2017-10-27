@@ -1,0 +1,9 @@
+inherit		../v2.3.1/_meta.txt
+_unset
+	wraper
+		return
+			demo
+	default
+		params
+			httpPost
+				appVersion

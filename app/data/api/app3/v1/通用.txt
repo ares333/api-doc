@@ -1,0 +1,31 @@
+﻿_meta
+	inherit	../_root.txt
+table_sms.captcha
+	title	手机验证码
+	params
+		httpRequest
+			mobile	1	手机号
+			text	1	登陆：登陆验证码为{code}，十分钟内有效
+	return
+		demo	mobile=13000000000&text=登陆验证码为{code}，十分钟内有效
+table_image.insertRow
+	title	图片上传
+	params
+		httpRequest
+			image[]	1	图片文件
+	return
+		demo	#curl -b 'sidapp=dv57uij9qnatkstlgqea126s12'  -F _app=ios -F _version=1.0.0 -F image[]=@pic1.jpg -F image[]=@pic2.jpg "test.i-house.com/api/app/v1.0.0/table_image.insertRow/json"
+		data
+			value
+				\s0	array
+			code
+				data
+					data
+						\s1000	上传失败
+tool.wechatConfig
+	title	微信js配置
+	params
+		httpRequest
+			url		1	当前页面的url
+	return
+		demo	url=http://ihouse.iroommate.cc

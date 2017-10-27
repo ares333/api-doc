@@ -1,3 +1,0 @@
-inherit	../Android/_meta.txt
-var
-	platform	ios

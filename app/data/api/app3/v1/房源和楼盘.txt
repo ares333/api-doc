@@ -1,0 +1,55 @@
+﻿_meta
+	inherit	../_root.txt
+table_houseAndBuilding.search
+	title	搜索
+	params
+		httpRequest
+			word	1	关键词
+	return
+		data
+			value
+				\s0	array
+				data
+					data
+						table	string	搜索结果的类型：city、country、houseAndBuilding。
+		demo	word=美
+table.list#列表
+	title	列表
+	params
+		httpRequest
+			table	1	固定值：houseAndBuilding
+			where[country.id=?]	0	国家id
+			where[city.id=?]	0	城市id
+			where[houseAndBuilding.id=?]	0	房子id
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			order[]	1	固定值：houseAndBuilding.createTime desc
+	return
+		data
+			value
+				\s0	array
+				data
+					data
+						table	string	house：房源，building：楼盘
+		demo	table=houseAndBuilding&where[country.id%3D%3F]=2&limitPage[offset]=1&limitPage[count]=10&order[]=houseAndBuilding.createTime desc
+table.list#热门城市
+	title	热门城市
+	params
+		httpRequest
+			table	1	固定值：city
+			group	1	固定值：yes
+			joinLeft[houseAndBuilding]	1	固定值：houseAndBuilding.cityId=city.id
+			columns[0][count]	1	固定值：count(distinct houseAndBuilding.id)
+			having[count>?]	1	固定值：0
+			order[]	1	固定值：count desc
+	return
+		demo	table=city&group=yes&joinLeft[houseAndBuilding]=houseAndBuilding.cityId%3Dcity.id&columns[0][count]=count(distinct%20houseAndBuilding.id)&having[count%3E%3F]=0&order[]=count%20desc
+table.list#收藏列表
+	title	收藏列表
+	params
+		httpRequest
+			table	1	固定值：houseAndBuildingFavorite
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+	return
+		demo	table=houseAndBuildingFavorite&limitPage[offset]=1&limitPage[count]=3

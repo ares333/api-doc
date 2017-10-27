@@ -1,0 +1,39 @@
+_meta
+	inherit		../v2.2.0/用户.txt
+_unset
+	User/openLogin
+	User/bindMobile
+user.openlogin
+	title	第三方登录
+	params
+		httpPost
+			type		1	账号类型，所有类型：facebook
+			token		1	授权之后的access_token
+			openId		1	第三方用户id
+			uuid		0	ios传idfa，android不传
+user.bindmobile
+	title	绑定手机号
+	params
+		httpPost
+			mobile		1	手机号
+			type		1	账号类型，所有类型：facebook
+			openId		1	第三方用户id
+			token		1	第三方登录产生的access_token
+			captcha		1	手机验证码
+			password	0	密码，手机号未注册过为必填
+			nickname	0	昵称，手机号未注册过为必填
+			avatarUrl	0	头像URL，手机号未注册过为必填
+			uuid		0	ios传idfa，android不传
+	return
+		data
+			value
+				\s0	object
+				\s1	字段如下
+				data
+					data
+						isNew	boolean	是否第一次绑定手机号
+user.bindmobilecaptcha
+	title	绑定手机验证码
+	params
+		httpPost
+			mobile	1	手机号

@@ -1,0 +1,5 @@
+inherit		../v2.1.0/_meta.txt
+prefix
+	url	https://shiyou.api.iroommate.cc/{$platform}/{$version}/
+suffix
+	url	/json

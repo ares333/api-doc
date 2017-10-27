@@ -1,0 +1,36 @@
+var
+	platform	android
+prefix
+	url	https://app1.com/index/index/{$platform}/{$version}/
+suffix
+wraper
+	return
+		demo	{"errorCode":0,"errorMessage":"","value":{$demo},"timeCost":0.09645}
+default
+	url	\k
+	params
+		httpPost
+			appVersion	1	APP当前版本
+	return
+		type	JSON对象
+		data
+			value
+				\s0	object
+				\s1	接口实际的返回值
+				data
+					title	键	类型	说明
+			errorCode
+				[]number
+				[]错误码，等于零表示无错误，非零表示出错。1~1000(不包含1000)是全局唯一错误码，1000~2000(不包含2000)是非全局错误码。
+				data
+					title	错误码	错误描述
+					data
+						more
+							1		版本问题
+							2		接口问题
+							3		参数问题
+							4		未登录
+							5		没有数据
+							10		服务端问题
+			errorMessage	string	错误简短描述，不作为错误标识
+			timeCost	number	服务端代码执行时间，单位秒

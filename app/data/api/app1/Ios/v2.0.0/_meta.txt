@@ -1,0 +1,6 @@
+prefix
+	url	https://app1-v2.com/{$platform}/{$version}/
+suffix
+	url	/json
+var
+	platform	ios

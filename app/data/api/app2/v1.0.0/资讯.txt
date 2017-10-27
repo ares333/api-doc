@@ -1,0 +1,79 @@
+﻿_meta
+	inherit	../_root.txt
+table.list#banner
+	title	BANNER
+	params
+		httpRequest
+			table	1	固定值：informationBanner
+	return
+		demo	table=informationBanner
+table.list#列表
+	title	列表
+	params
+		httpRequest
+			table	1	固定值：information
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			joinLeft[informationFavorite]	1	固定值：informationFavorite.informationId=information.id
+			group	1	固定值：yes
+			columns[0][favoriteNum]	1	固定值：count(informationFavorite.id) 
+	return
+		demo	table=information&limitPage[offset]=1&limitPage[count]=3&joinLeft[informationFavorite]=informationFavorite.informationId%3Dinformation.id&group=yes&columns[0][favoriteNum]=count(informationFavorite.id)
+table.list#热门
+	title	热门
+	params
+		httpRequest
+			table	1	固定值：information
+			joinLeft[informationFavorite]	1	固定值：information.id=informationFavorite.informationId
+			columns[0][count]	1	固定值：count(distinct informationFavorite.id)
+			order[]	1	固定值：count desc
+			group	1	固定值：yes
+	return
+		demo	table=information&joinLeft[informationFavorite]=information.id=informationFavorite.informationId&columns[0][count]=count(distinct informationFavorite.id)&order[]=count desc&group=yes
+table_information.row#详情
+	title	详情
+	params
+		httpRequest
+			data[id]	1	资讯id
+	return
+		demo	data[id]=2
+table_information.list#下一个资讯
+	title	下一个资讯
+	params
+		httpRequest
+			table	1	information
+			limitPage[offset]	1	固定值：1 
+			limitPage[count]	1	固定值：1
+			where[information.createTime<=?]	1	当前资讯发布时间，格式：2017-05-17 13:05:05
+			where[information.id<?]	1	当前资讯id
+	return
+		demo	table=information&limitPage[offset]=1&limitPage[count]=1&where[information.createTime%3C%3D%3F]=2017-05-16&where[information.id%3C%3F]=17
+table.insertRow#收藏
+	title	收藏
+	params
+		httpRequest
+			table	1	固定值：informationFavorite
+			data[informationId]	1	资讯id
+	return
+		demo	table=informationFavorite&data[informationId]=2
+table.list#收藏列表
+	title	收藏列表
+	params
+		httpRequest
+			table	1	固定值：infomationFavorite
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			joinLeft[informationFavorite|a]	1	固定值：a.informationId=informationFavorite.informationId
+			group	1	固定值：yes
+			columns[0][favoriteNum]	1	固定值：count(a.id)
+			columnsCorrelation[0]	1	固定值：information
+	return
+		demo	table=informationFavorite&limitPage[offset]=1&limitPage[count]=3&joinLeft[informationFavorite|a]=a.informationId%3DinformationFavorite.informationId&group=yes&columns[0][favoriteNum]=count(a.id)&columnsCorrelation[0]=information
+table.deleteRow#取消收藏
+	title	取消收藏
+	params
+		httpRequest
+			table	1	固定值：informationFavorite
+			data[informationId]	1	资讯id
+	return
+		demo	table=informationFavorite&data[informationId]=2

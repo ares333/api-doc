@@ -1,0 +1,52 @@
+﻿_meta
+	inherit	../_root.txt
+table.list#热门楼盘
+	title	热门楼盘
+	params
+		httpRequest
+			table	1	固定值：building
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			order[]	1	固定值：viewNum desc
+	return
+		demo	table=building&limitPage[offset]=1&limitPage[count]=10&order[]=viewNum desc
+table.list#列表
+	title	列表
+	params
+		httpRequest
+			table	1	固定值：building
+			where[country.id=?]	0	国家id
+			where[city.id=?]	0	城市id
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			order[]	1	固定值：createTime desc
+	return
+		demo	table=building&where[country.id%3D%3F]=2&limitPage[offset]=1&limitPage[count]=10&order[]=createTime desc
+table_building.row#详情页
+	title	详情页
+	params
+		httpRequest
+			data[id]	1	id
+	return
+		demo	data[id]=2
+table.insertRow#收藏
+	title	收藏
+	params
+		httpRequest
+			table	1	固定值：buildingFavorite
+			data[buildingId]	1	房子id
+	return
+		demo	table=buildingFavorite&data[buildingId]=2
+		data
+			code
+				data
+					data
+						\s1000	应该已经收藏过了
+table.deleteRow#取消收藏
+	title	取消收藏
+	params
+		httpRequest
+			table	1	固定值：buildingFavorite
+			data[buildingId]	1	房子id
+	return
+		demo	table=buildingFavorite&data[buildingId]=2

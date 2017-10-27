@@ -1,0 +1,159 @@
+﻿_meta
+	inherit	../_root.txt
+table.list#用户类型字典
+	title	用户类型字典
+	params
+		httpRequest
+			table	1	固定值：userIdTypeDict
+	return
+		demo	table=userIdTypeDict
+table_user.mobilelogin
+	title	手机号登陆
+	params
+		httpRequest
+			mobile	1	手机号
+			captcha	1	验证码
+	return
+		demo	mobile=18210627303&captcha=1234
+		data
+			value
+				\s0	bool
+				\s1	是否是新用户
+			code
+				data
+					data
+						\s1000	验证码错误
+table_user.logout
+	title	退出登陆
+	return
+		demo	_
+table_user.row
+	title	详情
+	return
+		demo	_
+		data
+			value
+				\s0	object
+				data
+					data
+						id__userAgent	array	中介认证信息
+						id__userAgentCustomer[0].agentId_userAgent.userId_user	object	推荐人用户信息
+table_user.updateRow
+	title	更新用户资料
+	params
+		httpRequest
+			data[nickname]	0	昵称
+			data[avatar]	0	头像
+			data[recommender]	0	推荐人手机号
+	return
+		demo	data[nickname]=Ares&data[avatar]=9
+		data
+			code
+				data
+					data
+						\s1000	推荐人不是中介
+table.setRow#中介认证
+	title	中介认证
+	params
+		httpRequest
+			table	1	固定值：userAgent
+			data[company]	1	公司
+			data[name]	1	姓名
+			data[idcard]	1	身份证号
+			data[imgWorkcard]	1	工牌
+			data[imgIdcard0]	1	身份证正面
+			data[imgIdcard1]	1	身份证反面
+	return
+		data
+			value
+				\s0	string
+				\s1	第一次认证返回认证id
+		demo	table=userAgent&data[company]=艾拉丁&data[name]=张三&data[idcard]=530121198408214246&data[imgWorkcard]=15&data[imgIdcard0]=16&data[imgIdcard1]=17
+table.deleteRow#中介认证取消
+	title	中介认证取消
+	params
+		httpRequest
+			table	1	固定值：userAgent
+	return
+		demo	table=userAgent
+table.list#中介认证状态字典
+	title	中介认证状态字典
+	params
+		httpRequest
+			table	1	固定值：userAgentAuditStateDict
+	return
+		demo	table=userAgentAuditStateDict
+table.row#中介认证信息
+	title	中介认证信息
+	params
+		httpRequest
+			table	1	固定值：userAgent
+	return
+		demo	table=userAgent
+table.list#我的客户有更新？
+	title	我的客户有更新？
+	params
+		httpRequest
+			table	1	固定值：userAgengCustomer
+			where[userAgentCustomer.viewed=?]	1	固定值：0
+			group	1	固定值：yes
+			autocolumns	1	固定值：no
+			withCount	1	固定值：yes
+			limitPage[offset]	1	固定值：1
+			limitPage[count]	1	固定值：1
+	return
+		data
+			value
+				\s0	object
+				\s1	count 字段代表更新的条数
+		demo	table=userAgentCustomer&where[userAgentCustomer.viewed%3D%3F]=0&group=yes&autocolumns=no&withCount=yes&limitPage[offset]=1&limitPage[count]=1
+table.list#我的客户
+	title	我的客户
+	params
+		httpRequest
+			table	1	固定值：userAgentCustomer
+			withCount	1	固定值：yes
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+	return
+		demo	table=userAgentCustomer&withCount=yes&limitPage[offset]=1&limitPage[count]=10
+table.list#客户进度字典
+	title	客户进度字典
+	params
+		httpRequest
+			table	1	固定值：userAgentCustomerProcessDict
+	return
+		demo	table=userAgentCustomerProcessDict
+table.updateRow#客户进度已读
+	title	客户进度已读
+	params
+		httpRequest
+			table	1	固定值：userAgentCustomer
+			data[viewed]	1	固定值：1
+			data[id]	1	id字段的值
+	return
+		demo	table=userAgentCustomer&data[viewed]=1&data[id]=1
+table_user.setCookie
+	title	设置会话id
+	params
+		httpRequest
+			sidapp	1	值
+	return
+		demo	sidapp=aab90c240e37111823f9868c6aa991b4
+table.list#客户进度列表
+	title	客户进度列表
+	params
+		httpRequest
+			table	1	固定值：userAgentCustomerProcess
+			where[userCustomerId=?]	1	客户关系id
+	return
+		demo	table=userAgentCustomerProcess&where[userCustomerId%3D%3F]=2
+table.insertRow#反馈
+	title	反馈
+	params
+		httpRequest
+			table	1	固定值：feedback
+			data[data][contact]	1	联系方式
+			data[data][content]	1	内容
+	return
+		demo	table=feedback&data[data][contact]=123123&data[data][content]=不错～～～

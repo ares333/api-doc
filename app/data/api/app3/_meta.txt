@@ -1,0 +1,4 @@
+default
+	url	\k
+	return
+		type	JSON

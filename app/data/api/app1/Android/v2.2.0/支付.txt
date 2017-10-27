@@ -1,0 +1,21 @@
+﻿pay.huifenqiapply
+	title	会分期申请
+	params
+		httpPost
+			name	1	真实姓名
+			mobile		1	手机号
+			city		1	城市名称
+			address		1	租房地址
+			money		1	租金(元)
+			paymentType	1	付款方式，0:押一付三 1:押一付六 2:押一付十二
+			payDate		1	交租日期
+	return
+		data
+			value
+				\s0	boolean
+				\s1	提交是否成功
+			errorCode
+				data
+					data
+						1000	失败
+						1001	已经申请过
