@@ -44,10 +44,10 @@
 附录：
 	JSON数据类型
 	一、4种基本类型 
-		字符串(string)		如:"a"
+		字符串(string)	如:"a"
 		数字(number)		如:1，1.02
-		布尔型(boolean)		true或false
+		布尔型(boolean)	true或false
 		Null值(null)		null
 	二、两种结构类型
-		对象(object)	{"name":"zhangsan","age":18}	键为String ，值为Json的任意数据类型之一。对象的键值对是无序的。
+		对象(object)		{"name":"zhangsan","age":18}	键为String ，值为Json的任意数据类型之一。对象的键值对是无序的。
 		数组(array)		[1,2,3]							顺序排列的零个或多个Json数据类型。
