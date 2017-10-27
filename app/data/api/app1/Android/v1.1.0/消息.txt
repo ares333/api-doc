@@ -1,0 +1,2 @@
+﻿_meta
+	inherit		../v1.0.0/消息.txt

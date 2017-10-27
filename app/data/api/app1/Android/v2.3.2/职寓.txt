@@ -1,0 +1,27 @@
+jobin.facility
+	title	房屋设施
+	return
+		demo	<a target="_blank" href="http://app1.com/ios/v2.3.2/jobin.facility/json?_appVersion=2.3.2&_language=zh">url</a>
+jobin.detail
+	title	详情
+	params
+		HTTP POST
+			id	1	需求id
+	return
+		demo	<a target="_blank" href="http://app1.com/ios/v2.3.2/jobin.detail/json?_appVersion=2.4.0&_language=zh&id=41">url</a>
+jobin.search
+	title	搜索
+	params
+		HTTP POST
+			lng	1	经度
+			lat	1	纬度
+			page	1	第几页
+			pageSize	1	每页几条数据
+	return
+		demo	<a target="_blank" href="http://app1.com/ios/v2.3.2/jobin.search/json?_appVersion=2.4.0&_language=zh&lng=116.431477&lat=39.899256&page=1&pageSize=10">url</a>
+		data
+			errorCode
+				data
+					data
+						1000	该城市没有开通Job-IN房源
+						1001	没有更多数据

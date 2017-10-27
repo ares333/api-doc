@@ -1,0 +1,31 @@
+_meta
+	inherit		../v2.3.0/出租.txt
+rent.publish
+	params
+		HTTP POST
+			cycleId	0	出租周期
+			currencyId	0	使用的货币
+rent.detail
+	return
+		data
+			value
+				data
+					data
+						cycleId	string	出租周期
+						currencyId	string	使用的货币
+rent.search
+	params
+		HTTP POST
+			cycleId	0	出租周期
+	return
+		data
+			value
+				data
+					data
+						cycleId	string	出租周期
+						currencyId	string	使用的货币
+rent.update
+	params
+		HTTP POST
+			cycleId	0	出租周期
+			currencyId	0	使用的货币

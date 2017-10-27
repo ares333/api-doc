@@ -1,0 +1,254 @@
+﻿User/registerCaptcha
+	title	注册验证码
+	params
+		HTTP POST
+			mobile	1	手机号
+	return
+		demo	"m7th9f2156jni67213197m0st0"
+		data
+			value
+				\s0	string
+				\s1	会话标识
+			errorCode
+				data
+					data
+						\s1000	手机号格式不正确
+						\s1001	验证码发送太频繁
+						\s1002	验证码发送失败
+User/loginCaptcha
+	title	登录验证码
+	params
+		HTTP POST
+			mobile	1	手机号
+	return
+		demo	"m7th9f2156jni67213197m0st0"
+		data
+			value
+				\s0	string
+				\s1	会话标识
+			errorCode
+				data
+					data
+						\s1000	手机号格式不正确
+						\s1001	验证码发送太频繁
+						\s1002	验证码发送失败
+User/register
+	title	注册
+	desc	目前只支持手机号作为用户名
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			mobile		1	手机号
+			password	1	密码
+			captcha		1	验证码
+	return
+		demo	"3046"
+		data
+			value
+				\s0	string
+				\s1	用户id
+			errorCode
+				data
+					data
+						\s1000	手机号格式错误
+						\s1001	密码格式错误
+						\s1002	验证码错误
+						\s1003	之前已注册
+						\s1004	注册失败
+User/login
+	title	登录
+	desc	优先级：手机验证码 > 密码
+	params
+		HTTP POST
+			mobile		1	手机号
+			captcha		0	登录手机验证码
+			password	0	密码
+		httpGet
+			_sid	0	会话标识
+	return
+		demo	{"sid":"ib4rh4ai9jcji3dg1877jo0ls3","userInfo":{"id":"3862","mobile":"17001275987","nickname":"","avatar":"","birthday":"0000-00-00","profession":"","sexId":"0","wordsRoomie":"","regIp":"127.255.255.255","regTime":"1453188238"}}
+		data
+			value
+				\s0	string
+				\s1	字段如下
+				data
+					data
+						sid		string	会话标识，有效期7天
+						userInfo	object	用户详细信息，字段参考<a href='#信息'>信息</a>接口
+			errorCode
+				data
+					data
+						\s1000	用户未注册
+						\s1001	密码错误
+						\s1002	验证码错误
+User/info
+	title	信息
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		demo	{"id":"6287","mobile":"18210627303","nickname":"","avatar":"","birthday":"1988-01-10","profession":"","sexId":"2","wordsRoomie":"","regIp":"124.205.5.244","regTime":"1453431897","tag":{"1":["3","5"],"2":["4"]}}
+		data
+			value
+				\s0	array|null
+				\s1	没查到就返回null
+				data
+					data
+						id	string	用户id
+						mobile	string	手机号
+						nickname	string	昵称
+						avatar	string	头像
+						birthday	string	生日，格式YYYY-MM-DD
+						profession	string	从事行业
+						sexId	string	性别id
+						wordsRoomie	string	对室友的寄语
+						regIp	string	注册ip
+						regTime	string	注册时间
+						tag	object	分类之后的tag列表
+						bindQQ	boolean	是否绑定QQ
+						bindWechat	boolean	是否绑定微信
+						bindWeibo	boolean	是否绑定微博
+						pushBlock	string	是否接收服务端推送
+User/infoUpdate
+	title	信息更新
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			avatar		0	头像的图片id
+			nickname	0	昵称
+			sexId		0	性别
+			birthday	0	生日，格式YYYY-MM-DD
+			profession	0	职业
+			tag[x][]	0	标签，可以一次更新多个，其中x代表标签类型id，例如：tag[1][]=1&tag[1][]=3&tag[2][]=10&tag[2][]=12
+			wordsRoomie	0	我的寄语
+	return
+		demo	true
+		data
+			value
+				\s0	boolean
+				\s1	更新是否成功
+			errorCode
+				data
+					data
+						\s1000	用户未注册
+						\s1001	标签类型非法
+						\s1002	标签id参数格式非法
+						\s1003	标签未找到
+User/checkComplete
+	title	资料完整度
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		demo	true
+		data
+			value
+				\s0	boolean
+				\s1	true代表资料完整
+User/logout
+	title	登出
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		demo	true
+		data
+			value
+				\s0	boolean
+				\s1	true代表成功
+User/favorite
+	title	收藏
+	desc	当用户收藏帖子的时候做记录
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			typeId	1	类型id
+			typeValueId	1	类型对应的id
+	return
+		demo	true
+		data
+			value
+				\s0	boolean
+				\s1	true代表成功
+			errorCode
+				data
+					data
+						\s1000	typeId非法
+User/favoriteList
+	title	我的收藏
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			page		1	第几页
+			pageSize	1	每页显示数量，最大值10
+	return
+		demo	[{"id":"4","address":"\u5317\u4eac\u5e02\u6d77\u6dc0\u533a\u5b89\u5b81\u5e84","favoriteNum":"0","replyNum":"0","publishTime":"1451009776","nickname":"\u8aaa\u800c\u4e0d\u8bf4","sexId":"0","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","content":"\u79df\u91d11000\uff0c2015-01-12\u540e\u53ef\u5165\u4f4f\uff0c\u4e24\u5c45\u5ba4\u7684\u4e3b\u5367\u3002","pic":{"1":["http:\/\/img4.douban.com\/icon\/u136948285-8.jpg"]},"typeId":"1"},{"id":"1","replyNum":"0","publishTime":"0","nickname":"\u8aaa\u800c\u4e0d\u8bf4","sexId":"0","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","content":"\u6211\u5e0c\u671b\u5728\u5317\u4eac\u671d\u9633\u9644\u8fd1\u627e\u4e2a\u623f\u5b50\uff0c\u9884\u7b970\uff0c\u6700\u8fdf0000-00-00\u642c\u5bb6\u3002","pic":{"1":["http:\/\/img3.douban.com\/icon\/u128425995-5.jpg"]},"typeId":"2"}]
+		data
+			value
+				\s0	array
+				\s1	出租和求租信息混合在一起，按发布时间倒序排序，每条数据有一个typeId代表帖子类型，其他字段见对应的帖子详情文档。
+				data
+					data
+			errorCode
+				data
+					data
+						\s1000	未登录
+User/visitList
+	title	最近浏览
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			page		1	第几页
+			pageSize	1	每页显示数量，最大值10
+	return
+		demo	[{"id":"4","address":"\u5317\u4eac\u5e02\u6d77\u6dc0\u533a\u5b89\u5b81\u5e84","favoriteNum":"0","replyNum":"0","publishTime":"1451009776","nickname":"\u8aaa\u800c\u4e0d\u8bf4","sexId":"0","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","content":"\u79df\u91d11000\uff0c2015-01-12\u540e\u53ef\u5165\u4f4f\uff0c\u4e24\u5c45\u5ba4\u7684\u4e3b\u5367\u3002","pic":{"1":["http:\/\/img4.douban.com\/icon\/u136948285-8.jpg"]},"typeId":"1"},{"id":"1","replyNum":"0","publishTime":"0","nickname":"\u8aaa\u800c\u4e0d\u8bf4","sexId":"0","avatar":"http:\/\/img3.douban.com\/icon\/u139160216-1.jpg","content":"\u6211\u5e0c\u671b\u5728\u5317\u4eac\u671d\u9633\u9644\u8fd1\u627e\u4e2a\u623f\u5b50\uff0c\u9884\u7b970\uff0c\u6700\u8fdf0000-00-00\u642c\u5bb6\u3002","pic":{"1":["http:\/\/img3.douban.com\/icon\/u128425995-5.jpg"]},"typeId":"2"}]
+		data
+			value
+				\s0	array
+				\s1	见我的收藏
+				data
+					data
+			errorCode
+				data
+					data
+						\s1000	未登录
+User/published
+	title	我发布的
+	desc	可能是出租或求租信息，格式不定，demo参考出租或求租详情接口
+	params
+		httpGet
+			_sid	1	会话标识
+	return
+		data
+			value
+				\s0	array
+				\s1	typeId区分出租和求租，其他字段和详情接口一致。
+User/block
+	title	拉黑或取消
+	params
+		httpGet
+			_sid	1	会话标识
+		HTTP POST
+			userId	1	需要拉黑的用户
+			cancel	0	是否是取消拉黑，值为空或者yes
+	return
+		data
+			value
+				\s0	null
+				\s1	无返回值
+User/isBlocked
+	title	是否被拉黑
+	params
+		httpGet
+			_sid	1	会话标识
+			userId	1	需要检查的用户
+	return
+		data
+			value
+				\s0	boolean
+				\s1	是否被对方拉黑

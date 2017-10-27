@@ -1,0 +1,2 @@
+﻿_meta
+	inherit		../../Android/{$version}/字典.txt

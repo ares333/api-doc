@@ -1,0 +1,11 @@
+inherit		../../Android/{$version}/_meta.txt
+var
+	platform	ios
+_unset
+	default
+		params
+			HTTP POST
+				appVersion
+	wraper
+		return
+			demo

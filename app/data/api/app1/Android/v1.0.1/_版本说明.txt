@@ -1,0 +1,2 @@
+_meta
+	inherit		../v1.0.0/_版本说明.txt

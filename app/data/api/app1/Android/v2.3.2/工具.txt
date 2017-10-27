@@ -1,0 +1,13 @@
+_meta
+	inherit		../v2.3.1/工具.txt
+tool.geodecode
+	title	GEO解码
+	params
+		HTTP POST
+			lng	1	经度
+			lat	1	纬度
+	return
+		data
+			value
+				\s0	string
+				\s1	地址

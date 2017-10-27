@@ -1,0 +1,32 @@
+_meta
+	inherit		../v2.3.0/求租.txt
+want.publish
+	title	发布
+	params
+		HTTP POST
+			cycleId	0	出租周期
+			currencyId	0	使用的货币
+want.detail
+	return
+		data
+			value
+				data
+					data
+						cycleId	string	出租周期
+						currencyId	string	使用的货币
+want.search
+	params
+		HTTP POST
+			cycleId	0	出租周期
+	return
+		data
+			value
+				data
+					data
+						cycleId	string	出租周期
+						currencyId	string	使用的货币
+want.update
+	params
+		HTTP POST
+			cycleId	0	出租周期
+			currencyId	0	使用的货币

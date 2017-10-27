@@ -1,0 +1,72 @@
+﻿_meta
+	inherit		../v2.0.0/出租.txt
+_unset
+	rent.publish
+		params
+			HTTP POST
+				provinceName
+				cityName
+	rent.update
+		params
+			HTTP POST
+				provinceName
+				cityName
+rent.publish
+	title	发布
+	params
+		HTTP POST
+			address	1	地址
+			money	1	租金
+			longitude	1	经度
+			latitude	1	维度
+			checkinDate	1	入住日期
+			picRoomie[]	1	室友的照片
+			picHouse[]	1	房子的照片
+			facility[]	0	房屋设施，例如传两个：facility[]=1&facility[]=2
+			videoId[]	0	视频id
+			extMessage	0	补充信息
+	return
+		data
+			value
+				\s0	string
+				\s1	id
+			errorCode
+				data
+					data
+						1011	不能发布多条数据
+rent.update
+	params
+		HTTP POST
+			videoId[]	0	视频id
+rent.search
+	return
+		data
+			value
+				data
+					data
+						isAuthed	boolean	是否认证
+rent.detail
+	return
+		data
+			value
+				data
+					data
+						video	array	视频
+						share	object	分享
+						share.title	string	标题
+						share.url	string	地址
+						share.desc	string	描述
+						share.icon	string	图标
+						isAuthed	boolean	是否认证
+						user.zmScore	string	芝麻信用分，空表示没有认证
+rent.detaildouban
+	return
+		data
+			value
+				data
+					data
+						share	object	分享
+						share.title	string	标题
+						share.url	string	地址
+						share.desc	string	描述
+						share.icon	string	图标
