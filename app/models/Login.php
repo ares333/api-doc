@@ -1,4 +1,7 @@
 <?php
+use Yaf\Application;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
 
 class LoginModel extends AbstractModel
 {
@@ -7,17 +10,19 @@ class LoginModel extends AbstractModel
     {
         static $session;
         if (! isset($session)) {
-            $dir = APP_PATH . '/runtime/session';
+            $dir = Application::app()->getAppDirectory() . '/runtime/session';
             if (! is_dir($dir)) {
                 mkdir($dir, 0755, true);
             }
-            Zend_Session::setOptions(array(
-                'cookie_lifetime' => 90 * 86400,
-                'gc_maxlifetime' => 30 * 86400,
-                'save_path' => $dir
-            ));
-            Zend_Session::start();
-            $session = new Zend_Session_Namespace(__METHOD__, Zend_Session_Namespace::SINGLE_INSTANCE);
+            $sessionManager = new SessionManager();
+            $config = $sessionManager->getConfig();
+            $config->setCookieLifetime(90 * 86400);
+            $config->setGcMaxlifetime(90 * 86400);
+            $config->setSavePath($dir);
+            $session = new Container(str_replace([
+                ':',
+                '\\'
+            ], '', __METHOD__), $sessionManager);
         }
         return $session;
     }

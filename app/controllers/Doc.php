@@ -1,5 +1,4 @@
 <?php
-use Ares333\YafLib\Helper\Arrays;
 use Yaf\Controller_Abstract;
 
 class DocController extends Controller_Abstract
@@ -105,7 +104,7 @@ class DocController extends Controller_Abstract
         ));
         $this->getView()
             ->getAdapter()
-            ->registerClass("Arrays", 'Ares333\YafLib\Helper\Arrays');
+            ->registerClass("Arrays", 'Arrays');
         $this->getView()->assign($out);
     }
 }

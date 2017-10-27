@@ -124,7 +124,7 @@ body main{
 						</table>
 						{*demo*}
 						{if !empty($v2.data.demo)}
-						<pre class="dimmed" style="display:;margin-bottom:0;">{if '{'==substr($v2.data.demo,0,1)}{Zend_Json::prettyPrint($v2.data.demo)}{else}{$v2.data.demo}{/if}</pre>
+						<pre class="dimmed" style="display:;margin-bottom:0;">{if '{'==substr($v2.data.demo,0,1)}{Zend\Json\Json::prettyPrint($v2.data.demo)}{else}{$v2.data.demo}{/if}</pre>
 						{/if}
 						{/if}
 						{if !empty($v2.data.demo)}
@@ -201,7 +201,7 @@ body main{
 		</table>
 		{if !empty($v.return.demo)}
 		<a href="javascript:void(0)" class="ym-button ym-reply ym-xsmall button-demo">返回值示例</a>
-		<pre class="dimmed" style="border:1px solid #ccc;display:;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json') && '{'==substr($v.return.demo,0,1)}{Zend_Json::prettyPrint($v.return.demo)}{else}{$v.return.demo}{/if}</pre>
+		<pre class="dimmed" style="border:1px solid #ccc;display:;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json') && '{'==substr($v.return.demo,0,1)}{Zend\Json\Json::prettyPrint($v.return.demo)}{else}{$v.return.demo}{/if}</pre>
 		{/if}
 		<br><br><br>
 	{/if}
