@@ -16,12 +16,8 @@ ext-yaf: >=2.3.3
 composer create-project ares333/api-doc
 ```
 1. php ini: yaf.use_namespace = 1
-1. 绑定web服务器的入口目录为本项目的public目录
+1. 绑定public目录为web服务器的入口
 1. Enjoy!
-
-联系我们
---------
-QQ群:424844502
 
 特性
 ----
@@ -41,3 +37,7 @@ Demo
 语法说明文件查看[doc/api.txt](doc/api.txt)<br>
 Demo使用的数据文件在[app/data/api](app/data/api)<br>
 看Demo和文档基本就会用，更深入问题讨论见<b>联系我们</b>
+
+联系我们
+--------
+QQ群:424844502
