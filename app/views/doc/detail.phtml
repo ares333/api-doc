@@ -139,7 +139,6 @@ body main{
 			{/if}
 			{/foreach}
 		{/if}
-		{if !empty($v.return.data)}
 		<table class="bordertable narrow">
 			<caption><b>HTTP RESPONSE BODY ({$v.return.type})</b></caption>
 			{if is_string($v.return.data)}
@@ -200,7 +199,6 @@ body main{
 			</tbody>
 			{/if}
 		</table>
-		{/if}
 		{if !empty($v.return.demo)}
 		<a href="javascript:void(0)" class="ym-button ym-reply ym-xsmall button-demo">返回值示例</a>
 		<pre class="dimmed" style="border:1px solid #ccc;display:;margin-bottom:0;padding:7px">{if 0===strpos(strtolower($v.return.type),'json') && '{'==substr($v.return.demo,0,1)}{Zend\Json\Json::prettyPrint($v.return.demo)}{else}{$v.return.demo}{/if}</pre>
