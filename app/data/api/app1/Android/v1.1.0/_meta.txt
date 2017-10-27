@@ -1,2 +1,0 @@
-prefix
-	url	https://app1new.com/index/index/{$platform}/{$version}/

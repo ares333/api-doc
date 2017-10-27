@@ -1,2 +1,0 @@
-_meta
-	inherit		../v2.1.0/主题.txt

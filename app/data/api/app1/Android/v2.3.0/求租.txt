@@ -1,2 +1,0 @@
-_meta
-	inherit		../v2.2.0/求租.txt

@@ -1,2 +1,0 @@
-_meta
-	inherit		../../Android/{$version}/公寓.txt

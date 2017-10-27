@@ -1,2 +1,0 @@
-_meta
-	inherit		../v2.3.0/公寓.txt
