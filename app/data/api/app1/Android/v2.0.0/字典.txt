@@ -1,0 +1,26 @@
+dict._all
+	title	汇总
+	doc	\i../../Android/v2.0.0/_inc/dict.txt
+dict.profession
+	title	职业
+	return
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	id
+						name	string	名称
+dict.tagroomie
+	title	理想室友标签
+	return
+		data
+			value
+				\s0	array
+				\s1	每一项字段如下
+				data
+					data
+						id		string	id
+						sexId		string	性别列表的id，具体性别去查性别列表
+						name	string	名称

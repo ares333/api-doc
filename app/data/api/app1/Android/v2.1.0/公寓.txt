@@ -1,0 +1,13 @@
+_meta
+	inherit		../v2.0.0/公寓.txt
+apartment.detail
+	return
+		data
+			value
+				data
+					data
+						share	object	分享
+						share.title	string	标题
+						share.url	string	地址
+						share.desc	string	描述
+						share.icon	string	图标

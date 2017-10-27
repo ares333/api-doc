@@ -1,0 +1,121 @@
+﻿_meta
+	inherit	../_root.txt
+table_house.search
+	title	搜索
+	params
+		HTTP POST
+			word	1	关键词
+	return
+		data
+			value
+				\s0	array
+				data
+					data
+						table	string	搜索结果的类型：city、country、house。
+		demo	word=美
+table.list#热门房源
+	title	热门房源
+	params
+		HTTP POST
+			table	1	固定值：house
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+			order[]	1	固定值：viewNum desc
+	return
+		demo	table=house&limitPage[offset]=1&limitPage[count]=10&order[]=viewNum desc
+table.list#列表
+	title	列表
+	params
+		HTTP POST
+			table	1	固定值：house
+			where[country.id=?]	0	国家id
+			where[city.id=?]	0	城市id
+			where[house.id=?]	0	房子id
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+	return
+		demo	table=house&where[country.id%3D%3F]=2&limitPage[offset]=1&limitPage[count]=10
+table_house.row#详情页
+	title	详情页
+	params
+		HTTP POST
+			data[id]	1	房子id
+	return
+		demo	data[id]=2
+table.insertRow#收藏
+	title	收藏
+	params
+		HTTP POST
+			table	1	固定值：houseFavorite
+			data[houseId]	1	房子id
+	return
+		demo	table=houseFavorite&data[houseId]=2
+		data
+			code
+				data
+					data
+						\s1000	应该已经收藏过了
+table.deleteRow#取消收藏
+	title	取消收藏
+	params
+		HTTP POST
+			table	1	固定值：houseFavorite
+			data[houseId]	1	房子id
+	return
+		demo	table=houseFavorite&data[houseId]=2
+table.list#收藏列表
+	title	收藏列表
+	params
+		HTTP POST
+			table	1	固定值：houseFavorite
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+	return
+		demo	table=houseFavorite&limitPage[offset]=1&limitPage[count]=3
+table.list#热门城市
+	title	热门城市
+	params
+		HTTP POST
+			table	1	固定值：city
+			group	1	固定值：yes
+			joinLeft[house]	1	固定值：house.cityId=city.id
+			columns[0][count]	1	固定值：count(distinct house.id)
+			having[count>?]	1	固定值：0
+			order[]	1	固定值：count desc
+	return
+		demo	table=city&group=yes&joinLeft[house]=house.cityId%3Dcity.id&columns[0][count]=count(distinct%20house.id)&having[count%3E%3F]=0&order[]=count%20desc
+table.insertRow#托管
+	title	托管
+	params
+		HTTP POST
+			table	1	固定值：hostApply
+			data[countryName]	1	国家
+			data[name]	1	姓名
+			data[mobile]	1	电话
+			data[address]	1	地址
+			data[desc]	0	其他描述
+	return
+		demo	table=hostApply&data[countryName]=美国&data[name]=测试&data[mobile]=18888888888&data[address]=纽约某地&data[desc]=
+table_hostApply.share
+	title	托管页分享
+	return
+		demo	_
+table.list#房源和楼盘列表
+	title	房源和楼盘列表
+	params
+		HTTP POST
+			table	1	固定值：houseAndBuilding
+			withCount	1	固定值：yes
+			where[country.id=?]	0	国家id
+			where[city.id=?]	0	城市id
+			where[houseAndBuilding.title=?]	0	房子标题
+			limitPage[offset]	1	页码
+			limitPage[count]	1	每页条数
+	return
+		data
+			value
+				\s0	array
+				data
+					data
+						table	string	house代表房源，building代表楼盘
+		demo	table=houseAndBuilding&where[city.id%3D%3F]=121&limitPage[offset]=1&limitPage[count]=10&withCount=yes&where[houseAndBuilding.title%3D%3F]=紧邻市区空地

@@ -1,0 +1,16 @@
+inherit		../v2.3.0/_meta.txt
+_unset
+	default
+		params
+			HTTP POST
+				appVersion
+default
+	params
+		HTTP POST
+			_deviceId	0	当前设备唯一标示符，获取不到不传
+			_appVersion	1	APP当前版本
+	return
+		data
+			value
+				\s0	string
+				\s1	空字符串

@@ -1,0 +1,41 @@
+﻿Topic/search
+	title	搜索
+	params
+		HTTP POST
+			searchType	1	搜索类型，生活圈：sphere，地铁：subway
+			cityId		1	城市id
+			page		1	第几页
+			pageSize	1	每页显示数量，最大值10
+			typeId		0	信息类型
+			sexId		0	性别id
+			minMoney	0	租金最小值
+			maxMoney	0	租金最大值
+			regionId	0	行政区id，sphere搜索使用
+			markId		0	地标id，sphere搜索使用
+			subwayId	0	地铁线id，subway搜索使用
+			subwayStationId	0	地铁站id，subway搜索使用
+	return
+		demo	[{"typeId":"2","id":"17376","user":{"id":"77962","avatar":"http:\/\/resource.api.youja.cn\/resource_type\/101\/resource_id\/465382621","nickname":"\u5b50\u6657"},"checkinDate":"2016-03-27","publishTime":"1457846016","pic":{"2":["http:\/\/test.static.zuba.life\/img\/hezuba\/20a\/5c5\/662e669ccea7ce0082944da6d8.jpg"]},"isDouban":false,"money":"1300","location":"\u5929\u901a\u82d1"}]
+		data
+			value
+				\s0	array
+				\s1	每一条数据字段如下
+				data
+					data
+						id		string	帖子id
+						typeId	string	帖子类型
+						user	object	用户信息
+						user.id	string	用户id
+						user.avatar	string	用户头像
+						user.nickname	string	用户昵称
+						publishTime	string	发布时间，时间戳
+						checkinDate	string	入住日期
+						pic	object	配图，第一维代表图片类型
+						isDouban	boolean		帖子是否来源于豆瓣
+						money	string	租金
+						location	string	所在位置
+			errorCode
+				data
+					data
+						\s1000	typeId不合法
+						\s1001	searchType不合法

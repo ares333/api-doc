@@ -1,0 +1,28 @@
+_meta
+	inherit		../v2.1.0/求租.txt
+want.search
+	title	搜索
+	params
+		HTTP POST
+			tags[]	0	室友标签，1：校友，2：老乡，3：同行
+want.publish
+	title	发布
+	params
+		HTTP POST
+			replace	0	是否替换之前的发布，值等于1代表替换
+want.detail
+	title	详情
+	return
+		data
+			value
+				data
+					data
+						recommend	array	推荐房源
+						recommend.$.id	string	帖子id
+						recommend.$.pic	object	配图
+						recommend.$.pic.width	string	高度
+						recommend.$.pic.height	string	宽度
+						recommend.$.pic.url	string	地址
+						recommend.$.money	string	租金
+						recommend.$.location	string	位置
+						recommend.$.currencyId	string	货币

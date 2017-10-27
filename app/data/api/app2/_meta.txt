@@ -1,0 +1,25 @@
+wraper
+	return
+		demo	<a target="_blank" href="http://app2.com/api/app/v1.0.0/\k/json?_version=1.0.0&_app=h5&{$demo}">URL</a>
+default
+	url	\k
+	return
+		type	JSON对象
+		data
+			value
+				\s0	null
+				\s1	 
+				data
+					title	键	类型	说明
+			code
+				[]number
+				[]状态码，0~1000(不包含1000)是全局唯一错误码，1000~2000(不包含2000)是接口特定错误码。
+				data
+					title	错误码	错误描述
+					data
+						more
+							0	无错误
+							1	鉴权失败
+							10	其他错误
+			message	string	错误简短描述，不作为错误标识
+			time	string	服务端代码执行时间，单位秒

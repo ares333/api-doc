@@ -1,0 +1,2 @@
+_meta
+	inherit		../../Android/{$version}/支付.txt

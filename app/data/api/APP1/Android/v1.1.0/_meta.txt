@@ -1,2 +1,0 @@
-prefix
-	url	https://localhost/{$platform}/{$version}/

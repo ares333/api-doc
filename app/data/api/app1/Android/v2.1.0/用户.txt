@@ -1,0 +1,36 @@
+_meta
+	inherit		../v2.0.0/用户.txt
+user.zmopsign
+	title	芝麻授权
+	params
+		HTTP POST
+			idcard	1	身份证号
+			name	1	真实姓名
+	return
+		data
+			value
+				\s0	object
+				\s1	加密的授权信息
+				data
+					data
+						appid	string	应用id
+						param	string	加密的参数
+						sign	string	签名
+user.zmopscore
+	title	芝麻分数
+	desc	必须先走用户授权那一步
+	params
+		HTTP POST
+			param	1	授权后返回的param字段
+			sign	1	授权后返回的sign字段
+	return
+		data
+			value
+				\s0	string
+				\s1	分数
+			errorCode
+				data
+					data
+						\s1000	签名错误
+						\s1001	获取分数失败
+						\s1002	没有授权

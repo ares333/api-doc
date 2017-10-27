@@ -1,0 +1,3 @@
+inherit		../v2.0.0/_meta.txt
+prefix
+	url	https://app1-v21.com/{$platform}/{$version}/

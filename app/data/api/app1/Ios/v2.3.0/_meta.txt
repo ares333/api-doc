@@ -1,0 +1,3 @@
+inherit		../../Android/{$version}/_meta.txt
+var
+	platform	ios

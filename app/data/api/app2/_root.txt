@@ -1,0 +1,10 @@
+_meta
+	prefix
+		url	http://app2.com/api/app/{$version}/
+	suffix
+		url	/json
+	default
+		params
+			HTTP POST
+				_version	1	客户端当前版本，格式：1.5.2
+				_app		1	其中一个：ios,android,h5
