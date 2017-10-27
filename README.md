@@ -24,7 +24,7 @@ composer create-project ares333/api-doc
 1. 无需数据库。
 1. 编写非常简便，所有枯燥的工作全部由机器完成。
 1. 支持非常多的格式。
-1. 以非常便捷的方式实现继承，加前缀，后缀等等各种高级功能。
+1. 以非常便捷的方式实现继承、加前缀、后缀等各种高级功能。
 
 Demo
 ----
@@ -34,8 +34,8 @@ Demo
 
 用法
 ----
-语法说明文件查看[doc/api.txt](doc/api.txt)<br>
-Demo使用的数据文件在[app/data/api](app/data/api)<br>
+语法说明文件查看 [doc/api.txt](doc/api.txt)<br>
+Demo使用的数据文件在 [app/data/api](app/data/api)<br>
 看Demo和文档基本就会用，更深入问题讨论见<b>联系我们</b>
 
 联系我们
