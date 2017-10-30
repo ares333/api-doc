@@ -66,7 +66,7 @@ class DocModel extends AbstractModel
         if (0 === strpos($str, chr(239) . chr(187) . chr(191))) {
             $str = substr($str, 3);
         }
-        $content = str_replace("\r", '', trim($str));
+        $content = str_replace("\r", '', $str);
         return $content;
     }
 
