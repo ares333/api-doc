@@ -9,4 +9,4 @@ propType#get
 	title	资产类型
 	return
 		data
-				array
+				array	
