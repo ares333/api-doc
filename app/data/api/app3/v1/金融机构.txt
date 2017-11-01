@@ -1,0 +1,21 @@
+﻿_meta
+	inherit	../_root.txt
+user/dist#put
+	title	认证
+	params
+		HTTP REQUEST BODY (PUT)
+			name	1	企业名
+			contact	1	联系方式
+			id|userDistImage	1	array，营业执照
+			id|userDistImage.$.imageId	1	图片id
+			id|userDistFile	1	array，资产证明及经营状况
+			id|userDistFile.$.fileId	1	文件id
+dist#post
+	title	承销资产
+	params
+		HTTP REQUEST BODY (POST)
+			propId	1	资产id
+			num		1	份额
+		HTTP RESPONSE CODE
+			465		0	账号不是审核成功状态
+			466		0	份额不足

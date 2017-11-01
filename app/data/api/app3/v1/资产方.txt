@@ -1,0 +1,34 @@
+﻿_meta
+	inherit	../_root.txt
+user/prop#put
+	title	认证
+	params
+		HTTP REQUEST BODY (PUT)
+			name	1	企业名／用户真实姓名
+			contact	1	联系方式
+			id|userPropImage	1	array，营业执照／身份证正反面
+			id|userPropImage.$.imageId	1	图片id
+			id|userPropFile	1	array，资产证明及资产状况
+			id|userPropFile.$.fileId	1	文件id
+prop#post
+	title	资产拆分
+	params
+		HTTP REQUEST BODY (POST)
+			name	1	房产名称
+			desc	0	房产描述
+			typeId	1	房产类型
+			currencyId	1	货币类型
+			money	1	房产价值
+			split	1	拆分份额
+			profit	1	年化收益
+			buyback	1	回购时间
+			timeLimit	1	承销时限
+			percentLimit	1	承销比例底线
+			entrust	1	bool，是否委托
+			id|propImage	1	array，房产照片
+			id|propImage.$.imageId	1	图片id
+			id|propFile	1	array，房产证明文件
+			id|propFile.$.fileId	1	文件id
+	return
+		data
+			 	array	资产id

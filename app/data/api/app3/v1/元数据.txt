@@ -1,0 +1,12 @@
+﻿_meta
+	inherit	../_root.txt
+currency#get
+	title	货币列表
+	return
+		data
+			 	array	
+propType#get
+	title	资产类型
+	return
+		data
+				array

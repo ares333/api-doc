@@ -19,9 +19,8 @@ user#post
 			466	0	验证码错误
 			467	0	用户已存在
 	return
-		demo	["22"]
 		data
-			 	array	只包含一个值，新用户id
+			 	array	新用户id
 user/login#put
 	title	登录
 	params
