@@ -38,11 +38,10 @@ composer create-project ares333/api-doc
 Demo
 ----
 [http://demo-apidoc.phpdr.net](http://demo-apidoc.phpdr.net "Demo")
-
-用户名：admin
-
-密码：admin
-
+```
+用户名	admin
+密码	admin
+```
 文档格式
 ------
 1. 必须是UTF8格式，有无BOM均可，接口文档必须以.txt结尾。
