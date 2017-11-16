@@ -84,8 +84,8 @@ class DocModel extends AbstractModel
         $file = $this->basePath . '/' . ltrim($path, '/');
         // replace var
         $funcVarReplace = function ($arr, $var) {
+            $flag = false;
             if (! empty($var)) {
-                $flag = false;
                 if (is_string($arr)) {
                     $flag = true;
                     $arr = array(
