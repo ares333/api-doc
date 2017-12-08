@@ -116,6 +116,8 @@ class DocModel extends AbstractModel
         $meta = array();
         // merge _meta.txt
         foreach (array(
+            dirname(dirname(dirname(dirname($file)))),
+            dirname(dirname(dirname($file))),
             dirname(dirname($file)),
             dirname($file)
         ) as $v) {
