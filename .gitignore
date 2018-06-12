@@ -13,7 +13,7 @@ release.properties
 /app/cache/*
 /app/logs/*
 /app/runtime/*
-/app/library/vendor/
+/vendor/
 !/app/cache/.gitkeep
 !/app/logs/.gitkeep
 !/app/runtime/.gitkeep

@@ -6,7 +6,6 @@
 		"php": ">=5.3",
 		"smarty/smarty": "^3.0",
 		"ares333/yaf-library": "^4.0",
-		"ares333/php-ide-doc": "^1.2",
 		"zendframework/zend-json": "^3.0",
 		"zendframework/zend-session": "^2.8"
 	},
@@ -25,8 +24,8 @@
 		"api doc",
 		"api doc management"
 	],
-	"config": {
-		"vendor-dir": "app/library/vendor"
-	},
-	"license": "Apache-2.0"
+	"license": "Apache-2.0",
+	"require-dev": {
+		"ares333/php-stubs": "^1.4"
+	}
 }

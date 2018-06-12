@@ -4,6 +4,11 @@ use Yaf\Controller_Abstract;
 class LoginController extends Controller_Abstract
 {
 
+    /**
+     * 用户名：admin
+     * 密码：admin
+     * @return boolean
+     */
     function indexAction()
     {
         $redirect = $this->getRequest()->getQuery('redirect', '/');
