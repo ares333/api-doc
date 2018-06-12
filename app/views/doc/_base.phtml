@@ -17,7 +17,10 @@
 			<a href="{$v.uri}">{$v.name|regex_replace:"/\.txt$/":""}</a>
 			{/if}
       	{/foreach}
-      	<span style="float:right;margin-right:7px"><a href="/login/logout">退出登录</a></span>
+      	<span style="float:right;margin-right:7px">
+      		<a style="margin-right: 7px" target="_blank" href="https://github.com/ares333/api-doc">https://github.com/ares333/api-doc</a>
+      		<a href="/login/logout">退出登录</a>
+      	</span>
       	<hr>
       </header>
       <main>
