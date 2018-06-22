@@ -4,7 +4,7 @@ use Yaf\Dispatcher;
 use Yaf\Loader;
 use Ares333\Yaf\Tool\SmartyView;
 use Ares333\Yaf\Helper\Error;
-use Ares333\Yaf\Plugin\PhpConfig;
+use Ares333\Yaf\Plugin\PHPConfig;
 use Ares333\Yaf\Plugin\Cli;
 use Ares333\Yaf\Helper\Functions;
 
@@ -26,7 +26,7 @@ class Bootstrap extends Bootstrap_Abstract
 
     function _initPlugin(Dispatcher $dispatcher)
     {
-        $dispatcher->registerPlugin(new PhpConfig());
+        $dispatcher->registerPlugin(new PHPConfig());
         $dispatcher->registerPlugin(new Cli());
         $dispatcher->registerPlugin(new LoginPlugin());
     }
