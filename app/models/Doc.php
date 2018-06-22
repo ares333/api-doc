@@ -9,7 +9,7 @@ class DocModel extends AbstractModel
 
     function __construct()
     {
-        $this->basePath = Application::app()->getAppDirectory() . '/data/api';
+        $this->basePath = Application::app()->getAppDirectory() . '/../data/api';
     }
 
     /**

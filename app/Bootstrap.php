@@ -14,7 +14,7 @@ class Bootstrap extends Bootstrap_Abstract
     function _initAutoload(Dispatcher $dispatcher)
     {
         $dir = $dispatcher->getApplication()->getAppDirectory();
-        Loader::getInstance(null, $dir . '/library');
+        Loader::getInstance(null, $dir . '/../library');
         Loader::import($dir . '/../vendor/autoload.php');
     }
 

@@ -10,7 +10,7 @@ class LoginModel extends AbstractModel
     {
         static $session;
         if (! isset($session)) {
-            $dir = Application::app()->getAppDirectory() . '/runtime/session';
+            $dir = Application::app()->getAppDirectory() . '/../runtime/session';
             if (! is_dir($dir)) {
                 mkdir($dir, 0755, true);
             }
@@ -19,10 +19,12 @@ class LoginModel extends AbstractModel
             $config->setCookieLifetime(90 * 86400);
             $config->setGcMaxlifetime(90 * 86400);
             $config->setSavePath($dir);
-            $session = new Container(str_replace([
-                ':',
-                '\\'
-            ], '', __METHOD__), $sessionManager);
+            $session = new Container(
+                str_replace(
+                    [
+                        ':',
+                        '\\'
+                    ], '', __METHOD__), $sessionManager);
         }
         return $session;
     }
