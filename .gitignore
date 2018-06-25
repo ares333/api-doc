@@ -10,14 +10,14 @@ release.properties
 /.classpath
 /.project
 /composer.lock
-/app/cache/*
-/app/logs/*
-/app/runtime/*
+/cache/*
+/logs/*
+/runtime/*
 /vendor/
-!/app/cache/.gitkeep
-!/app/logs/.gitkeep
-!/app/runtime/.gitkeep
-!/app/library/.gitkeep
+!/cache/.gitkeep
+!/logs/.gitkeep
+!/runtime/.gitkeep
+!/library/.gitkeep
 
 # =========================
 # Operating System Files
