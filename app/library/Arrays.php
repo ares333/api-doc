@@ -55,7 +55,7 @@ class Arrays
      * recursive walk all value
      *
      * @param array $arr
-     * @param callback $cb
+     * @param callable $cb
      */
     static function walkr(&$arr, $cb)
     {
@@ -75,7 +75,7 @@ class Arrays
      * recursive uasort
      *
      * @param array $arr
-     * @param callback $cb
+     * @param callable $cb
      */
     static function uasortr(array &$arr, $cb)
     {
@@ -98,7 +98,7 @@ class Arrays
      * recursive uksort
      *
      * @param array $arr
-     * @param callback $cb
+     * @param callable $cb
      */
     static function uksortr(array &$arr, $cb)
     {
