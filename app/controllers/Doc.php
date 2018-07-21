@@ -7,7 +7,6 @@ class DocController extends Controller_Abstract
     function init()
     {
         $out = array();
-        $model = DocModel::getInstance();
         $out['nav'] = array();
         $path = trim($this->getRequest()->getQuery('path', ''), ' /');
         $out['path'] = urlencode($path);
@@ -20,8 +19,8 @@ class DocController extends Controller_Abstract
             $out['nav'][] = array(
                 'name' => $name,
                 'uri' => '/' .
-                     strtolower($this->getRequest()->getControllerName()) .
-                     '?path=' . $path
+                strtolower($this->getRequest()->getControllerName()) . '?path=' .
+                $path
             );
             $path = dirname($path);
         }
@@ -33,10 +32,9 @@ class DocController extends Controller_Abstract
     {
         $path = trim($this->getRequest()->getQuery('path', ''), ' /');
         if ('.txt' == substr($path, - 4)) {
-            $this->forward('detail',
-                array(
-                    'path' => $path
-                ));
+            $this->forward('detail', array(
+                'path' => $path
+            ));
             return false;
         }
         $out = array();
@@ -53,26 +51,23 @@ class DocController extends Controller_Abstract
                 $v2 = current($v);
                 $pattern = '/^v\d\.\d\.\d/';
                 if (preg_match($pattern, $k1) && preg_match($pattern, $k2)) {
-                    uksort($v,
-                        function ($a, $b) {
-                            return $a < $b;
-                        });
+                    uksort($v, function ($a, $b) {
+                        return $a < $b;
+                    });
                 }
                 if (is_string($v1) && is_string($v2)) {
                     if (preg_match($pattern, $v1) && preg_match($pattern, $v2)) {
-                        uasort($v,
-                            function ($a, $b) {
-                                return $a < $b;
-                            });
+                        uasort($v, function ($a, $b) {
+                            return $a < $b;
+                        });
                     }
                 }
             }
         };
         $sort($out['list']);
-        Arrays::walkr($out['list'],
-            function (&$v) use ($sort) {
-                $sort($v);
-            });
+        Arrays::walkr($out['list'], function (&$v) use ($sort) {
+            $sort($v);
+        });
         $mapKey = array();
         $mapValue = array();
         Arrays::pregReplaceKeyr('/.+/',
@@ -106,6 +101,7 @@ class DocController extends Controller_Abstract
         $model = DocModel::getInstance();
         $path = $this->getRequest()->getParam('path');
         // v1.0.0-beta
+        $match = [];
         preg_match('/\/(v[\d\.]+(-\w+)?)/', $path, $match);
         $arr = array();
         if (isset($match[1])) {

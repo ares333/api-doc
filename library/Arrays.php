@@ -62,11 +62,10 @@ class Arrays
         foreach ($arr as $k => &$v) {
             $cb($v, $k);
             if (is_array($v)) {
-                call_user_func_array(__METHOD__,
-                    array(
-                        &$v,
-                        &$cb
-                    ));
+                call_user_func_array(__METHOD__, array(
+                    &$v,
+                    &$cb
+                ));
             }
         }
     }
@@ -79,17 +78,15 @@ class Arrays
      */
     static function uasortr(array &$arr, $cb)
     {
-        uasort($arr,
-            function ($a, $b) use (&$cb) {
-                return $cb($a, $b);
-            });
+        uasort($arr, function ($a, $b) use (&$cb) {
+            return $cb($a, $b);
+        });
         foreach ($arr as &$v) {
             if (is_array($v)) {
-                call_user_func_array(__METHOD__,
-                    array(
-                        &$v,
-                        $cb
-                    ));
+                call_user_func_array(__METHOD__, array(
+                    &$v,
+                    $cb
+                ));
             }
         }
     }
@@ -102,17 +99,15 @@ class Arrays
      */
     static function uksortr(array &$arr, $cb)
     {
-        uksort($arr,
-            function ($a, $b) use ($cb) {
-                return $cb($a, $b);
-            });
+        uksort($arr, function ($a, $b) use ($cb) {
+            return $cb($a, $b);
+        });
         foreach ($arr as &$v) {
             if (is_array($v)) {
-                call_user_func_array(__METHOD__,
-                    array(
-                        &$v,
-                        $cb
-                    ));
+                call_user_func_array(__METHOD__, array(
+                    &$v,
+                    $cb
+                ));
             }
         }
     }
@@ -128,7 +123,6 @@ class Arrays
     static function pregReplaceKeyr($search, $replacement, array &$subject,
         $loop = false)
     {
-        static $i = 0;
         static $depth = 0;
         static $new = array();
         if ($depth == 0) {
@@ -214,7 +208,7 @@ class Arrays
             }
             if (isset($columns)) {
                 if (is_array($columns) && 1 === count($columns) &&
-                     $columns[0] === null) {
+                    $columns[0] === null) {
                     $vNew = null;
                 } else {
                     $vNew = array();
@@ -266,7 +260,7 @@ class Arrays
      */
     static function pregReplacer($search, $replacement, array &$subject)
     {
-        foreach ($subject as $k => &$v) {
+        foreach ($subject as &$v) {
             if (is_array($v)) {
                 call_user_func_array(__METHOD__,
                     array(
@@ -382,11 +376,10 @@ class Arrays
             foreach ($arr2 as $k => $v) {
                 if (array_key_exists($k, $arr1)) {
                     if (is_array($v)) {
-                        call_user_func_array(__METHOD__,
-                            array(
-                                &$arr1[$k],
-                                $v
-                            ));
+                        call_user_func_array(__METHOD__, array(
+                            &$arr1[$k],
+                            $v
+                        ));
                     } else {
                         $arr1[$k] .= $v;
                     }
@@ -408,11 +401,10 @@ class Arrays
             foreach ($arr2 as $k => $v) {
                 if (array_key_exists($k, $arr1)) {
                     if (is_array($v)) {
-                        call_user_func_array(__METHOD__,
-                            array(
-                                &$arr1[$k],
-                                $v
-                            ));
+                        call_user_func_array(__METHOD__, array(
+                            &$arr1[$k],
+                            $v
+                        ));
                     } elseif (is_string($v)) {
                         if (is_string($arr1[$k])) {
                             $arr1[$k] = str_replace('{$' . $k . '}', $arr1[$k],
@@ -442,11 +434,10 @@ class Arrays
                 if ($v === $v1) {
                     unset($array[$k]);
                 } elseif (is_array($v)) {
-                    call_user_func_array(__METHOD__,
-                        array(
-                            &$v,
-                            $v1
-                        ));
+                    call_user_func_array(__METHOD__, array(
+                        &$v,
+                        $v1
+                    ));
                 }
             }
         }
@@ -470,11 +461,10 @@ class Arrays
                 if ($k === $v1) {
                     unset($array[$k]);
                 } elseif (is_array($v)) {
-                    call_user_func_array(__METHOD__,
-                        array(
-                            &$v,
-                            $v1
-                        ));
+                    call_user_func_array(__METHOD__, array(
+                        &$v,
+                        $v1
+                    ));
                 }
             }
         }
@@ -493,11 +483,10 @@ class Arrays
             if (true == $unset) {
                 unset($array[$k]);
             } else if (is_array($v)) {
-                call_user_func_array(__METHOD__,
-                    array(
-                        &$v,
-                        $callback
-                    ));
+                call_user_func_array(__METHOD__, array(
+                    &$v,
+                    $callback
+                ));
             }
         }
     }
@@ -523,10 +512,9 @@ class Arrays
                 if (is_array($v)) {
                     $t = call_user_func(__METHOD__, $needle, $v, $strict, true);
                     if (false !== $t) {
-                        $key = array_merge($key,
-                            array(
-                                $k
-                            ), $t);
+                        $key = array_merge($key, array(
+                            $k
+                        ), $t);
                         break;
                     }
                 }
@@ -553,9 +541,9 @@ class Arrays
         if (! is_array($haystack)) {
             return;
         }
-        foreach ($haystack as $k => $v) {
-            if (! preg_match($pattern, $k)) {
-                unset($haystack[$k]);
+        foreach (array_keys($haystack) as $v) {
+            if (! preg_match($pattern, $v)) {
+                unset($haystack[$v]);
             }
         }
         return $haystack;
@@ -643,11 +631,11 @@ class Arrays
     {
         $up = array();
         if (is_array($array) && is_array($row) && array_key_exists($key, $array)) {
-            foreach ($array as $k => $v) {
-                if ($key === $k) {
+            foreach (array_keys($array) as $v) {
+                if ($key === $v) {
                     $up[key($row)] = $row[key($row)];
                 }
-                $up[$k] = array_shift($array);
+                $up[$v] = array_shift($array);
             }
         }
         return $up;

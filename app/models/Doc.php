@@ -21,17 +21,15 @@ class DocModel extends AbstractModel
     function getList($path, $depth = null)
     {
         $dir = $this->basePath . '/' . $path;
-        $list = File::tree($dir, $depth,
-            array(
-                '.svn',
-                '.git',
-                '.DS_Store'
-            ));
-        Arrays::unsetByValuer($list,
-            array(
-                '_meta.txt',
-                '_root.txt'
-            ));
+        $list = File::tree($dir, $depth, array(
+            '.svn',
+            '.git',
+            '.DS_Store'
+        ));
+        Arrays::unsetByValuer($list, array(
+            '_meta.txt',
+            '_root.txt'
+        ));
         Arrays::unsetByKey($list, array(
             '_inc'
         ));
@@ -95,6 +93,7 @@ class DocModel extends AbstractModel
                 array_walk_recursive($arr,
                     function (&$v, $k, $var) {
                         if (is_string($v)) {
+                            $matches = [];
                             preg_match_all('/\{\$(\w+)\}/', $v, $matches);
                             if (! empty($matches[1])) {
                                 foreach ($matches[1] as $v1) {
@@ -137,9 +136,10 @@ class DocModel extends AbstractModel
                     }
                     // replace version in _meta.txt
                     $metaFile = dirname($metaFile) . '/' .
-                         $metaCurrent['inherit'];
+                        $metaCurrent['inherit'];
                     unset($metaCurrent['inherit']);
                     if (false !== strpos($metaFile, '{$version}')) {
+                        $metaFileVersion = [];
                         preg_match('/v\d\.\d\.\d/', $metaFile, $metaFileVersion);
                         if (! empty($metaFileVersion[0])) {
                             $metaFile = str_replace('{$version}',
@@ -200,7 +200,7 @@ class DocModel extends AbstractModel
                 }
                 unset($arr['_meta']['inherit']);
                 $inheritFile = dirname($fileCurrent) . '/' .
-                     $funcVarReplace($inheritFile, $var);
+                    $funcVarReplace($inheritFile, $var);
                 $fileCurrent = $inheritFile;
                 $arrInherit = $this->parseArr($this->getContent($inheritFile),
                     $maxDepth);
@@ -228,6 +228,7 @@ class DocModel extends AbstractModel
             }
             unset($arr['_meta']);
         }
+        $funcWraper = null;
         $funcWraper = function (&$arr1, $arr2) use (&$funcWraper) {
             if (! empty($arr2)) {
                 foreach ($arr2 as $k => $v) {
@@ -301,6 +302,7 @@ class DocModel extends AbstractModel
             $arr[$k] = $v;
         }
         // \h self inherit
+        $funcInherit = null;
         $funcInherit = function (array &$subject) use (&$funcInherit, $arr) {
             foreach ($subject as $k => &$v) {
                 if ('\h' === $k) {
@@ -316,10 +318,9 @@ class DocModel extends AbstractModel
                     $subject[$key] = $value;
                     unset($subject[$k]);
                 } elseif (is_array($v)) {
-                    call_user_func_array($funcInherit,
-                        array(
-                            &$v
-                        ));
+                    call_user_func_array($funcInherit, array(
+                        &$v
+                    ));
                 }
             }
         };
