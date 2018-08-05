@@ -5,7 +5,6 @@
 	"require": {
 		"php": ">=5.3",
 		"smarty/smarty": "^3.0",
-		"ares333/yaf-library": "^4.0",
 		"zendframework/zend-json": "^3.0",
 		"zendframework/zend-session": "^2.8"
 	},
@@ -26,6 +25,6 @@
 	],
 	"license": "Apache-2.0",
 	"require-dev": {
-		"ares333/php-stubs": "^1.4"
+		"ares333/php-stubs-yaf": "^1.1"
 	}
 }
