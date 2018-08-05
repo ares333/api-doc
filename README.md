@@ -33,7 +33,7 @@ composer create-project ares333/api-doc
 1. 绑定public目录为web服务器的入口
 1. Enjoy!
 
-数据文件在 [app/data/api](app/data/api)
+数据文件在 [app/data/api](data/api)
 
 Demo
 ----

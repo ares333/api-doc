@@ -102,7 +102,7 @@ class DocController extends Controller_Abstract
         $path = $this->getRequest()->getParam('path');
         // v1.0.0-beta
         $match = [];
-        preg_match('/\/(v[\d\.]+(-\w+)?)/', $path, $match);
+        preg_match('/\/(v[\d\.]+(-\w+)?|trunk)/', $path, $match);
         $arr = array();
         if (isset($match[1])) {
             $arr['version'] = $match[1];
