@@ -171,7 +171,7 @@ class DocModel extends AbstractModel
         $content = $this->getContent($file);
         // parse here doc
         $hereDoc = array();
-        $content = preg_replace_callback('/<<<(.+)>>>/sm',
+        $content = preg_replace_callback('/<<<(.+)>>>/Usm',
             function (&$node) use (&$hereDoc) {
                 $hereDoc[] = $node[1];
                 return '\d' . (count($hereDoc) - 1);
