@@ -49,11 +49,18 @@ class DocController extends Controller_Abstract
                 next($v);
                 $k2 = key($v);
                 $v2 = current($v);
-                $pattern = '/^v\d\.\d\.\d/';
+                $pattern = '/^(v\d+\.\d+\.\d+|trunk|branch|master)/';
                 if (preg_match($pattern, $k1) && preg_match($pattern, $k2)) {
-                    uksort($v, function ($a, $b) {
-                        return $a < $b;
-                    });
+                    uksort($v,
+                        function ($a, $b) {
+                            if (in_array($a, [
+                                'trunk',
+                                'master'
+                            ])) {
+                                return - 1;
+                            }
+                            return $a < $b;
+                        });
                 }
                 if (is_string($v1) && is_string($v2)) {
                     if (preg_match($pattern, $v1) && preg_match($pattern, $v2)) {
