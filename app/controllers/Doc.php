@@ -39,7 +39,7 @@ class DocController extends Controller_Abstract
         }
         $out = array();
         $model = DocModel::getInstance();
-        $out['list'] = $model->getList($path, 3);
+        $out['list'] = $model->getList($path, 2);
         // set version list in inverted order
         $sort = function (&$v) {
             if (is_array($v)) {
