@@ -37,7 +37,6 @@ composer create-project ares333/api-doc
 
 Demo
 ----
-[http://demo-apidoc.phpdr.net](http://demo-apidoc.phpdr.net "Demo")
 ```
 用户名	admin
 密码	admin
